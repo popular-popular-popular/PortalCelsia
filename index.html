@@ -22,7 +22,7 @@
 }
 
 html {
-  font-size: 16px; /* Base para rem */
+  font-size: 16px;
 }
 
 body {
@@ -259,6 +259,7 @@ h1 {
   color: #888;
 }
 
+/* BOTÓN DEL OJITO */
 .eye {
   position: absolute;
   right: 0.9rem;
@@ -269,11 +270,31 @@ h1 {
   color: #777;
   cursor: pointer;
   padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: auto;
 }
 
 .eye svg {
   width: 1.3rem;
   height: 1.3rem;
+  display: block;
+  pointer-events: none;
+}
+
+/* Ocultar el ícono de ojo tachado por defecto */
+.eye .eye-off {
+  display: none;
+}
+
+/* Cuando el input es tipo texto, mostrar el ojo tachado */
+.eye.is-visible .eye-on {
+  display: none;
+}
+
+.eye.is-visible .eye-off {
   display: block;
 }
 
@@ -715,16 +736,29 @@ footer {
               id="toggleVisibility"
               aria-label="Mostrar u ocultar dato">
 
-        <svg viewBox="0 0 24 24"
+        <!-- Ícono de ojo abierto -->
+        <svg class="eye-on" viewBox="0 0 24 24"
              fill="none"
              stroke="currentColor"
              stroke-width="1.8"
              aria-hidden="true">
-
           <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12
                    s-3.6 6.5-10 6.5S2 12 2 12Z"/>
-
           <circle cx="12" cy="12" r="3"/>
+        </svg>
+
+        <!-- Ícono de ojo tachado -->
+        <svg class="eye-off" viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.8"
+             aria-hidden="true">
+          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20
+                   c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94
+                   M9.9 4.24A9.12 9.12 0 0 1 12 4
+                   c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19
+                   m-6.72-1.07a3 3 0 1 1-4.24-4.24
+                   M1 1l22 22"/>
         </svg>
       </button>
     </div>
@@ -813,6 +847,7 @@ choices.forEach(button => {
 
     input.value = '';
     input.type = 'password';
+    toggle.classList.remove('is-visible');
 
     if (mode === 'cuenta') {
       input.placeholder = 'Ingresa aquí tu cuenta';
@@ -824,8 +859,18 @@ choices.forEach(button => {
   });
 });
 
-toggle.addEventListener('click', () => {
-  input.type = input.type === 'password' ? 'text' : 'password';
+/* MOSTRAR U OCULTAR EL TEXTO */
+toggle.addEventListener('click', (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+
+  if (input.type === 'password') {
+    input.type = 'text';
+    toggle.classList.add('is-visible');
+  } else {
+    input.type = 'password';
+    toggle.classList.remove('is-visible');
+  }
 });
 
 document.querySelector('.policy-link').addEventListener('click', event => {
