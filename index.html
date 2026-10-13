@@ -168,14 +168,14 @@ body {
   display: block;
 }
 
-/* TÍTULO (estilo Tailwind: text-lg font-bold text-foreground) */
+/* TÍTULO */
 .card-title {
-  font-size: 1.125rem;   /* text-lg → 18px */
-  line-height: 1.75rem;
-  font-weight: 700;      /* font-bold */
+  font-size: 1.35rem;      /* ~21.6px, más cercano a la captura */
+  line-height: 1.4;
+  font-weight: 700;
   color: var(--foreground);
   margin: 0 auto 0.9rem;
-  max-width: 28rem;
+  max-width: 100%;          /* Sin límite para que no se corte */
   text-align: center;
   letter-spacing: -0.5px;
   text-wrap: balance;
@@ -185,9 +185,10 @@ body {
 .intro {
   text-align: center;
   color: #777;
-  font-size: clamp(0.8rem, 3.2vw, 0.95rem);
+  font-size: clamp(0.85rem, 3.2vw, 1rem);
   line-height: 1.5;
   margin: 0 auto 2rem;
+  max-width: 100%;
   text-wrap: balance;
 }
 
@@ -547,9 +548,10 @@ footer {
   }
 
   .card-title {
-    font-size: 1.05rem;
-    line-height: 1.5rem;
+    font-size: 1.15rem;
+    line-height: 1.4;
     margin-bottom: 0.8rem;
+    max-width: 100%;
   }
 
   .intro {
@@ -658,8 +660,14 @@ footer {
   }
 
   .card-title {
-    font-size: 1rem;
-    line-height: 1.4rem;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    max-width: 100%;
+  }
+
+  .intro {
+    font-size: 0.78rem;
+    line-height: 1.45;
   }
 
   .choice {
@@ -731,7 +739,6 @@ footer {
     >
   </div>
 
-  <!-- TÍTULO: estilo Tailwind text-lg font-bold text-foreground -->
   <h2 class="card-title">Consulta, paga o abona a tu factura</h2>
 
   <p class="intro">
