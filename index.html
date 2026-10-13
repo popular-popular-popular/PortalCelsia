@@ -11,6 +11,7 @@
   --orange-dark: #e87516;
   --pink: #d94b91;
   --text: #171717;
+  --foreground: #171717;
   --muted: #777;
   --line: #e5e5e5;
   --soft: #f8f8f8;
@@ -167,17 +168,20 @@ body {
   display: block;
 }
 
-/* TEXTOS */
-h1 {
+/* TÍTULO (estilo Tailwind: text-lg font-bold text-foreground) */
+.card-title {
+  font-size: 1.125rem;   /* text-lg → 18px */
+  line-height: 1.75rem;
+  font-weight: 700;      /* font-bold */
+  color: var(--foreground);
   margin: 0 auto 0.9rem;
   max-width: 28rem;
   text-align: center;
-  font-size: clamp(1.05rem, 4.3vw, 1.35rem);
-  line-height: 1.35;
   letter-spacing: -0.5px;
   text-wrap: balance;
 }
 
+/* SUBTÍTULO */
 .intro {
   text-align: center;
   color: #777;
@@ -531,7 +535,6 @@ footer {
     padding: 0.5rem 0.7rem 0.3rem;
   }
 
-  /* TARJETA: 83%, margen superior 2rem */
   .card {
     width: calc(83% - 0.4rem);
     margin: 2rem auto 0.8rem;
@@ -543,8 +546,9 @@ footer {
     margin-bottom: 1.3rem;
   }
 
-  h1 {
-    font-size: 1.1rem;
+  .card-title {
+    font-size: 1.05rem;
+    line-height: 1.5rem;
     margin-bottom: 0.8rem;
   }
 
@@ -646,12 +650,16 @@ footer {
     flex: 0 1 1.1rem;
   }
 
-  /* TARJETA: mismo ancho pero con menos margen */
   .card {
     width: calc(83% - 0.4rem);
     margin: 2rem auto 0.8rem;
     padding: 1.4rem 0.7rem 1.1rem;
     border-radius: 0.75rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    line-height: 1.4rem;
   }
 
   .choice {
@@ -723,7 +731,8 @@ footer {
     >
   </div>
 
-  <h1>Consulta, paga o abona a tu factura</h1>
+  <!-- TÍTULO: estilo Tailwind text-lg font-bold text-foreground -->
+  <h2 class="card-title">Consulta, paga o abona a tu factura</h2>
 
   <p class="intro">
     Sigue los pasos para consultar o realizar tus pagos
