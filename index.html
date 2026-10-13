@@ -14,7 +14,7 @@
   --muted: #777;
   --line: #e5e5e5;
   --soft: #f8f8f8;
-  --green-check: #34a853;
+  --green-check: #2e9e4f;
 }
 
 * {
@@ -44,7 +44,6 @@ body {
   position: relative;
 }
 
-/* Línea divisoria blanca en el topbar */
 .topbar::after {
   content: '';
   position: absolute;
@@ -74,10 +73,6 @@ body {
 
 .brand-name span {
   font-weight: 400;
-}
-
-.brand-divider {
-  display: none; /* Se usa el ::after del topbar */
 }
 
 .portal-title {
@@ -353,6 +348,7 @@ h1 {
   gap: 14px;
 }
 
+/* Checkbox del reCAPTCHA: cuadrado blanco con borde gris */
 .recaptcha-checkbox {
   width: 28px;
   height: 28px;
@@ -363,22 +359,27 @@ h1 {
   appearance: none;
   -webkit-appearance: none;
   position: relative;
+  transition: border-color 0.2s;
 }
 
+/* Al marcar: el borde desaparece y se muestra el chulo verde delgado */
 .recaptcha-checkbox:checked {
-  background: transparent;
   border-color: transparent;
+  background: transparent;
 }
 
+/* El chulo verde delgado */
 .recaptcha-checkbox:checked::after {
-  content: "✓";
-  color: #34a853;
+  content: "";
   position: absolute;
-  left: 0px;
-  top: -6px;
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1;
+  left: 50%;
+  top: 45%;
+  width: 18px;
+  height: 10px;
+  border-left: 3px solid #2e9e4f; /* Verde delgado */
+  border-bottom: 3px solid #2e9e4f;
+  transform: translate(-50%, -60%) rotate(-45deg);
+  border-radius: 1px;
 }
 
 .recaptcha-label {
@@ -434,9 +435,18 @@ h1 {
   justify-content: center;
   gap: 8px;
   box-shadow: 0 2px 4px rgba(244,119,0,0.3);
+  transition: background 0.2s, opacity 0.2s;
 }
 
-.submit:hover {
+/* Estado deshabilitado: opacidad reducida y cursor no permitido */
+.submit:disabled {
+  background: #f7b27a; /* Naranja pálido */
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+}
+
+.submit:not(:disabled):hover {
   background: #e96e00;
 }
 
@@ -739,7 +749,8 @@ footer {
     <span class="required-text">* Campo obligatorio</span>
     <span class="version-text">v1.0.33</span>
 
-    <button type="submit" class="submit">
+    <!-- Botón Buscar: deshabilitado por defecto -->
+    <button type="submit" class="submit" id="submitBtn" disabled>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -763,6 +774,8 @@ footer {
 const choices = document.querySelectorAll('.choice');
 const input = document.getElementById('accountInput');
 const toggle = document.getElementById('toggleVisibility');
+const recaptchaCheck = document.getElementById('recaptchaCheck');
+const submitBtn = document.getElementById('submitBtn');
 
 let mode = 'cuenta';
 
@@ -804,6 +817,11 @@ document.querySelector('.policy-link').addEventListener('click', event => {
     'En una implementación real, este enlace debe llevar ' +
     'a la política oficial de tratamiento de datos.'
   );
+});
+
+/* HABILITAR / DESHABILITAR EL BOTÓN BUSCAR SEGÚN EL RECAPTCHA */
+recaptchaCheck.addEventListener('change', () => {
+  submitBtn.disabled = !recaptchaCheck.checked;
 });
 
 /* FORMULARIO DEMOSTRATIVO */
