@@ -18,7 +18,6 @@
   --soft: #f8f8f8;
   --green-check: #2e9e4f;
   --navy: #0f172a;
-  --btn-light-orange: #fcb98a;
 }
 
 * { box-sizing: border-box; }
@@ -121,20 +120,28 @@ body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text);
 .balance-card { background: var(--orange); border-radius: 1rem; padding: 1.4rem 1.2rem; color: white; margin-bottom: 1.5rem; }
 .balance-title { font-size: 0.95rem; opacity: 0.95; margin-bottom: 0.2rem; }
 .balance-amount { font-size: 2.8rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1; }
-.balance-details { display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.9); }
-.balance-details strong { color: white; font-weight: 700; }
+.balance-details { display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.9); line-height: 1.4; }
+.balance-details strong { color: white; font-weight: 700; display: block; margin-top: 0.1rem; }
 .client-info { margin-bottom: 1.5rem; border-bottom: 1px dashed #e0e0e0; padding-bottom: 1.5rem; }
-.client-name { display: flex; align-items: flex-start; gap: 0.6rem; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.6rem; line-height: 1.3; color: #222; }
-.client-name svg { width: 1.1rem; height: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; stroke-width: 1.5; }
-.client-address { font-size: 0.85rem; color: #777; padding-left: 1.7rem; line-height: 1.4; }
+.client-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; color: #222; }
+.client-row svg { width: 1.2rem; height: 1.2rem; flex-shrink: 0; stroke-width: 1.5; color: #555; }
+.client-name { font-weight: 700; font-size: 0.95rem; line-height: 1.3; }
+.client-address { font-size: 0.85rem; color: #555; line-height: 1.4; }
 .alert-info { background: #fafafa; border: 1px solid #e0e0e0; border-radius: 0.8rem; padding: 1rem; display: flex; gap: 0.75rem; align-items: center; color: #555; font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4; }
 .alert-info svg { width: 1.2rem; height: 1.2rem; flex-shrink: 0; color: #777; }
 .action-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem; }
+
+/* CORRECCIÓN DE BOTONES (Pago Total Naranja, Pago Parcial Borde) */
 .btn-pay { min-height: 3.2rem; border-radius: 0.6rem; font-weight: 600; font-size: 1.05rem; cursor: pointer; }
-.btn-pay.total { background: var(--btn-light-orange); color: white; border: none; }
-.btn-pay.partial { background: white; border: 2px solid var(--btn-light-orange); color: var(--btn-light-orange); }
-.btn-download { width: 100%; min-height: 3.2rem; border-radius: 0.6rem; background: var(--navy); color: white; border: none; font-weight: 600; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer; }
+.btn-pay.total { background: var(--orange); color: white; border: none; }
+.btn-pay.partial { background: white; border: 2px solid var(--orange); color: var(--orange); }
+
+.btn-download { width: 100%; min-height: 3.2rem; border-radius: 0.6rem; background: var(--navy); color: white; border: none; font-weight: 600; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer; margin-bottom: 1.2rem; }
 .btn-download svg { width: 1.2rem; height: 1.2rem; }
+
+/* Botón Volver */
+.btn-back { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: transparent; border: none; color: #777; font-size: 1rem; cursor: pointer; width: 100%; padding: 0.5rem; font-weight: 500; }
+.btn-back svg { width: 1.1rem; height: 1.1rem; }
 
 /* --- VISTA 3A: PAGO PARCIAL --- */
 #partialView { display: none; }
@@ -150,9 +157,7 @@ body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text);
 .input-amount-label { font-size: 0.95rem; color: #555; font-weight: 600; margin-bottom: 0.5rem; }
 .input-amount { width: 100%; height: 3.5rem; border: 1px solid #e2e2e2; border-radius: 0.6rem; padding: 0 1rem; font-size: 1.2rem; font-weight: 700; color: #555; outline: none; margin-bottom: 1.5rem; }
 .input-amount:focus { border-color: var(--orange); }
-.btn-continue-partial { width: 100%; min-height: 3.2rem; border-radius: 0.6rem; background: var(--btn-light-orange); color: white; border: none; font-weight: 600; font-size: 1.1rem; cursor: pointer; margin-bottom: 1.2rem; }
-.btn-back { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: transparent; border: none; color: #777; font-size: 1rem; cursor: pointer; width: 100%; padding: 0.5rem; font-weight: 500; }
-.btn-back svg { width: 1.1rem; height: 1.1rem; }
+.btn-continue-partial { width: 100%; min-height: 3.2rem; border-radius: 0.6rem; background: var(--btn-light-orange, #fcb98a); color: white; border: none; font-weight: 600; font-size: 1.1rem; cursor: pointer; margin-bottom: 1.2rem; }
 
 /* --- VISTA 3B: PAGO TOTAL (MÉTODOS) --- */
 #paymentView { display: none; }
@@ -297,7 +302,7 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
 <main class="card" id="invoiceView">
   <div class="invoice-header">
     <div>
-      <div class="invoice-number" id="accountNumberDisplay">2681656</div>
+      <div class="invoice-number" id="accountNumberDisplay">2417693</div>
       <div class="invoice-label">ID de cuenta</div>
     </div>
     <div class="badge-active"><span class="badge-dot"></span> activo</div>
@@ -305,27 +310,26 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
 
   <div class="balance-card">
     <div class="balance-title">Saldo total</div>
-    <div class="balance-amount">$ 0</div>
+    <div class="balance-amount">$ 55.900</div>
     <div class="balance-details">
-      <span>Cupón: <strong>268165621</strong></span>
-      <span>Ref: <strong>268165621-0-202610</strong></span>
+      <div>Cupón:<br><strong>241769303</strong></div>
+      <div>Ref: 241769303-55900-<br><strong>202610</strong></div>
     </div>
   </div>
 
   <div class="client-info">
-    <div class="client-name">
+    <div class="client-row">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-      <div>BA********S AL****Z MA**A<br>AL******A</div>
+      <div class="client-name">VE****A VI**L AL****O</div>
     </div>
-    <div class="client-address">C*A 1*E CL 7-**1 TR 36 AP***3 - CI***D GU****</div>
-  </div>
-
-  <div class="alert-info">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-    <span>Esta cuenta no tiene saldo pendiente por pagar.</span>
+    <div class="client-row">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      <div class="client-address">C*L 14 - 7**1 - VI**A GO****A - CA*******A</div>
+    </div>
   </div>
 
   <div class="action-buttons">
+    <!-- Corregido: botón naranja sólido -->
     <button class="btn-pay total" id="btnPayTotal">Pago Total</button>
     <button class="btn-pay partial" id="btnPayPartial">Pago Parcial</button>
   </div>
@@ -333,6 +337,12 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
   <button class="btn-download">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
     Descargar mi factura
+  </button>
+
+  <!-- Nuevo botón volver -->
+  <button class="btn-back" id="btnBackFromInvoice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    Volver
   </button>
 </main>
 
@@ -496,11 +506,21 @@ document.getElementById('lookupForm').addEventListener('submit', event => {
   lookupView.style.display = 'none';
   invoiceView.style.display = 'block';
 
-  // Actualizar Pasos
   step1.classList.remove('active');
   step1.classList.add('completed');
   step1Circle.innerHTML = '✓';
   step2.classList.add('active');
+});
+
+// Volver de Factura a Consulta
+document.getElementById('btnBackFromInvoice').addEventListener('click', () => {
+  invoiceView.style.display = 'none';
+  lookupView.style.display = 'block';
+  
+  step1.classList.remove('completed');
+  step1.classList.add('active');
+  step1Circle.innerHTML = '1';
+  step2.classList.remove('active');
 });
 
 // Ir a Pago Parcial
@@ -520,7 +540,6 @@ document.getElementById('btnContinuePartial').addEventListener('click', () => {
   partialView.style.display = 'none';
   paymentView.style.display = 'block';
   
-  // Actualizar Pasos (Paso 3 activo)
   step2.classList.remove('active');
   step2.classList.add('completed');
   step2Circle.innerHTML = '✓';
@@ -532,7 +551,6 @@ document.getElementById('btnPayTotal').addEventListener('click', () => {
   invoiceView.style.display = 'none';
   paymentView.style.display = 'block';
   
-  // Actualizar Pasos (Paso 3 activo)
   step2.classList.remove('active');
   step2.classList.add('completed');
   step2Circle.innerHTML = '✓';
