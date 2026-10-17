@@ -18,6 +18,7 @@
   --soft: #f8f8f8;
   --green-check: #2e9e4f;
   --navy: #0b192c;
+  --btn-light-orange: #fcb98a;
 }
 
 * {
@@ -92,15 +93,14 @@ body {
   box-shadow: 0 0 0 1px #f8d5b5;
 }
 
-/* Estilo para el paso completado (Check) */
 .step.completed {
-  color: #555;
+  color: #777;
 }
 .step.completed .step-circle {
   background: var(--orange);
   color: white;
-  border: none;
-  box-shadow: none;
+  border: 0.25rem solid #ffead7;
+  box-shadow: 0 0 0 1px #f8d5b5;
 }
 
 .step-line {
@@ -331,6 +331,7 @@ body {
 .submit:disabled { background: #f7b27a; cursor: not-allowed; }
 .submit svg { width: 1.2rem; height: 1.2rem; }
 
+
 /* --- ESTILOS DE LA VISTA 2 (FACTURA) --- */
 #invoiceView {
   display: none; /* Oculto por defecto */
@@ -340,34 +341,35 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .invoice-number {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: var(--text);
   line-height: 1;
+  letter-spacing: -0.5px;
 }
 
 .invoice-label {
   font-size: 0.85rem;
   color: var(--orange);
   font-weight: 700;
-  margin-top: 0.3rem;
+  margin-top: 0.4rem;
 }
 
 .badge-active {
   background: #e8f5e9;
   color: #2e7d32;
   border: 1px solid #c8e6c9;
-  padding: 0.25rem 0.6rem;
+  padding: 0.3rem 0.7rem;
   border-radius: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.35rem;
 }
 
 .badge-dot {
@@ -380,72 +382,80 @@ body {
 .balance-card {
   background: var(--orange);
   border-radius: 1rem;
-  padding: 1.5rem 1.2rem;
+  padding: 1.4rem 1.2rem;
   color: white;
   margin-bottom: 1.5rem;
 }
 
 .balance-title {
-  font-size: 0.9rem;
-  opacity: 0.9;
+  font-size: 0.95rem;
+  opacity: 0.95;
   margin-bottom: 0.2rem;
 }
 
 .balance-amount {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
+  line-height: 1;
 }
 
 .balance-details {
   display: flex;
   justify-content: space-between;
   font-size: 0.8rem;
-  border-top: 1px solid rgba(255,255,255,0.3);
-  padding-top: 1rem;
+  color: rgba(255,255,255,0.9);
 }
 
 .balance-details strong {
+  color: white;
   font-weight: 700;
 }
 
 .client-info {
   margin-bottom: 1.5rem;
+  border-bottom: 1px dashed #e0e0e0;
+  padding-bottom: 1.5rem;
 }
 
 .client-name {
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.6rem;
   font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+  color: #222;
 }
 
 .client-name svg {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.1rem;
+  height: 1.1rem;
   flex-shrink: 0;
   margin-top: 0.1rem;
+  stroke-width: 1.5;
 }
 
 .client-address {
   font-size: 0.85rem;
   color: #777;
   padding-left: 1.7rem;
+  line-height: 1.4;
 }
 
 .alert-info {
-  background: #f5f5f5;
+  background: #fafafa;
   border: 1px solid #e0e0e0;
   border-radius: 0.8rem;
   padding: 1rem;
   display: flex;
   gap: 0.75rem;
-  align-items: flex-start;
+  align-items: center;
   color: #555;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin-bottom: 1.5rem;
+  line-height: 1.4;
 }
 
 .alert-info svg {
@@ -458,39 +468,39 @@ body {
 .action-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.7rem;
-  margin-bottom: 0.7rem;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
 }
 
 .btn-pay {
-  min-height: 3rem;
+  min-height: 3.2rem;
   border-radius: 0.6rem;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.05rem;
   cursor: pointer;
-  border: none;
 }
 
 .btn-pay.total {
-  background: #fcbf8a;
+  background: var(--btn-light-orange);
   color: white;
+  border: none;
 }
 
 .btn-pay.partial {
   background: white;
-  border: 2px solid #fcbf8a;
-  color: #fcbf8a;
+  border: 2px solid var(--btn-light-orange);
+  color: var(--btn-light-orange);
 }
 
 .btn-download {
   width: 100%;
-  min-height: 3rem;
+  min-height: 3.2rem;
   border-radius: 0.6rem;
-  background: var(--navy);
+  background: #0f172a; /* Azul oscuro exacto */
   color: white;
   border: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -510,11 +520,6 @@ body {
   .step { width: 4.8rem; font-size: 0.72rem; }
   .step-circle { width: 2.3rem; height: 2.3rem; font-size: 0.9rem; }
   .step-line { flex: 0 1 1.8rem; margin-top: 1.15rem; }
-  
-  .invoice-number { font-size: 1.6rem; }
-  .balance-amount { font-size: 2.2rem; }
-  .action-buttons { gap: 0.5rem; }
-  .btn-pay { font-size: 0.9rem; }
 }
 </style>
 </head>
@@ -629,8 +634,11 @@ body {
   <!-- Datos del Cliente -->
   <div class="client-info">
     <div class="client-name">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-      BA********S AL****Z MA**A<br>AL******A
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      <div>
+        BA********S AL****Z MA**A<br>
+        AL******A
+      </div>
     </div>
     <div class="client-address">
       C*A 1*E CL 7-**1 TR 36 AP***3 - CI***D GU****
@@ -655,7 +663,7 @@ body {
   </button>
 </main>
 
-<footer>
+<footer style="text-align: center; padding: 1rem; color: #888; font-size: 0.75rem;">
   Maqueta demostrativa · No conectada al sistema real de pagos
 </footer>
 
@@ -716,27 +724,23 @@ recaptchaCheck.addEventListener('change', () => {
 document.getElementById('lookupForm').addEventListener('submit', event => {
   event.preventDefault();
   
-  // Validar que el input no esté vacío
   if (!input.value.trim()) {
     alert("Por favor, ingresa un número de documento o cuenta.");
     return;
   }
 
-  // Si hay un número ingresado, actualizamos el ID en la vista de factura
-  // (Simulando que consultamos ese número)
+  // Actualizamos el ID en la vista de factura
   document.getElementById('accountNumberDisplay').textContent = input.value;
 
   // Ocultar vista 1, mostrar vista 2
   lookupView.style.display = 'none';
   invoiceView.style.display = 'block';
 
-  // Actualizar indicador de pasos:
-  // El paso 1 se marca como completado (check)
+  // Actualizar indicador de pasos
   step1.classList.remove('active');
   step1.classList.add('completed');
-  step1Circle.innerHTML = '✓'; // Cambia el "1" por un check
+  step1Circle.innerHTML = '✓';
   
-  // El paso 2 se vuelve el activo
   step2.classList.add('active');
 });
 </script>
