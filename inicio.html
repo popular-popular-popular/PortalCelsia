@@ -3,725 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal de Pagos</title>
-
+<meta name="theme-color" content="#f47700">
+<title>Portal de Pagos — Maqueta local</title>
 <style>
-:root {
-  --orange: #f47700;
-  --orange-dark: #e87516;
-  --pink: #d94b91;
-  --text: #171717;
-  --muted: #777;
-  --line: #e5e5e5;
-  --soft: #f8f8f8;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--text);
-  background: #fff;
-}
-
-/* ENCABEZADO */
-.topbar {
-  min-height: 76px;
-  padding: 14px 5%;
-  display: flex;
-  align-items: center;
-  color: white;
-  background: linear-gradient(
-    105deg,
-    #ff7900 0%,
-    #f15b4d 55%,
-    #d64b91 100%
-  );
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  white-space: nowrap;
-}
-
-.brand-name {
-  font-size: clamp(22px, 4.2vw, 39px);
-  font-weight: 700;
-  letter-spacing: -1.2px;
-}
-
-.brand-name span {
-  font-weight: 400;
-}
-
-.brand-divider {
-  height: 32px;
-  width: 2px;
-  background: rgba(255,255,255,.65);
-}
-
-.portal-title {
-  font-size: clamp(15px, 2.8vw, 29px);
-}
-
-/* INDICADOR DE PASOS */
-.steps {
-  max-width: 590px;
-  margin: 0 auto;
-  padding: 8px 18px 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.step {
-  width: 120px;
-  flex: 0 1 120px;
-  text-align: center;
-  color: #b8b8b8;
-  font-size: 16px;
-}
-
-.step-circle {
-  width: 62px;
-  height: 62px;
-  margin: 0 auto 10px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: #e4e4e4;
-  color: #777;
-  font-size: 21px;
-  font-weight: 700;
-}
-
-.step.active {
-  color: #d98227;
-  font-weight: 600;
-}
-
-.step.active .step-circle {
-  background: var(--orange);
-  color: white;
-  border: 7px solid #ffead7;
-  box-shadow: 0 0 0 1px #f8d5b5;
-}
-
-.step-line {
-  height: 3px;
-  flex: 0 1 60px;
-  background: #e5e5e5;
-  margin-top: 31px;
-}
-
-/* TARJETA PRINCIPAL */
-.card {
-  width: min(678px, calc(100% - 42px));
-  margin: 62px auto 40px;
-  border: 1px solid #e3e3e3;
-  border-radius: 16px;
-  padding: 76px 47px 42px;
-  box-shadow: 0 0 2px rgba(0,0,0,.02);
-}
-
-/* ICONO */
-.hero-icon {
-  width: 108px;
-  height: 108px;
-  border-radius: 34px;
-  margin: 0 auto 28px;
-  display: grid;
-  place-items: center;
-  background: var(--orange);
-  color: white;
-}
-
-.hero-icon svg {
-  width: 66px;
-  height: 66px;
-}
-
-/* TEXTOS */
-h1 {
-  margin: 0 auto 10px;
-  max-width: 100%;
-  text-align: center;
-  font-size: 30px;
-  line-height: 1.45;
-  letter-spacing: -.6px;
-  text-wrap: balance;
-}
-
-.intro {
-  text-align: center;
-  color: #777;
-  font-size: 23px;
-  line-height: 1.55;
-  margin: 0 auto 39px;
-  max-width: 100%;
-  text-wrap: balance;
-}
-
-.rule {
-  border: 0;
-  border-top: 1px solid #ddd;
-  margin: 0 0 39px;
-}
-
-.field-label {
-  font-size: 18px;
-  color: #777;
-  font-weight: 600;
-  line-height: 1.5;
-  margin-bottom: 14px;
-}
-
-.field-label strong {
-  color: #d98227;
-}
-
-/* BOTONES DE SELECCIÓN */
-.choice-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 38px;
-}
-
-.choice {
-  min-height: 68px;
-  border: 2px solid #e3e3e3;
-  border-radius: 13px;
-  background: white;
-  font: inherit;
-  font-size: 23px;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,.06);
-  transition: .15s ease;
-}
-
-.choice.active {
-  border: 3px solid #ed801d;
-  color: #d98227;
-  background: #fff8f2;
-  box-shadow: none;
-}
-
-/* CAMPO DE ENTRADA */
-.input-wrap {
-  position: relative;
-  margin-bottom: 37px;
-}
-
-.input-wrap input {
-  width: 100%;
-  height: 70px;
-  border: 1px solid #e2e2e2;
-  border-radius: 14px;
-  padding: 0 58px 0 22px;
-  font: inherit;
-  font-size: 23px;
-  color: #333;
-  outline: none;
-  box-shadow: 0 2px 4px rgba(0,0,0,.04);
-}
-
-.input-wrap input:focus {
-  border-color: #f3a45f;
-  box-shadow: 0 0 0 3px #fff0e3;
-}
-
-.input-wrap input::placeholder {
-  color: #888;
-}
-
-.eye {
-  position: absolute;
-  right: 19px;
-  top: 50%;
-  transform: translateY(-50%);
-  border: 0;
-  background: transparent;
-  color: #777;
-  cursor: pointer;
-  padding: 3px;
-}
-
-.eye svg {
-  width: 28px;
-  height: 28px;
-  display: block;
-}
-
-/* AUTORIZACIONES */
-.consent {
-  display: flex;
-  gap: 19px;
-  align-items: flex-start;
-  border: 1px solid #e2e2e2;
-  border-radius: 27px;
-  background: #fafafa;
-  padding: 29px 30px;
-  margin-bottom: 24px;
-  color: #777;
-  font-size: 19px;
-  line-height: 1.7;
-}
-
-.consent input {
-  appearance: none;
-  -webkit-appearance: none;
-  flex: 0 0 30px;
-  width: 30px;
-  height: 30px;
-  margin: 5px 0 0;
-  border: 1px solid #ccc;
-  border-radius: 7px;
-  background: white;
-  cursor: pointer;
-  position: relative;
-}
-
-.consent input:checked {
-  background: var(--orange);
-  border-color: var(--orange);
-}
-
-.consent input:checked::after {
-  content: "✓";
-  color: white;
-  position: absolute;
-  left: 6px;
-  top: -2px;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.consent a {
-  color: #d98227;
-  text-decoration: underline;
-}
-
-.consent b {
-  color: #222;
-}
-
-.required {
-  color: #d94b4b;
-  font-weight: 700;
-}
-
-/* BOTÓN BUSCAR */
-.submit {
-  width: 100%;
-  min-height: 60px;
-  border: 0;
-  border-radius: 13px;
-  background: var(--orange);
-  color: white;
-  font-size: 20px;
-  font-weight: 700;
-  cursor: pointer;
-  margin-top: 4px;
-}
-
-.submit:hover {
-  background: #e96e00;
-}
-
-.notice {
-  display: none;
-  margin: 16px 0 0;
-  padding: 13px 15px;
-  border-radius: 10px;
-  background: #fff4e9;
-  color: #8a4c13;
-  line-height: 1.45;
-}
-
-.notice.show {
-  display: block;
-}
-
-footer {
-  text-align: center;
-  padding: 0 20px 28px;
-  color: #888;
-  font-size: 13px;
-}
-
-/* ADAPTACIÓN A MÓVILES */
-@media (max-width: 600px) {
-  .topbar {
-    min-height: 76px;
-    padding: 12px 5%;
-  }
-
-  .brand {
-    gap: 12px;
-  }
-
-  .brand-name {
-    font-size: clamp(20px, 5.4vw, 31px);
-    letter-spacing: -1px;
-  }
-
-  .brand-divider {
-    height: 28px;
-  }
-
-  .portal-title {
-    font-size: clamp(14px, 3.7vw, 22px);
-  }
-
-  .steps {
-    padding-top: 6px;
-  }
-
-  .step {
-    flex-basis: 94px;
-    font-size: 15px;
-  }
-
-  .step-circle {
-    width: 62px;
-    height: 62px;
-  }
-
-  .step-line {
-    flex-basis: 46px;
-  }
-
-  .card {
-    width: calc(100% - 30px);
-    margin: 62px auto 28px;
-    padding: 92px 28px 34px;
-  }
-
-  h1 {
-    font-size: 27px;
-    line-height: 1.4;
-    max-width: 100%;
-  }
-
-  .intro {
-    font-size: 20px;
-    line-height: 1.5;
-    margin-bottom: 39px;
-    max-width: 100%;
-  }
-
-  .field-label {
-    font-size: 17px;
-  }
-
-  .choice-row {
-    gap: 14px;
-  }
-
-  .choice {
-    min-height: 68px;
-    font-size: 20px;
-    padding: 6px;
-  }
-
-  .input-wrap input {
-    height: 70px;
-    font-size: 21px;
-    padding-left: 22px;
-  }
-
-  .consent {
-    padding: 27px 25px;
-    gap: 19px;
-    font-size: 18px;
-    border-radius: 27px;
-  }
-}
-
-@media (max-width: 390px) {
-  .brand {
-    gap: 8px;
-  }
-
-  .brand-name {
-    font-size: 20px;
-  }
-
-  .portal-title {
-    font-size: 14px;
-  }
-
-  .step {
-    flex-basis: 82px;
-  }
-
-  .step-line {
-    flex-basis: 32px;
-  }
-
-  .card {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  h1 {
-    font-size: 24px;
-    line-height: 1.35;
-  }
-
-  .intro {
-    font-size: 18px;
-    line-height: 1.45;
-  }
-
-  .choice {
-    font-size: 18px;
-  }
-
-  .consent {
-    padding: 22px 17px;
-    font-size: 16px;
-  }
-}
+:root{--orange:#f47700;--orange-dark:#d96a00;--pink:#d64b91;--text:#171717;--muted:#777;--line:#e4e4e4;--soft:#fafafa;--demo:#fff5e9}
+*{box-sizing:border-box}html{font-size:16px}body{margin:0;background:#fff;color:var(--text);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+.topbar{min-height:88px;padding:18px clamp(20px,5vw,76px);display:flex;align-items:center;color:#fff;background:linear-gradient(105deg,#ff7900 0%,#f15b4d 48%,#d64b91 100%)}
+.brand{width:100%;display:flex;align-items:center;gap:26px;min-width:0}.brand-name{font-size:clamp(1.55rem,3.4vw,2.25rem);font-weight:800;letter-spacing:-1.2px;white-space:nowrap}.brand-name span{font-weight:400;color:#111111}.brand-divider{height:38px;width:2px;background:#ffffff75;flex:0 0 2px}.portal-title{font-size:clamp(1rem,2.5vw,1.65rem);white-space:nowrap;font-weight:400}
+.demo-strip{padding:10px 16px;text-align:center;font-size:.8rem;color:#854800;background:var(--demo);border-bottom:1px solid #f3d5b5}
+.steps{max-width:660px;margin:34px auto 48px;padding:0 18px;display:flex;align-items:flex-start;justify-content:center}.step{width:112px;flex:0 1 112px;text-align:center;color:#b8b8b8;font-size:1rem;line-height:1.3}.step-circle{width:68px;height:68px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:#e4e4e4;color:#777;font-size:1.4rem;font-weight:700}.step.active{color:#d98227;font-weight:600}.step.active .step-circle{background:var(--orange);color:#fff;border:7px solid #ffead7;box-shadow:0 0 0 1px #f8d5b5}.step-line{height:3px;flex:0 1 70px;background:#e5e5e5;margin:34px 12px 0}
+.card{width:min(770px,calc(100% - 36px));margin:0 auto 30px;border:1px solid #e3e3e3;border-radius:16px;padding:52px clamp(22px,6.2vw,64px) 40px;box-shadow:0 1px 3px #00000008}.hero{text-align:center}.hero-icon{width:122px;height:122px;border-radius:36px;margin:0 auto 30px;display:grid;place-items:center;background:var(--orange);color:#fff}.hero-icon svg{width:72px;height:72px}.card-title{font-size:clamp(1.55rem,3.1vw,2.15rem);line-height:1.4;font-weight:750;margin:0 auto 10px;max-width:620px;letter-spacing:-.5px;text-wrap:balance}.title-last{display:inline}.intro{color:#777;font-size:clamp(1.05rem,2.4vw,1.55rem);line-height:1.5;margin:0 auto 44px;max-width:650px;text-wrap:balance}.rule{border:0;border-top:1px solid #ddd;margin:0 0 42px}.field-label{font-size:1.05rem;color:#666;font-weight:500;line-height:1.5;margin-bottom:18px}.field-label strong{color:#d98227;font-weight:650}.choice-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}.choice{min-height:68px;width:100%;border:2px solid #e3e3e3;border-radius:13px;background:#fff;font:inherit;font-size:1.2rem;color:#222;cursor:pointer;box-shadow:0 2px 5px #0000000b;transition:.15s;padding:12px}.choice.active{border:3px solid #ed801d;color:#d98227;background:#fff8f2;box-shadow:none;font-weight:600}.input-wrap{position:relative;margin-bottom:30px;width:100%}.input-wrap input{width:100%;height:72px;border:1px solid #e2e2e2;border-radius:15px;padding:0 58px 0 24px;font:inherit;font-size:1.25rem;color:#333;outline:none;box-shadow:0 2px 4px #00000009}.input-wrap input:focus{border-color:#f3a45f;box-shadow:0 0 0 3px #fff0e3}.input-wrap input::placeholder{color:#888}.eye{position:absolute;right:17px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#777;cursor:pointer;padding:8px;display:grid;place-items:center}.eye svg{width:25px;height:25px}
+.consent{display:flex;gap:16px;align-items:flex-start;border:1px solid #e2e2e2;border-radius:22px;background:#fafafa;padding:25px 26px;margin-bottom:20px;color:#666;font-size:1.05rem;line-height:1.55;width:100%}.consent input{appearance:none;flex:0 0 24px;width:24px;height:24px;margin:2px 0 0;border:1px solid #ccc;border-radius:7px;background:#fff;cursor:pointer;position:relative}.consent input:checked{background:var(--orange);border-color:var(--orange)}.consent input:checked:after{content:'✓';color:#fff;position:absolute;left:5px;top:-2px;font-size:20px;font-weight:700}.consent a{color:#c87928;text-decoration:underline}.required{color:#d94b4b;font-weight:700}.demo-check{display:flex;align-items:center;gap:12px;border:1px solid #ddd;border-radius:10px;background:#fafafa;padding:15px 18px;margin:22px 0 18px}.demo-check input{width:22px;height:22px;accent-color:var(--orange)}.demo-check label{cursor:pointer}.submit{width:100%;min-height:64px;border:0;border-radius:12px;background:var(--orange);color:#fff;font-size:1.15rem;font-weight:700;cursor:pointer;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 2px 4px #f477004d;transition:.2s}.submit:hover:not(:disabled){background:var(--orange-dark)}.submit:disabled{background:#f7b27a;cursor:not-allowed;opacity:.8;box-shadow:none}.notice{display:none;margin:20px 0 0;padding:16px;border-radius:12px;background:#effaf1;border:1px solid #b9e5c1;color:#245d30;line-height:1.5;font-size:.95rem}.notice.show{display:block}.notice strong{display:block;margin-bottom:5px}.footnote{text-align:center;color:#888;font-size:.8rem;line-height:1.5;padding:0 20px 30px}.footnote strong{color:#666}
+@media(max-width:600px){html{font-size:15px}.topbar{min-height:68px;padding:14px 18px}.brand{gap:12px}.brand-name{font-size:clamp(1.15rem,5.4vw,1.65rem);letter-spacing:-.8px}.brand-divider{height:30px}.portal-title{font-size:clamp(.82rem,3.6vw,1rem)}.demo-strip{font-size:.72rem;padding:9px 10px}.steps{margin:30px auto 46px;padding:0 10px}.step{width:80px;flex-basis:80px;font-size:.9rem}.step-circle{width:58px;height:58px;margin-bottom:10px;font-size:1.2rem}.step-line{flex-basis:42px;margin:29px 6px 0}.card{width:calc(100% - 32px);padding:36px 22px 28px;border-radius:14px;margin-bottom:24px}.hero-icon{width:94px;height:94px;border-radius:28px;margin-bottom:24px}.hero-icon svg{width:58px;height:58px}.card-title{font-size:1.55rem;line-height:1.38;margin-bottom:12px}.title-last{display:block}.intro{font-size:1.15rem;margin-bottom:32px}.rule{margin-bottom:30px}.field-label{font-size:1rem;margin-bottom:15px}.choice-row{gap:12px;margin-bottom:30px}.choice{min-height:60px;font-size:1rem;padding:9px 6px;border-radius:11px}.input-wrap{margin-bottom:24px}.input-wrap input{height:62px;padding-left:18px;font-size:1.05rem;border-radius:13px}.eye{right:10px}.consent{padding:19px 18px;gap:13px;border-radius:19px;font-size:.98rem;margin-bottom:16px}.submit{min-height:58px;font-size:1.05rem}.footnote{font-size:.75rem}}
+@media(max-width:360px){.brand{gap:8px}.brand-name{font-size:1.08rem}.portal-title{font-size:.78rem}.step{width:68px;flex-basis:68px;font-size:.82rem}.step-line{flex-basis:28px;margin-left:4px;margin-right:4px}.card{padding:28px 15px 24px;width:calc(100% - 22px)}.choice{font-size:.9rem}.consent{padding:15px 13px}}
 </style>
 </head>
-
 <body>
-
-<header class="topbar">
-  <div class="brand">
-    <div class="brand-name">
-      Celsia <span>internet</span>
-    </div>
-
-    <div class="brand-divider"></div>
-
-    <div class="portal-title">
-      Portal de Pagos
-    </div>
-  </div>
-</header>
-
-<nav class="steps" aria-label="Pasos del proceso">
-
-  <div class="step active">
-    <div class="step-circle">1</div>
-    <div>Consulta</div>
-  </div>
-
-  <div class="step-line"></div>
-
-  <div class="step">
-    <div class="step-circle">2</div>
-    <div>Revisa tu<br>factura</div>
-  </div>
-
-  <div class="step-line"></div>
-
-  <div class="step">
-    <div class="step-circle">3</div>
-    <div>Paga</div>
-  </div>
-
-</nav>
-
+<header class="topbar"><div class="brand"><div class="brand-name">Celsia <span>internet</span></div><span class="brand-divider" aria-hidden="true"></span><div class="portal-title">Portal de Pagos</div></div></header>
+<div class="demo-strip"><strong>MAQUETA DE DEMOSTRACIÓN</strong> · No es un portal oficial. Usa únicamente el ejemplo ficticio que aparece en pantalla.</div>
+<nav class="steps" aria-label="Pasos del proceso"><div class="step active" id="step1"><div class="step-circle">1</div><div>Consulta</div></div><div class="step-line"></div><div class="step" id="step2"><div class="step-circle">2</div><div>Revisa tu<br>factura</div></div><div class="step-line"></div><div class="step" id="step3"><div class="step-circle">3</div><div>Paga</div></div></nav>
 <main class="card">
-
-  <div class="hero-icon" aria-hidden="true">
-    <svg viewBox="0 0 80 80"
-         fill="none"
-         xmlns="http://www.w3.org/2000/svg">
-
-      <circle cx="43" cy="18" r="17" fill="white"/>
-
-      <path d="M43 8v20
-               M48 12c-1.4-2-8-2.3-8 1.5
-               0 4.4 9 2.1 9 6.8
-               0 4-6.7 4.7-10 1.2"
-            stroke="#F47700"
-            stroke-width="3"
-            stroke-linecap="round"/>
-
-      <path d="M7 43l17-8c3-1.4 6-.5 8 1.7l5 5h16
-               c4 0 5 5 1 7l-20 9c-3 1-6 1-9 0L7 51V43Z"
-            fill="white"/>
-
-      <path d="M33 40l10-5c3-1.5 7 1 5 4l-8 6
-               M49 43l9-5c3-1.5 6 2 3 4l-8 6
-               M55 48l8-4c3-1 5 2 2 4L50 59
-               c-4 3-9 4-14 3l-9-2"
-            fill="white"
-            stroke="white"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"/>
-    </svg>
-  </div>
-
-  <h1>Consulta, paga o abona a tu factura</h1>
-
-  <p class="intro">
-    Sigue los pasos para consultar o realizar tus pagos
-  </p>
-
-  <hr class="rule">
-
-  <form id="lookupForm">
-
-    <div class="field-label">
-      Paso 1 — <strong>Selecciona el tipo de búsqueda</strong>
-    </div>
-
-    <div class="choice-row" role="group">
-      <button type="button"
-              class="choice"
-              data-mode="documento"
-              aria-pressed="false">
-        Por documento
-      </button>
-
-      <button type="button"
-              class="choice active"
-              data-mode="cuenta"
-              aria-pressed="true">
-        Por cuenta
-      </button>
-    </div>
-
-    <div class="field-label">
-      Paso 2 — <strong>Ingresa la información y haz clic en buscar</strong>
-    </div>
-
-    <div class="input-wrap">
-      <input
-        id="accountInput"
-        type="password"
-        inputmode="numeric"
-        autocomplete="off"
-        placeholder="Ingresa aquí tu cuenta"
-        aria-label="Número de cuenta"
-        required
-      >
-
-      <button type="button"
-              class="eye"
-              id="toggleVisibility"
-              aria-label="Mostrar u ocultar dato">
-
-        <svg viewBox="0 0 24 24"
-             fill="none"
-             stroke="currentColor"
-             stroke-width="1.8"
-             aria-hidden="true">
-
-          <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12
-                   s-3.6 6.5-10 6.5S2 12 2 12Z"/>
-
-          <circle cx="12" cy="12" r="3"/>
-        </svg>
-      </button>
-    </div>
-
-    <label class="consent">
-      <input type="checkbox" required>
-
-      <span>
-        Acepto las
-        <a href="#" class="policy-link">
-          políticas de tratamiento de datos personales
-        </a>
-        <span class="required">*</span>
-      </span>
-    </label>
-
-    <label class="consent">
-      <input type="checkbox" required>
-
-      <span>
-        Autorizo de manera libre, previa, expresa e informada a
-        <b>Celsia Internet S.A.S.</b>, en su calidad de responsable
-        del tratamiento de datos personales, conforme a su política
-        de privacidad.
-        <span class="required">*</span>
-      </span>
-    </label>
-
-    <button type="submit" class="submit">
-      Buscar
-    </button>
-
-    <div class="notice" id="notice" role="status">
-      Esta es una maqueta de demostración. No se consultó ninguna
-      cuenta ni se procesó ningún pago.
-    </div>
-
-  </form>
-</main>
-
-<footer>
-  Maqueta demostrativa · No conectada al sistema real de pagos
-</footer>
-
+<section class="hero"><div class="hero-icon" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><circle cx="42" cy="21" r="15" fill="white"/><path d="M42 12v18m5-13c-1-2-3-3-5-3-3 0-5 2-5 4s2 3 5 4 5 2 5 4-2 4-5 4-5-1-6-3" stroke="#F47700" stroke-width="2.8" stroke-linecap="round"/><path d="M8 48c6-4 11-6 16-4l13 5 12-1c4 0 6 5 1 7l-18 8c-3 1-6 1-9 0L8 58c-4-1-5-7 0-10Z" fill="white"/><path d="m36 49 15-9c4-2 8 2 5 5l-7 6m-14 3 18-2c5 0 7 5 2 7L34 68c-4 2-8 2-12 0L8 62" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h1 class="card-title">Consulta, paga o abona a tu <span class="title-last">factura</span></h1><p class="intro">Sigue los pasos para consultar o realizar tus pagos</p></section>
+<hr class="rule">
+<form id="lookupForm" novalidate>
+<div class="field-label">Paso 1 — <strong>Selecciona el tipo de búsqueda</strong></div>
+<div class="choice-row" role="group" aria-label="Tipo de búsqueda"><button type="button" class="choice active" data-mode="documento" aria-pressed="true">Por documento</button><button type="button" class="choice" data-mode="cuenta" aria-pressed="false">Por cuenta</button></div>
+<div class="field-label">Paso 2 — <strong>Ingresa la información y haz clic en buscar</strong></div>
+<div class="input-wrap"><input id="lookupInput" type="text" inputmode="numeric" autocomplete="off" maxlength="20" placeholder="Ejemplo ficticio: 123456789" aria-label="Número de documento de ejemplo" required><button class="eye" type="button" id="toggleVisibility" aria-label="Mostrar u ocultar dato" title="Mostrar u ocultar dato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+<label class="consent"><input type="checkbox" id="termsCheck" required><span>Acepto las <a href="#politica" id="policyLink">condiciones de esta demostración</a> <span class="required">*</span></span></label>
+<label class="consent"><input type="checkbox" id="demoCheck" required><span>Confirmo que estoy usando datos ficticios y entiendo que esta maqueta no consulta facturas reales ni procesa pagos. <span class="required">*</span></span></label>
+<div class="demo-check"><input type="checkbox" id="sampleCheck"><label for="sampleCheck">Usar el dato de ejemplo <strong>123456789</strong></label></div>
+<button class="submit" id="submitBtn" type="submit">Buscar factura <span aria-hidden="true">→</span></button>
+<div class="notice" id="notice" role="status" aria-live="polite"></div>
+</form></main>
+<footer class="footnote"><strong>Prototipo visual local</strong><br>Los datos escritos permanecen en esta página y no se guardan ni se envían a ningún servidor. No introduzcas información personal real.</footer>
 <script>
-const choices = document.querySelectorAll('.choice');
-const input = document.getElementById('accountInput');
-const toggle = document.getElementById('toggleVisibility');
-
-let mode = 'cuenta';
-
-/* CAMBIAR TIPO DE BÚSQUEDA */
-choices.forEach(button => {
-  button.addEventListener('click', () => {
+(() => {
+  const input = document.getElementById('lookupInput');
+  const toggle = document.getElementById('toggleVisibility');
+  const notice = document.getElementById('notice');
+  const sampleCheck = document.getElementById('sampleCheck');
+  const choices = [...document.querySelectorAll('.choice')];
+  let mode = 'documento';
+  choices.forEach(button => button.addEventListener('click', () => {
     mode = button.dataset.mode;
-
     choices.forEach(item => {
       const active = item === button;
-
       item.classList.toggle('active', active);
       item.setAttribute('aria-pressed', String(active));
     });
-
     input.value = '';
-    input.type = 'password';
-
-    if (mode === 'cuenta') {
-      input.placeholder = 'Ingresa aquí tu cuenta';
-      input.setAttribute('aria-label', 'Número de cuenta');
-    } else {
-      input.placeholder = 'Ingresa tu número de documento';
-      input.setAttribute('aria-label', 'Número de documento');
-    }
+    input.placeholder = mode === 'cuenta' ? 'Ejemplo ficticio: 987654321' : 'Ejemplo ficticio: 123456789';
+    input.setAttribute('aria-label', mode === 'cuenta' ? 'Número de cuenta ficticio' : 'Número de documento ficticio');
+    sampleCheck.checked = false;
+    notice.classList.remove('show');
+  }));
+  toggle.addEventListener('click', () => {
+    const showing = input.type === 'text';
+    input.type = showing ? 'password' : 'text';
+    toggle.setAttribute('aria-label', showing ? 'Mostrar dato' : 'Ocultar dato');
   });
-});
-
-/* MOSTRAR U OCULTAR EL TEXTO */
-toggle.addEventListener('click', () => {
-  input.type = input.type === 'password' ? 'text' : 'password';
-});
-
-/* ENLACE DEMOSTRATIVO DE POLÍTICAS */
-document.querySelector('.policy-link').addEventListener('click', event => {
-  event.preventDefault();
-
-  alert(
-    'En una implementación real, este enlace debe llevar ' +
-    'a la política oficial de tratamiento de datos.'
-  );
-});
-
-/* FORMULARIO DEMOSTRATIVO */
-document.getElementById('lookupForm').addEventListener('submit', event => {
-  event.preventDefault();
-
-  document.getElementById('notice').classList.add('show');
-});
+  sampleCheck.addEventListener('change', () => {
+    if (sampleCheck.checked) input.value = mode === 'cuenta' ? '987654321' : '123456789';
+    else input.value = '';
+    notice.classList.remove('show');
+  });
+  input.addEventListener('input', () => { sampleCheck.checked = false; notice.classList.remove('show'); });
+  document.getElementById('policyLink').addEventListener('click', event => {
+    event.preventDefault();
+    notice.innerHTML = '<strong>Condiciones de la maqueta</strong>Este prototipo es solo visual. No valida identidad, no consulta bases de datos, no recibe pagos y no transmite ni almacena la información introducida.';
+    notice.classList.add('show');
+  });
+  document.getElementById('lookupForm').addEventListener('submit', event => {
+    event.preventDefault();
+    const terms = document.getElementById('termsCheck').checked;
+    const demo = document.getElementById('demoCheck').checked;
+    if (!terms || !demo) {
+      notice.textContent = 'Marca las dos casillas para continuar con la demostración.';
+      notice.classList.add('show');
+      return;
+    }
+    const expected = mode === 'cuenta' ? '987654321' : '123456789';
+    if (input.value.trim() !== expected) {
+      notice.innerHTML = '<strong>Dato de demostración no reconocido</strong>Para probar la maqueta, selecciona “Usar el dato de ejemplo”. No se ha enviado ni guardado ningún dato.';
+      notice.classList.add('show');
+      return;
+    }
+    document.getElementById('step1').classList.remove('active');
+    document.getElementById('step2').classList.add('active');
+    notice.innerHTML = '<strong>Factura ficticia encontrada</strong>Referencia: DEMO-2026 · Estado: pendiente de revisión · Total de ejemplo: $85.000 COP.<br>Esta información es inventada y solo sirve para mostrar el siguiente paso. No se ha realizado ningún pago.';
+    notice.classList.add('show');
+    notice.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+})();
 </script>
-
 </body>
 </html>
