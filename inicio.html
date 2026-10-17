@@ -78,7 +78,7 @@ body {
   letter-spacing: -0.5px;
 }
 
-/* AQUÍ ESTÁ EL CAMBIO: internet en negro */
+/* "internet" en negro */
 .brand-name span {
   font-weight: 400;
   color: #000; 
@@ -182,6 +182,12 @@ body {
   text-align: center;
   letter-spacing: -0.5px;
   text-wrap: balance;
+}
+
+/* LA PALABRA FACTURA SOLA Y CENTRADA */
+.title-last {
+  display: block;
+  text-align: center;
 }
 
 /* SUBTÍTULO */
@@ -731,7 +737,11 @@ footer {
     <img src="https://img.icons8.com/fluency/96/hand-with-money.png" alt="">
   </div>
 
-  <h2 class="card-title">Consulta, paga o abona a tu factura</h2>
+  <!-- AQUÍ ESTÁ EL CAMBIO DE LA PALABRA FACTURA -->
+  <h2 class="card-title">
+    Consulta, paga o abona a tu 
+    <span class="title-last">factura</span>
+  </h2>
 
   <p class="intro">
     Sigue los pasos para consultar o realizar tus pagos
