@@ -7,283 +7,137 @@
 <title>Portal de Pagos</title>
 
 <style>
+/* --- TODO EL CSS (Mismo diseño que te gustó) --- */
 :root {
   --orange: #f47700;
   --orange-dark: #e87516;
-  --pink: #d94b91;
   --text: #171717;
-  --foreground: #171717;
-  --muted: #777;
   --line: #e5e5e5;
-  --soft: #f8f8f8;
   --green-check: #2e9e4f;
   --navy: #0f172a;
 }
-
 * { box-sizing: border-box; }
 html { font-size: 16px; }
-body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text); background: #fff; -webkit-text-size-adjust: 100%; }
-
-/* ENCABEZADO */
-.topbar {
-  width: 100%;
-  height: 4rem;
-  background-image: url('ra.jpeg'); 
-  background-size: cover;
-  background-position: center left;
-  background-repeat: no-repeat;
-  background-color: #ff7900; 
-}
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text); background: #fff; }
+.topbar { width: 100%; height: 4rem; background-image: url('ra.jpeg'); background-size: cover; background-position: center left; background-repeat: no-repeat; background-color: #ff7900; }
 @media (max-width: 600px) { .topbar { height: 3.2rem; } }
-
-/* INDICADOR DE PASOS */
-.steps {
-  max-width: 32rem;
-  margin: 0 auto;
-  padding: 1.2rem 0.8rem 0.6rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-}
-.step { width: 5.8rem; flex: 0 1 5.8rem; text-align: center; color: #b8b8b8; font-size: 0.8rem; line-height: 1.25; }
-.step-circle {
-  width: 2.6rem; height: 2.6rem; margin: 0 auto 0.5rem; border-radius: 50%; display: grid; place-items: center; background: #e4e4e4; color: #777; font-size: 1.05rem; font-weight: 700;
-}
+.steps { max-width: 32rem; margin: 0 auto; padding: 1.2rem 0.8rem 0.6rem; display: flex; align-items: flex-start; justify-content: center; }
+.step { width: 5.8rem; text-align: center; color: #b8b8b8; font-size: 0.8rem; line-height: 1.25; }
+.step-circle { width: 2.6rem; height: 2.6rem; margin: 0 auto 0.5rem; border-radius: 50%; display: grid; place-items: center; background: #e4e4e4; color: #777; font-size: 1.05rem; font-weight: 700; }
 .step.active { color: #d98227; font-weight: 600; }
 .step.active .step-circle { background: var(--orange); color: white; border: 0.25rem solid #ffead7; box-shadow: 0 0 0 1px #f8d5b5; }
 .step.completed { color: #777; }
 .step.completed .step-circle { background: var(--orange); color: white; border: 0.25rem solid #ffead7; box-shadow: 0 0 0 1px #f8d5b5; }
 .step-line { height: 2px; flex: 0 1 2.8rem; background: #e5e5e5; margin-top: 1.3rem; }
-
-/* TARJETA PRINCIPAL */
-.card {
-  width: min(32rem, calc(100% - 1rem));
-  margin: 1.5rem auto 1rem;
-  border: 1px solid #e3e3e3;
-  border-radius: 1rem;
-  padding: 2.8rem 1.5rem 2rem;
-  box-shadow: 0 0 4px rgba(0,0,0,.03);
-}
-
-/* --- VISTA 1: CONSULTA --- */
+.card { width: min(32rem, calc(100% - 1rem)); margin: 1.5rem auto 1rem; border: 1px solid #e3e3e3; border-radius: 1rem; padding: 2.8rem 1.5rem 2rem; box-shadow: 0 0 4px rgba(0,0,0,.03); }
 .hero-icon { width: 5rem; height: 5rem; border-radius: 1.6rem; margin: 0 auto 1.8rem; display: grid; place-items: center; background: var(--orange); color: white; }
 .hero-icon img { width: 3.2rem; height: 3.2rem; object-fit: contain; display: block; }
-.card-title { font-size: 1.45rem; line-height: 1.35; font-weight: 700; color: var(--foreground); margin: 0 auto 1rem; max-width: 100%; text-align: center; letter-spacing: -0.5px; text-wrap: balance; }
+.card-title { font-size: 1.45rem; line-height: 1.35; font-weight: 700; margin: 0 auto 1rem; text-align: center; letter-spacing: -0.5px; }
 .title-last { display: block; text-align: center; }
-.intro { text-align: center; color: #777; font-size: clamp(0.9rem, 3.2vw, 1.05rem); line-height: 1.5; margin: 0 auto 2.2rem; max-width: 100%; text-wrap: balance; }
+.intro { text-align: center; color: #777; font-size: clamp(0.9rem, 3.2vw, 1.05rem); margin: 0 auto 2.2rem; }
 .rule { border: 0; border-top: 1px solid #ddd; margin: 0 0 2.2rem; }
-.field-label { font-size: clamp(0.85rem, 3vw, 0.95rem); color: #555; font-weight: 400; line-height: 1.5; margin-bottom: 1rem; }
+.field-label { font-size: clamp(0.85rem, 3vw, 0.95rem); color: #555; margin-bottom: 1rem; }
 .field-label strong { color: #d98227; font-weight: 600; }
 .choice-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-bottom: 2.2rem; }
-.choice { min-height: 2.8rem; width: 100%; border: 2px solid #e3e3e3; border-radius: 0.6rem; background: white; font: inherit; font-size: clamp(0.85rem, 3.2vw, 1.05rem); color: #555; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,.06); transition: .15s ease; padding: 0.4rem 0.5rem; }
-.choice.active { border: 2px solid #ed801d; color: #d98227; background: #fff8f2; box-shadow: none; font-weight: 600; }
-.input-wrap { position: relative; margin-bottom: 2.2rem; width: 100%; }
-.input-wrap input { width: 100%; height: 3rem; border: 1px solid #e2e2e2; border-radius: 0.65rem; padding: 0 3rem 0 1rem; font: inherit; font-size: clamp(0.9rem, 3.2vw, 1.05rem); color: #333; outline: none; box-shadow: 0 2px 4px rgba(0,0,0,.04); }
+.choice { min-height: 2.8rem; border: 2px solid #e3e3e3; border-radius: 0.6rem; background: white; font-size: clamp(0.85rem, 3.2vw, 1.05rem); color: #555; cursor: pointer; transition: .15s ease; }
+.choice.active { border: 2px solid #ed801d; color: #d98227; background: #fff8f2; font-weight: 600; }
+.input-wrap { position: relative; margin-bottom: 2.2rem; }
+.input-wrap input { width: 100%; height: 3rem; border: 1px solid #e2e2e2; border-radius: 0.65rem; padding: 0 3rem 0 1rem; font-size: clamp(0.9rem, 3.2vw, 1.05rem); outline: none; }
 .input-wrap input:focus { border-color: #f3a45f; box-shadow: 0 0 0 3px #fff0e3; }
-.input-wrap input::placeholder { color: #888; }
-.eye { position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); border: 0; background: transparent; color: #777; cursor: pointer; padding: 0.25rem; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: auto; }
-.eye svg { width: 1.4rem; height: 1.4rem; display: block; pointer-events: none; }
+.eye { position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); border: 0; background: transparent; color: #777; cursor: pointer; }
+.eye svg { width: 1.4rem; height: 1.4rem; }
 .eye .eye-off { display: none; }
 .eye.is-visible .eye-on { display: none; }
 .eye.is-visible .eye-off { display: block; }
-.consent { display: flex; gap: 0.75rem; align-items: flex-start; border: 1px solid #e2e2e2; border-radius: 1rem; background: #fafafa; padding: 1rem 1rem; margin-bottom: 1.2rem; color: #555; font-size: clamp(0.8rem, 2.8vw, 0.95rem); line-height: 1.55; box-shadow: 0 1px 3px rgba(0,0,0,0.03); width: 100%; }
+.consent { display: flex; gap: 0.75rem; align-items: flex-start; border: 1px solid #e2e2e2; border-radius: 1rem; background: #fafafa; padding: 1rem; margin-bottom: 1.2rem; font-size: clamp(0.8rem, 2.8vw, 0.95rem); line-height: 1.55; }
 .consent:last-of-type { margin-bottom: 1.8rem; }
-.consent input { appearance: none; -webkit-appearance: none; flex: 0 0 1.2rem; width: 1.2rem; height: 1.2rem; margin: 0.15rem 0 0; border: 1px solid #ccc; border-radius: 0.25rem; background: white; cursor: pointer; position: relative; }
+.consent input { appearance: none; flex: 0 0 1.2rem; width: 1.2rem; height: 1.2rem; border: 1px solid #ccc; border-radius: 0.25rem; cursor: pointer; position: relative; }
 .consent input:checked { background: var(--orange); border-color: var(--orange); }
 .consent input:checked::after { content: "✓"; color: white; position: absolute; left: 0.2rem; top: -0.15rem; font-size: 0.95rem; font-weight: 700; }
-.consent a { color: #d98227; text-decoration: underline; }
-.consent b { color: #222; }
-.required { color: #d94b4b; font-weight: 700; }
-.recaptcha-box { border: 1px solid #d3d3d3; border-radius: 0.25rem; background: #f9f9f9; padding: 0.75rem 0.85rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); width: 100%; }
+.consent a { color: #d98227; }
+.recaptcha-box { border: 1px solid #d3d3d3; border-radius: 0.25rem; background: #f9f9f9; padding: 0.75rem 0.85rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
 .recaptcha-left { display: flex; align-items: center; gap: 0.7rem; }
-.recaptcha-checkbox { width: 1.4rem; height: 1.4rem; border: 2px solid #c1c1c1; border-radius: 0.2rem; background: white; cursor: pointer; appearance: none; -webkit-appearance: none; position: relative; transition: border-color 0.2s; }
-.recaptcha-checkbox:checked { border-color: transparent; background: transparent; }
-.recaptcha-checkbox:checked::after { content: ""; position: absolute; left: 50%; top: 45%; width: 0.95rem; height: 0.5rem; border-left: 2.5px solid #2e9e4f; border-bottom: 2.5px solid #2e9e4f; transform: translate(-50%, -60%) rotate(-45deg); border-radius: 1px; }
-.recaptcha-label { font-size: clamp(0.8rem, 2.8vw, 0.95rem); color: #000; font-weight: 400; }
-.recaptcha-logo { display: flex; flex-direction: column; align-items: center; font-size: 0.5rem; color: #555; line-height: 1.2; }
-.recaptcha-logo img { width: 2rem; height: 2rem; }
-.required-text { font-size: 0.75rem; color: #999; margin-bottom: 0.9rem; display: block; }
-.version-text { text-align: center; font-size: 0.7rem; color: #aaa; margin-bottom: 1.5rem; display: block; }
-.submit { width: 100%; min-height: 3rem; border: 0; border-radius: 0.6rem; background: var(--orange); color: white; font-size: clamp(0.95rem, 3.2vw, 1.1rem); font-weight: 600; cursor: pointer; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 2px 4px rgba(244,119,0,0.3); transition: background 0.2s, opacity 0.2s; }
-.submit:disabled { background: #f7b27a; cursor: not-allowed; opacity: 0.7; box-shadow: none; }
-.submit:not(:disabled):hover { background: #e96e00; }
+.recaptcha-checkbox { width: 1.4rem; height: 1.4rem; border: 2px solid #c1c1c1; border-radius: 0.2rem; appearance: none; cursor: pointer; }
+.recaptcha-checkbox:checked::after { content: ""; position: absolute; width: 0.95rem; height: 0.5rem; border-left: 2.5px solid #2e9e4f; border-bottom: 2.5px solid #2e9e4f; transform: translate(3px, 2px) rotate(-45deg); }
+.required-text { font-size: 0.75rem; color: #999; display: block; margin-bottom: 0.9rem; }
+.version-text { text-align: center; font-size: 0.7rem; color: #aaa; display: block; margin-bottom: 1.5rem; }
+.submit { width: 100%; min-height: 3rem; border: 0; border-radius: 0.6rem; background: var(--orange); color: white; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+.submit:disabled { background: #f7b27a; cursor: not-allowed; }
 .submit svg { width: 1.2rem; height: 1.2rem; }
 
-/* --- VISTA 2: FACTURA --- */
+/* VISTA FACTURA */
 #invoiceView { display: none; }
 .invoice-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.2rem; }
-.invoice-number { font-size: 2.2rem; font-weight: 800; color: var(--text); line-height: 1; letter-spacing: -0.5px; }
+.invoice-number { font-size: 2.2rem; font-weight: 800; line-height: 1; }
 .invoice-label { font-size: 0.85rem; color: var(--orange); font-weight: 700; margin-top: 0.4rem; }
-.badge-active { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; padding: 0.3rem 0.7rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 0.35rem; }
-.badge-dot { width: 6px; height: 6px; background: #2e7d32; border-radius: 50%; }
+.badge-active { padding: 0.3rem 0.7rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 0.35rem; background: #e8f5e9; color: #2e7d32; }
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #2e7d32; }
 .balance-card { background: var(--orange); border-radius: 1rem; padding: 1.4rem 1.2rem; color: white; margin-bottom: 1.5rem; }
-.balance-title { font-size: 0.95rem; opacity: 0.95; margin-bottom: 0.2rem; }
+.balance-title { font-size: 0.95rem; margin-bottom: 0.2rem; }
 .balance-amount { font-size: 2.8rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1; }
-.balance-details { display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.9); line-height: 1.4; }
+.balance-details { display: flex; justify-content: space-between; font-size: 0.8rem; }
 .balance-details strong { color: white; font-weight: 700; display: block; margin-top: 0.1rem; }
 .client-info { margin-bottom: 1.5rem; border-bottom: 1px dashed #e0e0e0; padding-bottom: 1.5rem; }
-.client-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; color: #222; }
-.client-row svg { width: 1.2rem; height: 1.2rem; flex-shrink: 0; stroke-width: 1.5; color: #555; }
-.client-name { font-weight: 700; font-size: 0.95rem; line-height: 1.3; }
-.client-address { font-size: 0.85rem; color: #555; line-height: 1.4; }
-.alert-info { background: #fafafa; border: 1px solid #e0e0e0; border-radius: 0.8rem; padding: 1rem; display: flex; gap: 0.75rem; align-items: center; color: #555; font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4; }
-.alert-info svg { width: 1.2rem; height: 1.2rem; flex-shrink: 0; color: #777; }
+.client-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+.client-row svg { width: 1.2rem; height: 1.2rem; color: #555; }
+.client-name { font-weight: 700; font-size: 0.95rem; }
+.client-address { font-size: 0.85rem; color: #555; }
+.alert-info { border-radius: 0.8rem; padding: 1rem; display: flex; gap: 0.75rem; align-items: center; font-size: 0.85rem; margin-bottom: 1.5rem; }
+.alert-info svg { width: 1.2rem; height: 1.2rem; }
 .action-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem; }
 .btn-pay { min-height: 3.2rem; border-radius: 0.6rem; font-weight: 600; font-size: 1.05rem; cursor: pointer; }
 .btn-pay.total { background: var(--orange); color: white; border: none; }
 .btn-pay.partial { background: white; border: 2px solid var(--orange); color: var(--orange); }
-.btn-download { width: 100%; min-height: 3.2rem; border-radius: 0.6rem; background: var(--navy); color: white; border: none; font-weight: 600; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer; margin-bottom: 1.2rem; }
-.btn-download svg { width: 1.2rem; height: 1.2rem; }
-.btn-back { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: transparent; border: none; color: #777; font-size: 1rem; cursor: pointer; width: 100%; padding: 0.5rem; font-weight: 500; }
-.btn-back svg { width: 1.1rem; height: 1.1rem; }
+.btn-download { width: 100%; min-height: 3.2rem; border-radius: 0.6rem; background: var(--navy); color: white; border: none; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer; margin-bottom: 1.2rem; }
+.btn-back { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: transparent; border: none; color: #777; cursor: pointer; width: 100%; font-weight: 500; }
 
-/* --- VISTA 3A: PAGO PARCIAL --- */
+/* VISTA PAGO PARCIAL */
 #partialView { display: none; }
-.partial-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
-.partial-icon { width: 3rem; height: 3rem; background: #fff0e3; border-radius: 0.8rem; display: grid; place-items: center; flex-shrink: 0; }
+.partial-header { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.partial-icon { width: 3rem; height: 3rem; background: #fff0e3; border-radius: 0.8rem; display: grid; place-items: center; }
 .partial-icon svg { width: 1.5rem; height: 1.5rem; color: var(--orange); }
-.partial-title { font-size: 1.4rem; font-weight: 700; margin: 0 0 0.2rem; line-height: 1.2; }
-.partial-subtitle { font-size: 0.95rem; color: #555; margin: 0; }
+.partial-title { font-size: 1.4rem; font-weight: 700; margin: 0 0 0.2rem; }
+.partial-subtitle { font-size: 0.95rem; color: #555; }
 .partial-subtitle strong { color: var(--orange); }
 .warning-box { background: #fffcf0; border: 1px solid #fbe8a6; border-radius: 0.8rem; padding: 1.2rem; margin-bottom: 1.8rem; }
-.warning-box h4 { margin: 0 0 0.5rem; color: #b47c1c; font-size: 1rem; }
-.warning-box p { margin: 0; color: #b47c1c; font-size: 0.95rem; line-height: 1.5; }
-.input-amount-label { font-size: 0.95rem; color: #555; font-weight: 600; margin-bottom: 0.5rem; }
-.input-amount { width: 100%; height: 3.5rem; border: 1px solid #e2e2e2; border-radius: 0.6rem; padding: 0 1rem; font-size: 1.2rem; font-weight: 700; color: #555; outline: none; margin-bottom: 1.5rem; }
-.input-amount:focus { border-color: var(--orange); }
+.warning-box h4 { margin: 0 0 0.5rem; color: #b47c1c; }
+.warning-box p { margin: 0; color: #b47c1c; font-size: 0.95rem; }
+.input-amount-label { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+.input-amount { width: 100%; height: 3.5rem; border: 1px solid #e2e2e2; border-radius: 0.6rem; padding: 0 1rem; font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; }
 .btn-continue-partial { width: 100%; min-height: 3.2rem; border-radius: 0.6rem; background: #fcb98a; color: white; border: none; font-weight: 600; font-size: 1.1rem; cursor: pointer; margin-bottom: 1.2rem; }
 
-/* --- VISTA 3B: PAGO TOTAL (MÉTODOS Y ACORDEÓN) --- */
+/* VISTA PAGO TOTAL */
 #paymentView { display: none; }
-
-/* Tarjeta naranja con la señal de Wi-Fi */
-.payment-summary { 
-  background: var(--orange); 
-  border-radius: 1rem; 
-  padding: 1.4rem 1.2rem; 
-  color: white; 
-  margin-bottom: 1.2rem; 
-  position: relative; 
-  overflow: hidden; 
-}
-.payment-summary::after { 
-  content: ''; 
-  position: absolute; 
-  right: -10px; 
-  top: -15px; 
-  width: 150px; 
-  height: 150px; 
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.12)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.55a11 11 0 0 1 14.08 0'/%3E%3Cpath d='M1.42 9a16 16 0 0 1 21.16 0'/%3E%3Cpath d='M8.53 16.11a6 6 0 0 1 6.95 0'/%3E%3Cline x1='12' y1='20' x2='12.01' y2='20'/%3E%3C/svg%3E"); 
-  background-size: contain; 
-  background-repeat: no-repeat; 
-  pointer-events: none;
-}
-
-.payment-summary-label { font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.2rem; position: relative; z-index: 1; }
-.payment-summary-amount { font-size: 2.5rem; font-weight: 800; line-height: 1; margin-bottom: 0.8rem; position: relative; z-index: 1; }
-.payment-summary-details { display: flex; justify-content: space-between; font-size: 0.8rem; opacity: 0.95; position: relative; z-index: 1; }
-
-.secure-msg { background: #f0f9f8; border: 1px solid #d0ebe8; border-radius: 0.6rem; padding: 0.9rem 1rem; display: flex; gap: 0.75rem; align-items: flex-start; color: #337a76; font-size: 0.85rem; margin-bottom: 1.8rem; line-height: 1.4; }
-.secure-msg svg { width: 1.1rem; height: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
-.payment-methods-title { font-size: 1rem; font-weight: 700; color: #555; margin-bottom: 1rem; }
-
-/* Acordeón Métodos de Pago */
-.method-wrapper { border: 1px solid #e0e0e0; border-radius: 1rem; margin-bottom: 1rem; transition: border-color 0.2s; overflow: hidden; background: white; }
+.payment-summary { background: var(--orange); border-radius: 1rem; padding: 1.4rem 1.2rem; color: white; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+.payment-summary::after { content: ''; position: absolute; right: -10px; top: -15px; width: 150px; height: 150px; background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.12)' stroke-width='1.5'%3E%3Cpath d='M5 12.55a11 11 0 0 1 14.08 0'/%3E%3Cpath d='M1.42 9a16 16 0 0 1 21.16 0'/%3E%3Cpath d='M8.53 16.11a6 6 0 0 1 6.95 0'/%3E%3Cline x1='12' y1='20' x2='12.01' y2='20'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; }
+.payment-summary-amount { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.8rem; position: relative; z-index: 1; }
+.payment-summary-details { display: flex; justify-content: space-between; font-size: 0.8rem; position: relative; z-index: 1; }
+.secure-msg { background: #f0f9f8; border: 1px solid #d0ebe8; border-radius: 0.6rem; padding: 0.9rem; display: flex; gap: 0.75rem; color: #337a76; font-size: 0.85rem; margin-bottom: 1.8rem; }
+.secure-msg svg { width: 1.1rem; height: 1.1rem; }
+.payment-methods-title { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+.method-wrapper { border: 1px solid #e0e0e0; border-radius: 1rem; margin-bottom: 1rem; overflow: hidden; background: white; }
 .method-wrapper.active { border-color: var(--orange); }
-
 .method-header { display: flex; align-items: center; gap: 1rem; padding: 1rem; cursor: pointer; }
-.method-icon { width: 3rem; height: 3rem; border-radius: 0.6rem; display: grid; place-items: center; flex-shrink: 0; overflow: hidden; }
-.method-info { flex-grow: 1; }
-.method-name { font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.2rem; }
-.method-desc { font-size: 0.85rem; color: #777; line-height: 1.3; }
-
-/* Radios personalizados */
-.method-radio { width: 1.4rem; height: 1.4rem; border: 2px solid #d3d3d3; border-radius: 50%; flex-shrink: 0; position: relative; }
+.method-icon { width: 3rem; height: 3rem; border-radius: 0.6rem; display: grid; place-items: center; }
+.method-name { font-weight: 700; font-size: 1rem; }
+.method-desc { font-size: 0.85rem; color: #777; }
+.method-radio { width: 1.4rem; height: 1.4rem; border: 2px solid #d3d3d3; border-radius: 50%; position: relative; }
 .method-wrapper.active .method-radio { background: var(--orange); border-color: var(--orange); }
-.method-wrapper.active .method-radio::after {
-  content: '✓'; color: white; position: absolute; font-size: 0.8rem; font-weight: 700; top: 50%; left: 50%; transform: translate(-50%, -50%);
-}
-
-/* Contenido interno del acordeón */
-.method-body { display: none; padding: 0 1rem 1.2rem; border-top: 1px solid #eee; margin-top: 0.2rem; }
+.method-wrapper.active .method-radio::after { content: '✓'; color: white; position: absolute; font-size: 0.8rem; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.method-body { display: none; padding: 0 1rem 1.2rem; border-top: 1px solid #eee; }
 .method-wrapper.active .method-body { display: block; }
-
-/* Formularios dentro de los métodos */
-.label-small { font-size: 0.9rem; color: #555; font-weight: 600; margin: 1rem 0 0.5rem; }
-.input-wrap-small { display: flex; align-items: center; border: 1px solid #e0e0e0; border-radius: 0.6rem; height: 3rem; overflow: hidden; margin-bottom: 0.8rem; background: white; }
-.input-prefix { padding: 0 0.8rem; border-right: 1px solid #e0e0e0; color: #555; font-size: 1rem; background: #fafafa; height: 100%; display: flex; align-items: center; }
-.input-small { border: none; outline: none; padding: 0 0.8rem; font-size: 1rem; width: 100%; height: 100%; color: #333; }
-.help-text { font-size: 0.8rem; color: #777; text-align: center; margin-bottom: 1rem; line-height: 1.4; }
-
-/* Botones de acción en métodos de pago */
-.btn-action { width: 100%; min-height: 3rem; border-radius: 0.6rem; background: #fcb98a; color: white; border: none; font-weight: 600; font-size: 1rem; cursor: not-allowed; margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: background 0.2s; }
+.label-small { font-size: 0.9rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+.input-small { border: 1px solid #e0e0e0; border-radius: 0.6rem; height: 3rem; padding: 0 0.8rem; width: 100%; font-size: 1rem; }
+.btn-action { width: 100%; min-height: 3rem; border-radius: 0.6rem; background: #fcb98a; color: white; border: none; font-weight: 600; cursor: not-allowed; margin-bottom: 0.8rem; }
 .btn-action.ready { background: var(--orange); cursor: pointer; }
-.btn-action svg { width: 1.2rem; height: 1.2rem; }
-
-.btn-choose-other { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: transparent; border: none; color: #777; font-size: 0.95rem; cursor: pointer; width: 100%; font-weight: 500; }
-.btn-choose-other svg { width: 1rem; height: 1rem; }
-
-/* Layouts especiales (DaviPlata / Bancolombia / PSE) */
-.davi-grid, .bancol-grid, .pse-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem; }
-.davi-grid .label-small, .bancol-grid .label-small, .pse-grid .label-small { margin: 0 0 0.4rem; line-height: 1.2; }
-.select-doc { width: 100%; height: 3rem; border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; font-size: 0.95rem; color: #333; outline: none; appearance: none; background: white url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E") no-repeat right 1rem center; background-size: 0.7rem; cursor: pointer; }
-.consent-small { display: flex; gap: 0.6rem; align-items: flex-start; margin-bottom: 0.6rem; font-size: 0.85rem; color: #555; line-height: 1.35; }
-.consent-small input { appearance: none; -webkit-appearance: none; flex: 0 0 1.1rem; width: 1.1rem; height: 1.1rem; margin: 0; border: 1px solid #ccc; border-radius: 0.2rem; background: white; cursor: pointer; position: relative; }
-.consent-small input:checked { background: var(--orange); border-color: var(--orange); }
-.consent-small input:checked::after { content: "✓"; color: white; position: absolute; left: 0.15rem; top: -0.15rem; font-size: 0.85rem; font-weight: 700; }
-.consent-small a { color: #d98227; text-decoration: underline; }
-.info-text-small { font-size: 0.85rem; color: #777; line-height: 1.4; margin: 1rem 0; text-align: center; }
-
-footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.75rem; }
-
-/* ADAPTACIÓN A MÓVILES */
-@media (max-width: 480px) {
-  html { font-size: 15px; }
-  .steps { padding: 0.8rem 0.7rem 0.4rem; }
-  .card { width: calc(100% - 1rem); margin: 1.2rem auto 0.8rem; padding: 2rem 1rem 1.5rem; border-radius: 0.85rem; }
-  .hero-icon { margin-bottom: 1.5rem; }
-  .card-title { font-size: 1.25rem; line-height: 1.35; margin-bottom: 0.9rem; max-width: 100%; }
-  .intro { font-size: 0.85rem; margin-bottom: 1.8rem; }
-  .rule { margin-bottom: 1.8rem; }
-  .field-label { margin-bottom: 0.9rem; }
-  .choice-row { margin-bottom: 1.8rem; }
-  .input-wrap { margin-bottom: 1.8rem; }
-  .consent { padding: 0.85rem 0.9rem; margin-bottom: 1rem; }
-  .consent:last-of-type { margin-bottom: 1.5rem; }
-  .recaptcha-box { margin-bottom: 1.3rem; }
-  .required-text { margin-bottom: 0.8rem; }
-  .version-text { margin-bottom: 1.3rem; }
-  .step { width: 4.8rem; flex: 0 1 4.8rem; font-size: 0.72rem; }
-  .step-circle { width: 2.3rem; height: 2.3rem; font-size: 0.9rem; }
-  .step-line { flex: 0 1 1.8rem; margin-top: 1.15rem; }
-  .choice { min-height: 2.6rem; font-size: 0.9rem; }
-  .input-wrap input { height: 2.8rem; font-size: 0.95rem; }
-  .submit { min-height: 2.8rem; font-size: 1rem; }
-  
-  .invoice-number { font-size: 1.8rem; }
-  .balance-amount { font-size: 2.4rem; }
-  .action-buttons { gap: 0.6rem; }
-  .btn-pay { font-size: 0.95rem; min-height: 2.8rem; }
-  .btn-download { font-size: 0.9rem; min-height: 2.8rem; }
-
-  .payment-summary-amount { font-size: 2.2rem; }
-  .partial-title { font-size: 1.25rem; }
-  
-  .davi-grid, .bancol-grid, .pse-grid { gap: 0.5rem; }
-  .select-doc { padding: 0 0.5rem; }
-  .bancol-grid .label-small, .pse-grid .label-small { font-size: 0.8rem; }
-  .bancol-grid .input-small, .pse-grid .input-small { font-size: 0.85rem; padding: 0 0.5rem; }
-}
+footer { text-align: center; padding: 1rem; color: #888; font-size: 0.75rem; }
 </style>
 </head>
 
 <body>
 
-<!-- ENCABEZADO -->
 <header class="topbar" aria-label="Celsia internet | Portal de Pagos"></header>
 
-<!-- PASOS -->
 <nav class="steps" aria-label="Pasos del proceso">
   <div class="step active" id="step1">
     <div class="step-circle" id="step1Circle">1</div>
@@ -303,14 +157,8 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
 
 <!-- VISTA 1: CONSULTA -->
 <main class="card" id="lookupView">
-  <div class="hero-icon" aria-hidden="true">
-    <img src="https://img.icons8.com/?size=50&id=82688&format=png&color=ffffff" alt="">
-  </div>
-
-  <h2 class="card-title">
-    Consulta, paga o abona a tu 
-    <span class="title-last">factura</span>
-  </h2>
+  <div class="hero-icon"><img src="https://img.icons8.com/?size=50&id=82688&format=png&color=ffffff" alt=""></div>
+  <h2 class="card-title">Consulta, paga o abona a tu <span class="title-last">factura</span></h2>
   <p class="intro">Sigue los pasos para consultar o realizar tus pagos</p>
   <hr class="rule">
 
@@ -323,39 +171,28 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
 
     <div class="field-label">Paso 2 — <strong>Ingresa la información y haz clic en buscar</strong></div>
     <div class="input-wrap">
-      <input id="accountInput" type="password" inputmode="numeric" autocomplete="off" placeholder="Ingresa aqui tu documento" aria-label="Número de documento" required>
-      <button type="button" class="eye" id="toggleVisibility" aria-label="Mostrar u ocultar dato">
-        <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12 s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
-        <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20 c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94 M9.9 4.24A9.12 9.12 0 0 1 12 4 c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19 m-6.72-1.07a3 3 0 1 1-4.24-4.24 M1 1l22 22"/></svg>
+      <input id="accountInput" type="password" inputmode="numeric" autocomplete="off" placeholder="Ingresa aqui tu documento" required>
+      <button type="button" class="eye" id="toggleVisibility">
+        <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12 s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20 c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94 M9.9 4.24A9.12 9.12 0 0 1 12 4 c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19 m-6.72-1.07a3 3 0 1 1-4.24-4.24 M1 1l22 22"/></svg>
       </button>
     </div>
 
-    <label class="consent">
-      <input type="checkbox" required>
-      <span>Acepto las <a href="#" class="policy-link">políticas de tratamiento de datos personales</a> <span class="required">*</span></span>
-    </label>
-    <label class="consent">
-      <input type="checkbox" required>
-      <span>Autorizo de manera libre, previa, expresa e informada a <b>Celsia Internet S.A.S.</b>, en su calidad de responsable del tratamiento de datos personales, conforme a su política de privacidad. <span class="required">*</span></span>
-    </label>
+    <label class="consent"><input type="checkbox" required><span>Acepto las <a href="#">políticas de tratamiento de datos personales</a> *</span></label>
+    <label class="consent"><input type="checkbox" required><span>Autorizo el tratamiento de datos a <b>Celsia Internet S.A.S.</b> *</span></label>
 
     <div class="recaptcha-box">
       <div class="recaptcha-left">
         <input type="checkbox" class="recaptcha-checkbox" id="recaptchaCheck">
-        <label for="recaptchaCheck" class="recaptcha-label">No soy un robot</label>
+        <label for="recaptchaCheck">No soy un robot</label>
       </div>
-      <div class="recaptcha-logo">
-        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA">
-        <span>reCAPTCHA</span>
-      </div>
+      <div class="recaptcha-logo"><img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA"><span>reCAPTCHA</span></div>
     </div>
-
     <span class="required-text">* Campo obligatorio</span>
     <span class="version-text">v1.0.33</span>
 
     <button type="submit" class="submit" id="submitBtn" disabled>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      Buscar
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar
     </button>
   </form>
 </main>
@@ -367,27 +204,34 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
       <div class="invoice-number" id="accountNumberDisplay">2417693</div>
       <div class="invoice-label">ID de cuenta</div>
     </div>
-    <div class="badge-active"><span class="badge-dot"></span> activo</div>
+    <div class="badge-active" id="invoiceStatusBadge">
+      <span class="badge-dot"></span> <span id="invoiceStatusText">activo</span>
+    </div>
   </div>
 
   <div class="balance-card">
     <div class="balance-title">Saldo total</div>
-    <div class="balance-amount">$ 55.900</div>
+    <div class="balance-amount" id="invoiceBalance">$ 55.900</div>
     <div class="balance-details">
-      <div>Cupón:<br><strong>241769303</strong></div>
-      <div>Ref: 241769303-55900-<br><strong>202610</strong></div>
+      <div>Cupón:<br><span id="invoiceCoupon"><strong>241769303</strong></span></div>
+      <div>Ref: <span id="invoiceRef"><strong>241769303-55900-202610</strong></span></div>
     </div>
   </div>
 
   <div class="client-info">
     <div class="client-row">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-      <div class="client-name">VE****A VI**L AL****O</div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      <div class="client-name" id="clientName">ve***a vi***l al***o</div>
     </div>
     <div class="client-row">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-      <div class="client-address">C*L 14 - 7**1 - VI**A GO****A - CA*******A</div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      <div class="client-address" id="clientAddress">c*l 12 -** ve***a vi***l al***o</div>
     </div>
+  </div>
+
+  <div class="alert-info" id="invoiceAlertBox" style="background: #fafafa; border: 1px solid #e0e0e0; color: #555;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+    <span id="invoiceAlertText">Esta cuenta no tiene saldo pendiente por pagar.</span>
   </div>
 
   <div class="action-buttons">
@@ -396,12 +240,12 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
   </div>
   
   <button class="btn-download">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
     Descargar mi factura
   </button>
 
   <button class="btn-back" id="btnBackFromInvoice">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
     Volver
   </button>
 </main>
@@ -409,12 +253,10 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
 <!-- VISTA 3A: PAGO PARCIAL -->
 <main class="card" id="partialView">
   <div class="partial-header">
-    <div class="partial-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-    </div>
+    <div class="partial-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg></div>
     <div>
       <h2 class="partial-title">Pago Parcial</h2>
-      <p class="partial-subtitle">Cuenta 2417693 · Saldo total: <strong>$ 55.900</strong></p>
+      <p class="partial-subtitle">Cuenta <span id="partialAccount">2417693</span> · Saldo total: <strong id="partialBalance">$ 55.900</strong></p>
     </div>
   </div>
 
@@ -429,30 +271,30 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
   <button class="btn-continue-partial" id="btnContinuePartial">Continuar con el abono</button>
   
   <button class="btn-back" id="btnBackFromPartial">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
     Volver a la factura
   </button>
 </main>
 
-<!-- VISTA 3B: PAGO TOTAL (MÉTODOS) -->
+<!-- VISTA 3B: PAGO TOTAL -->
 <main class="card" id="paymentView">
   <div class="payment-summary">
     <div class="payment-summary-label">Pago total</div>
     <div class="payment-summary-amount" id="summaryAmount">$ 55.900</div>
     <div class="payment-summary-details">
       <span>Cuenta <span id="summaryAccount">2417693</span></span>
-      <span>241769303-55900-202610</span>
+      <span id="summaryRef">241769303-55900-202610</span>
     </div>
   </div>
 
   <div class="secure-msg">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
     <span>Tu pago se procesa cifrado y directo con cada entidad.</span>
   </div>
 
   <div class="payment-methods-title">Elige tu método de pago</div>
 
-  <!-- 1. Nequi -->
+  <!-- Nequi -->
   <div class="method-wrapper" id="method-nequi">
     <div class="method-header" onclick="toggleMethod('method-nequi')">
       <div class="method-icon" style="background: white; border: 1px solid #eee;">
@@ -467,20 +309,17 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
     
     <div class="method-body">
       <div class="label-small">Número de celular registrado en Nequi</div>
-      <div class="input-wrap-small">
-        <div class="input-prefix">+57</div>
-        <input type="tel" class="input-small" id="nequiPhone" placeholder="Ej: 3001234567" oninput="checkForm('nequi')">
-      </div>
-      <div class="help-text">Recibirás una notificación en tu app Nequi para confirmar el pago.</div>
+      <input type="tel" class="input-small" id="nequiPhone" placeholder="Ej: 3001234567" oninput="checkForm('nequi')">
+      <div class="help-text" style="font-size:0.8rem; color:#777; margin-bottom:1rem;">Recibirás una notificación en tu app Nequi para confirmar el pago.</div>
       <button class="btn-action" id="btn-nequi" onclick="redirectTo('https://nequi.com.co/')">Enviar solicitud de pago</button>
       <button class="btn-choose-other" onclick="closeAllMethods(event)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         Elegir otro método
       </button>
     </div>
   </div>
 
-  <!-- 2. DaviPlata -->
+  <!-- DaviPlata -->
   <div class="method-wrapper" id="method-daviplata">
     <div class="method-header" onclick="toggleMethod('method-daviplata')">
       <div class="method-icon" style="background: #da291c;">
@@ -494,30 +333,24 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
     </div>
     
     <div class="method-body">
-      <div class="davi-grid">
-        <div>
-          <div class="label-small">Tipo de documento</div>
-          <select class="select-doc" id="daviDocType" onchange="checkForm('davi')">
-            <option value="">Selecciona</option>
-            <option value="CC">Cédula de ciudadanía</option>
-            <option value="CE">Cédula de extranjería</option>
-            <option value="TI">Tarjeta de identidad</option>
-          </select>
-        </div>
-        <div>
-          <div class="label-small">Número de documento</div>
-          <input type="tel" class="input-small" id="daviDocNum" placeholder="Ej: 123456789" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem;" oninput="checkForm('davi')">
-        </div>
-      </div>
-      <button class="btn-action" id="btn-davi" style="margin-top: 0.5rem;" onclick="redirectTo('https://www.daviplata.com/')">Continuar</button>
+      <div class="label-small">Tipo de documento</div>
+      <select class="input-small" id="daviDocType" onchange="checkForm('davi')">
+        <option value="">Selecciona</option>
+        <option value="CC">Cédula de ciudadanía</option>
+        <option value="CE">Cédula de extranjería</option>
+        <option value="TI">Tarjeta de identidad</option>
+      </select>
+      <div class="label-small">Número de documento</div>
+      <input type="tel" class="input-small" id="daviDocNum" placeholder="Ej: 123456789" oninput="checkForm('davi')">
+      <button class="btn-action" id="btn-davi" onclick="redirectTo('https://www.daviplata.com/')">Continuar</button>
       <button class="btn-choose-other" onclick="closeAllMethods(event)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         Elegir otro método
       </button>
     </div>
   </div>
 
-  <!-- 3. Botón Bancolombia -->
+  <!-- Botón Bancolombia -->
   <div class="method-wrapper" id="method-bancolombia">
     <div class="method-header" onclick="toggleMethod('method-bancolombia')">
       <div class="method-icon" style="background: #fcd116; border-radius: 50%;">
@@ -535,46 +368,20 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
     </div>
     
     <div class="method-body">
-      <div class="label-small" style="margin-top: 1rem;">Nombre completo</div>
-      <input type="text" class="input-small" id="bancolName" placeholder="Nombre y apellidos" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%; margin-bottom: 1rem;" oninput="checkForm('bancol')">
-
-      <div class="bancol-grid">
-        <div>
-          <div class="label-small">Correo electrónico</div>
-          <input type="email" class="input-small" id="bancolEmail" placeholder="tucorreo@ejemplo.com" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;" oninput="checkForm('bancol')">
-        </div>
-        <div>
-          <div class="label-small">Teléfono</div>
-          <input type="tel" class="input-small" id="bancolPhone" placeholder="Ej: 3001234567" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;" oninput="checkForm('bancol')">
-        </div>
-      </div>
-
-      <label class="consent-small">
-        <input type="checkbox" id="bancolTerm1" onchange="checkForm('bancol')" required>
-        <span>Acepto el <a href="#">tratamiento de datos y términos de Wompi</a></span>
-      </label>
-      <label class="consent-small" style="margin-bottom: 1rem;">
-        <input type="checkbox" id="bancolTerm2" onchange="checkForm('bancol')" required>
-        <span>Autorizo el <a href="#">tratamiento de datos personales</a></span>
-      </label>
-
-      <div class="info-text-small">
-        Al continuar saldrás a Bancolombia para confirmar el pago desde tu cuenta. Cuando termines, volverás aquí automáticamente.
-      </div>
-
-      <button class="btn-action" id="btn-bancol" onclick="redirectTo('https://sucursalpersonas.transaccionesbancolombia.com/')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-        Continuar con Botón Bancolombia
-      </button>
-      
-      <button class="btn-choose-other" onclick="closeAllMethods(event)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        Elegir otro método
-      </button>
+      <div class="label-small">Nombre completo</div>
+      <input type="text" class="input-small" id="bancolName" placeholder="Nombre y apellidos" oninput="checkForm('bancol')">
+      <div class="label-small">Correo electrónico</div>
+      <input type="email" class="input-small" id="bancolEmail" placeholder="tucorreo@ejemplo.com" oninput="checkForm('bancol')">
+      <div class="label-small">Teléfono</div>
+      <input type="tel" class="input-small" id="bancolPhone" placeholder="Ej: 3001234567" oninput="checkForm('bancol')">
+      <label class="consent" style="margin-top:1rem;"><input type="checkbox" id="bancolTerm1" onchange="checkForm('bancol')"><span>Acepto términos</span></label>
+      <label class="consent"><input type="checkbox" id="bancolTerm2" onchange="checkForm('bancol')"><span>Autorizo datos</span></label>
+      <button class="btn-action" id="btn-bancol" onclick="redirectTo('https://sucursalpersonas.transaccionesbancolombia.com/')">Continuar</button>
+      <button class="btn-choose-other" onclick="closeAllMethods(event)">Elegir otro método</button>
     </div>
   </div>
 
-  <!-- 4. PSE -->
+  <!-- PSE -->
   <div class="method-wrapper" id="method-pse">
     <div class="method-header" onclick="toggleMethod('method-pse')">
       <div class="method-icon" style="background: #003b7a; border-radius: 0.6rem;">
@@ -588,113 +395,34 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
     </div>
     
     <div class="method-body">
-      <div class="label-small" style="margin-top: 1rem;">Nombre completo</div>
-      <input type="text" class="input-small" id="pseName" placeholder="Nombre y apellidos" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%; margin-bottom: 1rem;" oninput="checkForm('pse')">
-
-      <div class="pse-grid">
-        <div>
-          <div class="label-small">Correo electrónico</div>
-          <input type="email" class="input-small" id="pseEmail" placeholder="tucorreo@ejemplo.com" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;" oninput="checkForm('pse')">
-        </div>
-        <div>
-          <div class="label-small">Teléfono</div>
-          <input type="tel" class="input-small" id="psePhone" placeholder="Ej: 3001234567" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;" oninput="checkForm('pse')">
-        </div>
-      </div>
-
-      <div class="pse-grid">
-        <div>
-          <div class="label-small">Tipo de documento</div>
-          <select class="select-doc" id="pseDocType" onchange="checkForm('pse')">
-            <option value="">Selecciona</option>
-            <option value="CC">Cédula de ciudadanía</option>
-            <option value="CE">Cédula de extranjería</option>
-            <option value="TI">Tarjeta de identidad</option>
-          </select>
-        </div>
-        <div>
-          <div class="label-small">Número de documento</div>
-          <input type="tel" class="input-small" id="pseDocNum" placeholder="Ej: 123456789" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;" oninput="checkForm('pse')">
-        </div>
-      </div>
-
-      <div class="label-small">Banco</div>
-      <select class="select-doc" id="pseBank" onchange="checkForm('pse')" style="margin-bottom: 1rem;">
-        <option value="">Selecciona tu banco</option>
-        <option value="1831">ACCION FIDUCIARIA</option>
-        <option value="1815">ALIANZA FIDUCIARIA</option>
-        <option value="1558">BAN100</option>
-        <option value="1059">BANCAMIA S.A.</option>
-        <option value="1040">BANCO AGRARIO</option>
-        <option value="1052">BANCO AV VILLAS</option>
-        <option value="1013">BANCO BBVA COLOMBIA S.A.</option>
-        <option value="1032">BANCO CAJA SOCIAL</option>
-        <option value="1819">BANCO CONTACTAR</option>
-        <option value="1066">BANCO COOPERATIVO COOPCENTRAL</option>
-        <option value="1051">BANCO DAVIVIENDA</option>
-        <option value="1001">BANCO DE BOGOTA</option>
-        <option value="1023">BANCO DE OCCIDENTE</option>
-        <option value="1062">BANCO FALABELLA </option>
-        <option value="1063">BANCO FINANDINA S.A. BIC</option>
-        <option value="1012">BANCO GNB SUDAMERIS</option>
-        <option value="1006">BANCO ITAU</option>
-        <option value="1071">BANCO J.P. MORGAN COLOMBIA S.A.</option>
-        <option value="1047">BANCO MUNDO MUJER S.A.</option>
-        <option value="1060">BANCO PICHINCHA S.A.</option>
-        <option value="1002">BANCO POPULAR</option>
-        <option value="1065">BANCO SANTANDER COLOMBIA</option>
-        <option value="1069">BANCO SERFINANZA</option>
-        <option value="1303">BANCO UNION</option>
-        <option value="1007">BANCOLOMBIA</option>
-        <option value="1061">BANCOOMEVA S.A.</option>
-        <option value="1808">BOLD CF</option>
-        <option value="1283">CFA COOPERATIVA FINANCIERA</option>
-        <option value="1009">CITIBANK </option>
-        <option value="1812">COINK SA</option>
-        <option value="1370">COLTEFINANCIERA</option>
-        <option value="1292">CONFIAR COOPERATIVA FINANCIERA</option>
-        <option value="1289">COTRAFA</option>
-        <option value="1816">CREZCAMOS</option>
-        <option value="1097">DALE</option>
-        <option value="1019">DAVIbank S.A.</option>
-        <option value="1551">DAVIPLATA</option>
-        <option value="1802">DING</option>
-        <option value="1121">FINANCIERA JURISCOOP SA COMPAÑÍA DE FINANCIAMIENTO</option>
-        <option value="1814">GLOBAL66</option>
-        <option value="1637">IRIS</option>
-        <option value="1286">JFK COOPERATIVA FINANCIERA</option>
-        <option value="1070">LULO BANK</option>
-        <option value="1801">MOVII S.A.</option>
-        <option value="1507">NEQUI</option>
-        <option value="1809">NU</option>
-        <option value="1824">PAYCASH</option>
-        <option value="1803">POWWI</option>
-        <option value="1811">RAPPIPAY</option>
-        <option value="1804">UALÁ</option>
+      <div class="label-small">Nombre completo</div>
+      <input type="text" class="input-small" id="pseName" placeholder="Nombre y apellidos" oninput="checkForm('pse')">
+      <div class="label-small">Correo electrónico</div>
+      <input type="email" class="input-small" id="pseEmail" placeholder="tucorreo@ejemplo.com" oninput="checkForm('pse')">
+      <div class="label-small">Teléfono</div>
+      <input type="tel" class="input-small" id="psePhone" placeholder="Ej: 3001234567" oninput="checkForm('pse')">
+      <div class="label-small">Tipo de documento</div>
+      <select class="input-small" id="pseDocType" onchange="checkForm('pse')">
+        <option value="">Selecciona</option>
+        <option value="CC">Cédula de ciudadanía</option>
+        <option value="CE">Cédula de extranjería</option>
+        <option value="TI">Tarjeta de identidad</option>
       </select>
-
-      <label class="consent-small">
-        <input type="checkbox" id="pseTerm1" onchange="checkForm('pse')" required>
-        <span>Acepto el <a href="#">tratamiento de datos y términos de Wompi</a></span>
-      </label>
-      <label class="consent-small" style="margin-bottom: 1rem;">
-        <input type="checkbox" id="pseTerm2" onchange="checkForm('pse')" required>
-        <span>Autorizo el <a href="#">tratamiento de datos personales</a></span>
-      </label>
-
-      <div class="info-text-small">
-        Al continuar saldrás a la página de tu banco para completar el pago. Cuando termines, volverás aquí automáticamente.
-      </div>
-
-      <button class="btn-action" id="btn-pse" onclick="redirectTo('https://checkout.wompi.co/')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-        Continuar con PSE
-      </button>
-      
-      <button class="btn-choose-other" onclick="closeAllMethods(event)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        Elegir otro método
-      </button>
+      <div class="label-small">Número de documento</div>
+      <input type="tel" class="input-small" id="pseDocNum" placeholder="Ej: 123456789" oninput="checkForm('pse')">
+      <div class="label-small">Banco</div>
+      <select class="input-small" id="pseBank" onchange="checkForm('pse')">
+        <option value="">Selecciona tu banco</option>
+        <option value="1007">BANCOLOMBIA</option>
+        <option value="1051">BANCO DAVIVIENDA</option>
+        <option value="1013">BANCO BBVA COLOMBIA S.A.</option>
+        <option value="1001">BANCO DE BOGOTA</option>
+        <option value="1002">BANCO POPULAR</option>
+      </select>
+      <label class="consent" style="margin-top:1rem;"><input type="checkbox" id="pseTerm1" onchange="checkForm('pse')"><span>Acepto términos</span></label>
+      <label class="consent"><input type="checkbox" id="pseTerm2" onchange="checkForm('pse')"><span>Autorizo datos</span></label>
+      <button class="btn-action" id="btn-pse" onclick="redirectTo('https://checkout.wompi.co/')">Continuar con PSE</button>
+      <button class="btn-choose-other" onclick="closeAllMethods(event)">Elegir otro método</button>
     </div>
   </div>
 
@@ -704,37 +432,33 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
   Maqueta demostrativa · No conectada al sistema real de pagos
 </footer>
 
+<!-- IMPORTANTE: Cargar la base de datos ANTES de la lógica principal -->
+<script src="database.js"></script>
+
 <script>
-// Variables
+// ==========================================
+// LÓGICA PRINCIPAL DEL FRONTEND
+// ==========================================
+
+// Variables globales de UI
 const choices = document.querySelectorAll('.choice');
 const input = document.getElementById('accountInput');
 const toggle = document.getElementById('toggleVisibility');
 const recaptchaCheck = document.getElementById('recaptchaCheck');
 const submitBtn = document.getElementById('submitBtn');
-
-// Vistas
 const lookupView = document.getElementById('lookupView');
 const invoiceView = document.getElementById('invoiceView');
 const partialView = document.getElementById('partialView');
 const paymentView = document.getElementById('paymentView');
 
-// Pasos
-const step1 = document.getElementById('step1');
-const step1Circle = document.getElementById('step1Circle');
-const step2 = document.getElementById('step2');
-const step2Circle = document.getElementById('step2Circle');
-const step3 = document.getElementById('step3');
-
+// Lógica para los botones de búsqueda (Documento/Cuenta)
 let mode = 'documento';
-
-// Lógica de Búsqueda
 choices.forEach(button => {
   button.addEventListener('click', () => {
     mode = button.dataset.mode;
     choices.forEach(item => {
-      const active = item === button;
-      item.classList.toggle('active', active);
-      item.setAttribute('aria-pressed', String(active));
+      item.classList.toggle('active', item === button);
+      item.setAttribute('aria-pressed', String(item === button));
     });
     input.value = '';
     input.type = 'password';
@@ -745,109 +469,145 @@ choices.forEach(button => {
 
 toggle.addEventListener('click', (event) => {
   event.preventDefault();
-  event.stopPropagation();
   input.type = input.type === 'password' ? 'text' : 'password';
   toggle.classList.toggle('is-visible');
-});
-
-document.querySelector('.policy-link').addEventListener('click', event => {
-  event.preventDefault();
-  alert('En una implementación real, este enlace debe llevar a la política oficial de tratamiento de datos.');
 });
 
 recaptchaCheck.addEventListener('change', () => {
   submitBtn.disabled = !recaptchaCheck.checked;
 });
 
-// Ir a la Factura
-document.getElementById('lookupForm').addEventListener('submit', event => {
+// ==========================================
+// CONEXIÓN CON LA BASE DE DATOS (BUSCAR)
+// ==========================================
+document.getElementById('lookupForm').addEventListener('submit', (event) => {
   event.preventDefault();
-  if (!input.value.trim()) {
+  
+  const idBuscado = input.value.trim();
+  if (!idBuscado) {
     alert("Por favor, ingresa un número de documento o cuenta.");
     return;
   }
 
-  document.getElementById('accountNumberDisplay').textContent = input.value;
-  document.getElementById('summaryAccount').textContent = input.value;
+  // 1. Consultamos a nuestro archivo database.js
+  const resultado = buscarFactura(idBuscado);
 
+  if (!resultado.success) {
+    alert("La cuenta o documento no fue encontrado en nuestra base de datos.");
+    return;
+  }
+
+  const data = resultado.data; // Aquí están todos los datos del cliente
+
+  // 2. Inyectamos los datos reales en el HTML de la Factura
+  document.getElementById('accountNumberDisplay').textContent = data.identificacion;
+  document.getElementById('summaryAccount').textContent = data.identificacion;
+  document.getElementById('partialAccount').textContent = data.identificacion;
+  
+  // Formatear el saldo como moneda
+  const saldoFormateado = "$ " + data.saldo.toLocaleString('es-CO');
+  document.getElementById('invoiceBalance').textContent = saldoFormateado;
+  document.getElementById('summaryAmount').textContent = saldoFormateado;
+  document.getElementById('partialBalance').textContent = saldoFormateado;
+
+  document.getElementById('invoiceCoupon').innerHTML = `<strong>${data.cupon}</strong>`;
+  document.getElementById('invoiceRef').innerHTML = `<strong>${data.referencia}</strong>`;
+  document.getElementById('summaryRef').textContent = data.referencia;
+  
+  document.getElementById('clientName').textContent = data.nombre;
+  document.getElementById('clientAddress').textContent = data.direccion;
+
+  // 3. Validar Estado (Activo / Suspendido) y Saldo
+  const badge = document.getElementById('invoiceStatusBadge');
+  const statusText = document.getElementById('invoiceStatusText');
+  const alertBox = document.getElementById('invoiceAlertBox');
+  const alertText = document.getElementById('invoiceAlertText');
+  const badgeDot = badge.querySelector('.badge-dot');
+
+  if (data.estado === 'activo') {
+    badge.style.background = '#e8f5e9';
+    badge.style.color = '#2e7d32';
+    badgeDot.style.background = '#2e7d32';
+    statusText.textContent = 'activo';
+    
+    if (data.saldo === 0) {
+      alertText.textContent = "Esta cuenta no tiene saldo pendiente por pagar (Paz y Salvo).";
+    } else {
+      alertText.textContent = "Por favor realiza el pago antes de la fecha de vencimiento.";
+    }
+  } else {
+    badge.style.background = '#ffebee';
+    badge.style.color = '#c62828';
+    badgeDot.style.background = '#c62828';
+    statusText.textContent = 'suspendido';
+    alertText.textContent = "Servicio suspendido. Realiza el pago total para reactivar.";
+  }
+
+  // 4. Cambiamos a la vista de la Factura
   lookupView.style.display = 'none';
   invoiceView.style.display = 'block';
 
-  step1.classList.remove('active');
-  step1.classList.add('completed');
-  step1Circle.innerHTML = '✓';
-  step2.classList.add('active');
+  // Actualizar Pasos
+  document.getElementById('step1').classList.replace('active', 'completed');
+  document.getElementById('step1Circle').innerHTML = '✓';
+  document.getElementById('step2').classList.add('active');
 });
 
-// Volver de Factura a Consulta
+// ==========================================
+// LÓGICA DE NAVEGACIÓN ENTRE VISTAS
+// ==========================================
 document.getElementById('btnBackFromInvoice').addEventListener('click', () => {
   invoiceView.style.display = 'none';
   lookupView.style.display = 'block';
-  
-  step1.classList.remove('completed');
-  step1.classList.add('active');
-  step1Circle.innerHTML = '1';
-  step2.classList.remove('active');
+  document.getElementById('step1').classList.replace('completed', 'active');
+  document.getElementById('step1Circle').innerHTML = '1';
+  document.getElementById('step2').classList.remove('active');
 });
 
-// Ir a Pago Parcial
 document.getElementById('btnPayPartial').addEventListener('click', () => {
   invoiceView.style.display = 'none';
   partialView.style.display = 'block';
 });
 
-// Volver a Factura desde Pago Parcial
 document.getElementById('btnBackFromPartial').addEventListener('click', () => {
   partialView.style.display = 'none';
   invoiceView.style.display = 'block';
 });
 
-// Ir a Pago Total (Métodos) desde Pago Parcial
-document.getElementById('btnContinuePartial').addEventListener('click', () => {
-  partialView.style.display = 'none';
-  paymentView.style.display = 'block';
-  
-  step2.classList.remove('active');
-  step2.classList.add('completed');
-  step2Circle.innerHTML = '✓';
-  step3.classList.add('active');
-});
-
-// Ir a Pago Total (Métodos) desde Factura
 document.getElementById('btnPayTotal').addEventListener('click', () => {
   invoiceView.style.display = 'none';
   paymentView.style.display = 'block';
-  
-  step2.classList.remove('active');
-  step2.classList.add('completed');
-  step2Circle.innerHTML = '✓';
-  step3.classList.add('active');
+  document.getElementById('step2').classList.replace('active', 'completed');
+  document.getElementById('step2Circle').innerHTML = '✓';
+  document.getElementById('step3').classList.add('active');
 });
 
-// --- LÓGICA DE ACORDEÓN PARA MÉTODOS DE PAGO ---
+document.getElementById('btnContinuePartial').addEventListener('click', () => {
+  partialView.style.display = 'none';
+  paymentView.style.display = 'block';
+  document.getElementById('step2').classList.replace('active', 'completed');
+  document.getElementById('step2Circle').innerHTML = '✓';
+  document.getElementById('step3').classList.add('active');
+});
+
+// ==========================================
+// LÓGICA DE MÉTODOS DE PAGO (ACORDEÓN)
+// ==========================================
 function toggleMethod(id) {
   const method = document.getElementById(id);
   const isActive = method.classList.contains('active');
-
-  // Cerrar todos
-  document.querySelectorAll('.method-wrapper').forEach(el => {
-    el.classList.remove('active');
-  });
-
-  // Si no estaba activo, lo abrimos
-  if (!isActive) {
-    method.classList.add('active');
-  }
+  document.querySelectorAll('.method-wrapper').forEach(el => el.classList.remove('active'));
+  if (!isActive) method.classList.add('active');
 }
 
 function closeAllMethods(event) {
-  event.stopPropagation();
-  document.querySelectorAll('.method-wrapper').forEach(el => {
-    el.classList.remove('active');
-  });
+  if(event) event.stopPropagation();
+  document.querySelectorAll('.method-wrapper').forEach(el => el.classList.remove('active'));
 }
 
-// --- LÓGICA PARA ACTIVAR BOTONES CUANDO SE LLENAN LOS CAMPOS ---
+// ==========================================
+// VALIDACIÓN DE BOTONES (SE ACTIVAN AL LLENAR)
+// ==========================================
 function checkForm(method) {
   let isReady = false;
 
@@ -856,14 +616,12 @@ function checkForm(method) {
     isReady = phone.length > 5; 
     toggleBtn('btn-nequi', isReady);
   } 
-  
   else if (method === 'davi') {
     const docType = document.getElementById('daviDocType').value;
     const docNum = document.getElementById('daviDocNum').value.trim();
     isReady = docType !== '' && docNum.length > 5;
     toggleBtn('btn-davi', isReady);
   } 
-  
   else if (method === 'bancol') {
     const name = document.getElementById('bancolName').value.trim();
     const email = document.getElementById('bancolEmail').value.trim();
@@ -873,7 +631,6 @@ function checkForm(method) {
     isReady = name.length > 3 && email.includes('@') && phone.length > 5 && term1 && term2;
     toggleBtn('btn-bancol', isReady);
   } 
-  
   else if (method === 'pse') {
     const name = document.getElementById('pseName').value.trim();
     const email = document.getElementById('pseEmail').value.trim();
@@ -899,7 +656,6 @@ function toggleBtn(btnId, isReady) {
   }
 }
 
-// --- FUNCIÓN PARA REDIRIGIR A LAS PASARELAS DE PAGO ---
 function redirectTo(url) {
   window.open(url, '_blank');
 }
