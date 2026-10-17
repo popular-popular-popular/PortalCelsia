@@ -186,14 +186,31 @@ body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text);
 .method-body { display: none; padding: 0 1rem 1.2rem; border-top: 1px solid #eee; margin-top: 0.2rem; }
 .method-wrapper.active .method-body { display: block; }
 
-.nequi-label { font-size: 0.9rem; color: #555; font-weight: 600; margin: 1rem 0 0.5rem; }
-.phone-input-wrap { display: flex; align-items: center; border: 1px solid #e0e0e0; border-radius: 0.6rem; height: 3rem; overflow: hidden; margin-bottom: 0.8rem; }
-.phone-prefix { padding: 0 0.8rem; border-right: 1px solid #e0e0e0; color: #555; font-size: 1rem; background: #fafafa; height: 100%; display: flex; align-items: center; }
-.phone-input { border: none; outline: none; padding: 0 0.8rem; font-size: 1rem; width: 100%; height: 100%; color: #333; }
-.phone-help { font-size: 0.8rem; color: #777; text-align: center; margin-bottom: 1rem; line-height: 1.4; }
-.btn-send-push { width: 100%; min-height: 3rem; border-radius: 0.6rem; background: #fcb98a; color: white; border: none; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 0.8rem; }
+/* Formularios dentro de los métodos (Nequi / DaviPlata) */
+.label-small { font-size: 0.9rem; color: #555; font-weight: 600; margin: 1rem 0 0.5rem; }
+.input-wrap-small { display: flex; align-items: center; border: 1px solid #e0e0e0; border-radius: 0.6rem; height: 3rem; overflow: hidden; margin-bottom: 0.8rem; background: white; }
+.input-prefix { padding: 0 0.8rem; border-right: 1px solid #e0e0e0; color: #555; font-size: 1rem; background: #fafafa; height: 100%; display: flex; align-items: center; }
+.input-small { border: none; outline: none; padding: 0 0.8rem; font-size: 1rem; width: 100%; height: 100%; color: #333; }
+.help-text { font-size: 0.8rem; color: #777; text-align: center; margin-bottom: 1rem; line-height: 1.4; }
+.btn-action { width: 100%; min-height: 3rem; border-radius: 0.6rem; background: #fcb98a; color: white; border: none; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 0.8rem; }
 .btn-choose-other { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: transparent; border: none; color: #777; font-size: 0.95rem; cursor: pointer; width: 100%; font-weight: 500; }
 .btn-choose-other svg { width: 1rem; height: 1rem; }
+
+/* Layout especial para DaviPlata (Select + Input) */
+.davi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.2rem; }
+.davi-grid .label-small { margin: 0 0 0.4rem; line-height: 1.2; }
+.select-doc { width: 100%; height: 3rem; border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; font-size: 0.95rem; color: #333; outline: none; appearance: none; background: white url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E") no-repeat right 1rem center; background-size: 0.7rem; cursor: pointer; }
+
+/* --- MODAL SELECTOR (FONDO OSCURO Y TARJETA FLOTANTE) --- */
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 100; align-items: center; justify-content: center; padding: 1.5rem; }
+.modal-overlay.active { display: flex; }
+.modal-content { background: white; border-radius: 1rem; width: 100%; max-width: 24rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+.modal-option { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.5rem; border-bottom: 1px solid #f0f0f0; font-size: 1.1rem; color: #222; cursor: pointer; }
+.modal-option:last-child { border-bottom: none; }
+.modal-option:hover { background: #fafafa; }
+.radio-circle { width: 1.4rem; height: 1.4rem; border: 2px solid #d3d3d3; border-radius: 50%; flex-shrink: 0; position: relative; }
+.modal-option.selected .radio-circle { border-color: #5a337a; border-width: 2px; }
+.modal-option.selected .radio-circle::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0.7rem; height: 0.7rem; background: #5a337a; border-radius: 50%; }
 
 footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.75rem; }
 
@@ -229,6 +246,9 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
 
   .payment-summary-amount { font-size: 2.2rem; }
   .partial-title { font-size: 1.25rem; }
+  
+  .davi-grid { gap: 0.5rem; }
+  .select-doc { padding: 0 0.5rem; }
 }
 </style>
 </head>
@@ -407,7 +427,7 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
 
   <div class="payment-methods-title">Elige tu método de pago</div>
 
-  <!-- 1. Nequi (Acordeón) -->
+  <!-- 1. Nequi -->
   <div class="method-wrapper" id="method-nequi">
     <div class="method-header" onclick="toggleMethod('method-nequi')">
       <div class="method-icon" style="background: white; border: 1px solid #eee;">
@@ -421,13 +441,13 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
     </div>
     
     <div class="method-body">
-      <div class="nequi-label">Número de celular registrado en Nequi</div>
-      <div class="phone-input-wrap">
-        <div class="phone-prefix">+57</div>
-        <input type="tel" class="phone-input" placeholder="Ej: 3001234567">
+      <div class="label-small">Número de celular registrado en Nequi</div>
+      <div class="input-wrap-small">
+        <div class="input-prefix">+57</div>
+        <input type="tel" class="input-small" placeholder="Ej: 3001234567">
       </div>
-      <div class="phone-help">Recibirás una notificación en tu app Nequi para confirmar el pago.</div>
-      <button class="btn-send-push">Enviar solicitud de pago</button>
+      <div class="help-text">Recibirás una notificación en tu app Nequi para confirmar el pago.</div>
+      <button class="btn-action">Enviar solicitud de pago</button>
       <button class="btn-choose-other" onclick="closeAllMethods(event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         Elegir otro método
@@ -435,7 +455,7 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
     </div>
   </div>
 
-  <!-- 2. DaviPlata (Acordeón) -->
+  <!-- 2. DaviPlata -->
   <div class="method-wrapper" id="method-daviplata">
     <div class="method-header" onclick="toggleMethod('method-daviplata')">
       <div class="method-icon" style="background: #da291c;">
@@ -447,14 +467,25 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
       </div>
       <div class="method-radio"></div>
     </div>
+    
     <div class="method-body">
-      <div class="nequi-label">Número de celular registrado en DaviPlata</div>
-      <div class="phone-input-wrap">
-        <div class="phone-prefix">+57</div>
-        <input type="tel" class="phone-input" placeholder="Ej: 3001234567">
+      <!-- Formulario exacto de la captura -->
+      <div class="davi-grid">
+        <div>
+          <div class="label-small">Tipo de documento</div>
+          <select class="select-doc" id="daviDocType" onclick="openModal()" readonly>
+            <option value="" id="daviDocText">Selecciona</option>
+            <option value="CC" style="display:none;">Cédula de ciudadanía</option>
+            <option value="CE" style="display:none;">Cédula de extranjería</option>
+            <option value="TI" style="display:none;">Tarjeta de identidad</option>
+          </select>
+        </div>
+        <div>
+          <div class="label-small">Número de documento</div>
+          <input type="tel" class="input-small" placeholder="Ej: 123456789" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem;">
+        </div>
       </div>
-      <div class="phone-help">Recibirás un código OTP en tu app DaviPlata.</div>
-      <button class="btn-send-push">Enviar código</button>
+      <button class="btn-action" style="margin-top: 0.5rem;">Continuar</button>
       <button class="btn-choose-other" onclick="closeAllMethods(event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         Elegir otro método
@@ -462,7 +493,7 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
     </div>
   </div>
 
-  <!-- 3. Botón Bancolombia (Acordeón) -->
+  <!-- 3. Botón Bancolombia -->
   <div class="method-wrapper" id="method-bancolombia">
     <div class="method-header" onclick="toggleMethod('method-bancolombia')">
       <div class="method-icon" style="background: #fcd116; border-radius: 50%;">
@@ -479,8 +510,30 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
       <div class="method-radio"></div>
     </div>
     <div class="method-body">
-      <div class="phone-help" style="text-align: left; margin-top: 1rem;">Serás redirigido a la plataforma de Bancolombia para completar tu pago de forma segura.</div>
-      <button class="btn-send-push">Ir a Bancolombia</button>
+      <div class="help-text" style="text-align: left; margin-top: 1rem;">Serás redirigido a la plataforma de Bancolombia para completar tu pago de forma segura.</div>
+      <button class="btn-action">Ir a Bancolombia</button>
+      <button class="btn-choose-other" onclick="closeAllMethods(event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Elegir otro método
+      </button>
+    </div>
+  </div>
+
+  <!-- 4. PSE -->
+  <div class="method-wrapper" id="method-pse">
+    <div class="method-header" onclick="toggleMethod('method-pse')">
+      <div class="method-icon" style="background: #003b7a; border-radius: 0.6rem;">
+        <span style="font-weight: 700; font-size: 0.8rem; color: white;">PSE</span>
+      </div>
+      <div class="method-info">
+        <div class="method-name">PSE</div>
+        <div class="method-desc">Débito desde cualquier banco</div>
+      </div>
+      <div class="method-radio"></div>
+    </div>
+    <div class="method-body">
+      <div class="help-text" style="text-align: left; margin-top: 1rem;">Paga de forma segura desde tu cuenta bancaria a través de PSE.</div>
+      <button class="btn-action">Continuar con PSE</button>
       <button class="btn-choose-other" onclick="closeAllMethods(event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         Elegir otro método
@@ -493,6 +546,28 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
 <footer>
   Maqueta demostrativa · No conectada al sistema real de pagos
 </footer>
+
+<!-- MODAL SELECTOR DE DOCUMENTO -->
+<div class="modal-overlay" id="docModal">
+  <div class="modal-content">
+    <div class="modal-option selected" data-val="Selecciona">
+      <span>Selecciona</span>
+      <div class="radio-circle"></div>
+    </div>
+    <div class="modal-option" data-val="Cédula de ciudadanía">
+      <span>Cédula de ciudadanía</span>
+      <div class="radio-circle"></div>
+    </div>
+    <div class="modal-option" data-val="Cédula de extranjería">
+      <span>Cédula de extranjería</span>
+      <div class="radio-circle"></div>
+    </div>
+    <div class="modal-option" data-val="Tarjeta de identidad">
+      <span>Tarjeta de identidad</span>
+      <div class="radio-circle"></div>
+    </div>
+  </div>
+</div>
 
 <script>
 // Variables
@@ -636,6 +711,42 @@ function closeAllMethods(event) {
     el.classList.remove('active');
   });
 }
+
+// --- LÓGICA DE LA VENTANA MODAL (TIPO DE DOCUMENTO) ---
+const docModal = document.getElementById('docModal');
+const daviDocText = document.getElementById('daviDocText');
+const modalOptions = document.querySelectorAll('.modal-option');
+
+// Abrir modal al hacer clic en el select
+function openModal() {
+  docModal.classList.add('active');
+}
+
+// Cerrar modal al hacer clic fuera de la caja
+docModal.addEventListener('click', (e) => {
+  if (e.target === docModal) {
+    docModal.classList.remove('active');
+  }
+});
+
+// Seleccionar una opción del modal
+modalOptions.forEach(option => {
+  option.addEventListener('click', () => {
+    // Quitar la clase 'selected' de todos
+    modalOptions.forEach(opt => opt.classList.remove('selected'));
+    
+    // Añadir 'selected' al que se clickeó
+    option.classList.add('selected');
+
+    // Actualizar el texto del select falso
+    const valor = option.getAttribute('data-val');
+    daviDocText.textContent = valor;
+    daviDocText.value = valor; // Para el atributo value
+
+    // Cerrar modal
+    docModal.classList.remove('active');
+  });
+});
 </script>
 
 </body>
