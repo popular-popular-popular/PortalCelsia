@@ -21,23 +21,11 @@
   --btn-light-orange: #fcb98a;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
+html { font-size: 16px; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text); background: #fff; -webkit-text-size-adjust: 100%; }
 
-html {
-  font-size: 16px;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--text);
-  background: #fff;
-  -webkit-text-size-adjust: 100%;
-}
-
-/* ENCABEZADO CON TU IMAGEN */
+/* ENCABEZADO */
 .topbar {
   width: 100%;
   height: 4rem;
@@ -47,12 +35,7 @@ body {
   background-repeat: no-repeat;
   background-color: #ff7900; 
 }
-
-@media (max-width: 600px) {
-  .topbar {
-    height: 3.2rem; 
-  }
-}
+@media (max-width: 600px) { .topbar { height: 3.2rem; } }
 
 /* INDICADOR DE PASOS */
 .steps {
@@ -64,57 +47,15 @@ body {
   justify-content: center;
   width: 100%;
 }
-
-.step {
-  width: 5.8rem;
-  flex: 0 1 5.8rem;
-  text-align: center;
-  color: #b8b8b8;
-  font-size: 0.8rem;
-  line-height: 1.25;
-}
-
+.step { width: 5.8rem; flex: 0 1 5.8rem; text-align: center; color: #b8b8b8; font-size: 0.8rem; line-height: 1.25; }
 .step-circle {
-  width: 2.6rem;
-  height: 2.6rem;
-  margin: 0 auto 0.5rem;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: #e4e4e4;
-  color: #777;
-  font-size: 1.05rem;
-  font-weight: 700;
+  width: 2.6rem; height: 2.6rem; margin: 0 auto 0.5rem; border-radius: 50%; display: grid; place-items: center; background: #e4e4e4; color: #777; font-size: 1.05rem; font-weight: 700;
 }
-
-.step.active {
-  color: #d98227;
-  font-weight: 600;
-}
-
-.step.active .step-circle {
-  background: var(--orange);
-  color: white;
-  border: 0.25rem solid #ffead7;
-  box-shadow: 0 0 0 1px #f8d5b5;
-}
-
-.step.completed {
-  color: #777;
-}
-.step.completed .step-circle {
-  background: var(--orange);
-  color: white;
-  border: 0.25rem solid #ffead7;
-  box-shadow: 0 0 0 1px #f8d5b5;
-}
-
-.step-line {
-  height: 2px;
-  flex: 0 1 2.8rem;
-  background: #e5e5e5;
-  margin-top: 1.3rem;
-}
+.step.active { color: #d98227; font-weight: 600; }
+.step.active .step-circle { background: var(--orange); color: white; border: 0.25rem solid #ffead7; box-shadow: 0 0 0 1px #f8d5b5; }
+.step.completed { color: #777; }
+.step.completed .step-circle { background: var(--orange); color: white; border: 0.25rem solid #ffead7; box-shadow: 0 0 0 1px #f8d5b5; }
+.step-line { height: 2px; flex: 0 1 2.8rem; background: #e5e5e5; margin-top: 1.3rem; }
 
 /* TARJETA PRINCIPAL */
 .card {
@@ -126,423 +67,119 @@ body {
   box-shadow: 0 0 4px rgba(0,0,0,.03);
 }
 
-/* --- ESTILOS DE LA VISTA 1 (CONSULTA) --- */
-.hero-icon {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 1.6rem;
-  margin: 0 auto 1.8rem;
-  display: grid;
-  place-items: center;
-  background: var(--orange);
-  color: white;
-}
-
-.hero-icon img {
-  width: 3.2rem;
-  height: 3.2rem;
-  object-fit: contain;
-  display: block;
-}
-
-.card-title {
-  font-size: 1.45rem;
-  line-height: 1.35;
-  font-weight: 700;
-  color: var(--foreground);
-  margin: 0 auto 1rem;
-  max-width: 100%;
-  text-align: center;
-  letter-spacing: -0.5px;
-  text-wrap: balance;
-}
-
-.title-last {
-  display: block;
-  text-align: center;
-}
-
-.intro {
-  text-align: center;
-  color: #777;
-  font-size: clamp(0.9rem, 3.2vw, 1.05rem);
-  line-height: 1.5;
-  margin: 0 auto 2.2rem;
-  max-width: 100%;
-  text-wrap: balance;
-}
-
-.rule {
-  border: 0;
-  border-top: 1px solid #ddd;
-  margin: 0 0 2.2rem;
-}
-
-.field-label {
-  font-size: clamp(0.85rem, 3vw, 0.95rem);
-  color: #555;
-  font-weight: 400;
-  line-height: 1.5;
-  margin-bottom: 1rem;
-}
-
-.field-label strong {
-  color: #d98227;
-  font-weight: 600;
-}
-
-.choice-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.7rem;
-  margin-bottom: 2.2rem;
-}
-
-.choice {
-  min-height: 2.8rem;
-  width: 100%;
-  border: 2px solid #e3e3e3;
-  border-radius: 0.6rem;
-  background: white;
-  font: inherit;
-  font-size: clamp(0.85rem, 3.2vw, 1.05rem);
-  color: #555;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,.06);
-  transition: .15s ease;
-  padding: 0.4rem 0.5rem;
-}
-
-.choice.active {
-  border: 2px solid #ed801d;
-  color: #d98227;
-  background: #fff8f2;
-  box-shadow: none;
-  font-weight: 600;
-}
-
-.input-wrap {
-  position: relative;
-  margin-bottom: 2.2rem;
-  width: 100%;
-}
-
-.input-wrap input {
-  width: 100%;
-  height: 3rem;
-  border: 1px solid #e2e2e2;
-  border-radius: 0.65rem;
-  padding: 0 3rem 0 1rem;
-  font: inherit;
-  font-size: clamp(0.9rem, 3.2vw, 1.05rem);
-  color: #333;
-  outline: none;
-  box-shadow: 0 2px 4px rgba(0,0,0,.04);
-}
-
-.input-wrap input:focus {
-  border-color: #f3a45f;
-  box-shadow: 0 0 0 3px #fff0e3;
-}
-
-.input-wrap input::placeholder {
-  color: #888;
-}
-
-.eye {
-  position: absolute;
-  right: 0.85rem;
-  top: 50%;
-  transform: translateY(-50%);
-  border: 0;
-  background: transparent;
-  color: #777;
-  cursor: pointer;
-  padding: 0.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  pointer-events: auto;
-}
-
-.eye svg {
-  width: 1.4rem;
-  height: 1.4rem;
-  display: block;
-  pointer-events: none;
-}
-
+/* --- VISTA 1: CONSULTA --- */
+.hero-icon { width: 5rem; height: 5rem; border-radius: 1.6rem; margin: 0 auto 1.8rem; display: grid; place-items: center; background: var(--orange); color: white; }
+.hero-icon img { width: 3.2rem; height: 3.2rem; object-fit: contain; display: block; }
+.card-title { font-size: 1.45rem; line-height: 1.35; font-weight: 700; color: var(--foreground); margin: 0 auto 1rem; max-width: 100%; text-align: center; letter-spacing: -0.5px; text-wrap: balance; }
+.title-last { display: block; text-align: center; }
+.intro { text-align: center; color: #777; font-size: clamp(0.9rem, 3.2vw, 1.05rem); line-height: 1.5; margin: 0 auto 2.2rem; max-width: 100%; text-wrap: balance; }
+.rule { border: 0; border-top: 1px solid #ddd; margin: 0 0 2.2rem; }
+.field-label { font-size: clamp(0.85rem, 3vw, 0.95rem); color: #555; font-weight: 400; line-height: 1.5; margin-bottom: 1rem; }
+.field-label strong { color: #d98227; font-weight: 600; }
+.choice-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-bottom: 2.2rem; }
+.choice { min-height: 2.8rem; width: 100%; border: 2px solid #e3e3e3; border-radius: 0.6rem; background: white; font: inherit; font-size: clamp(0.85rem, 3.2vw, 1.05rem); color: #555; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,.06); transition: .15s ease; padding: 0.4rem 0.5rem; }
+.choice.active { border: 2px solid #ed801d; color: #d98227; background: #fff8f2; box-shadow: none; font-weight: 600; }
+.input-wrap { position: relative; margin-bottom: 2.2rem; width: 100%; }
+.input-wrap input { width: 100%; height: 3rem; border: 1px solid #e2e2e2; border-radius: 0.65rem; padding: 0 3rem 0 1rem; font: inherit; font-size: clamp(0.9rem, 3.2vw, 1.05rem); color: #333; outline: none; box-shadow: 0 2px 4px rgba(0,0,0,.04); }
+.input-wrap input:focus { border-color: #f3a45f; box-shadow: 0 0 0 3px #fff0e3; }
+.input-wrap input::placeholder { color: #888; }
+.eye { position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); border: 0; background: transparent; color: #777; cursor: pointer; padding: 0.25rem; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: auto; }
+.eye svg { width: 1.4rem; height: 1.4rem; display: block; pointer-events: none; }
 .eye .eye-off { display: none; }
 .eye.is-visible .eye-on { display: none; }
 .eye.is-visible .eye-off { display: block; }
-
-.consent {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
-  border: 1px solid #e2e2e2;
-  border-radius: 1rem;
-  background: #fafafa;
-  padding: 1rem 1rem;
-  margin-bottom: 1.2rem;
-  color: #555;
-  font-size: clamp(0.8rem, 2.8vw, 0.95rem);
-  line-height: 1.55;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-  width: 100%;
-}
-
+.consent { display: flex; gap: 0.75rem; align-items: flex-start; border: 1px solid #e2e2e2; border-radius: 1rem; background: #fafafa; padding: 1rem 1rem; margin-bottom: 1.2rem; color: #555; font-size: clamp(0.8rem, 2.8vw, 0.95rem); line-height: 1.55; box-shadow: 0 1px 3px rgba(0,0,0,0.03); width: 100%; }
 .consent:last-of-type { margin-bottom: 1.8rem; }
-
-.consent input {
-  appearance: none;
-  -webkit-appearance: none;
-  flex: 0 0 1.2rem;
-  width: 1.2rem;
-  height: 1.2rem;
-  margin: 0.15rem 0 0;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
-  background: white;
-  cursor: pointer;
-  position: relative;
-}
-
-.consent input:checked {
-  background: var(--orange);
-  border-color: var(--orange);
-}
-
-.consent input:checked::after {
-  content: "✓";
-  color: white;
-  position: absolute;
-  left: 0.2rem;
-  top: -0.15rem;
-  font-size: 0.95rem;
-  font-weight: 700;
-}
-
+.consent input { appearance: none; -webkit-appearance: none; flex: 0 0 1.2rem; width: 1.2rem; height: 1.2rem; margin: 0.15rem 0 0; border: 1px solid #ccc; border-radius: 0.25rem; background: white; cursor: pointer; position: relative; }
+.consent input:checked { background: var(--orange); border-color: var(--orange); }
+.consent input:checked::after { content: "✓"; color: white; position: absolute; left: 0.2rem; top: -0.15rem; font-size: 0.95rem; font-weight: 700; }
 .consent a { color: #d98227; text-decoration: underline; }
 .consent b { color: #222; }
 .required { color: #d94b4b; font-weight: 700; }
-
-.recaptcha-box {
-  border: 1px solid #d3d3d3;
-  border-radius: 0.25rem;
-  background: #f9f9f9;
-  padding: 0.75rem 0.85rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  width: 100%;
-}
-
+.recaptcha-box { border: 1px solid #d3d3d3; border-radius: 0.25rem; background: #f9f9f9; padding: 0.75rem 0.85rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); width: 100%; }
 .recaptcha-left { display: flex; align-items: center; gap: 0.7rem; }
-
-.recaptcha-checkbox {
-  width: 1.4rem;
-  height: 1.4rem;
-  border: 2px solid #c1c1c1;
-  border-radius: 0.2rem;
-  background: white;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  position: relative;
-  transition: border-color 0.2s;
-}
-
+.recaptcha-checkbox { width: 1.4rem; height: 1.4rem; border: 2px solid #c1c1c1; border-radius: 0.2rem; background: white; cursor: pointer; appearance: none; -webkit-appearance: none; position: relative; transition: border-color 0.2s; }
 .recaptcha-checkbox:checked { border-color: transparent; background: transparent; }
-
-.recaptcha-checkbox:checked::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 45%;
-  width: 0.95rem;
-  height: 0.5rem;
-  border-left: 2.5px solid #2e9e4f;
-  border-bottom: 2.5px solid #2e9e4f;
-  transform: translate(-50%, -60%) rotate(-45deg);
-  border-radius: 1px;
-}
-
+.recaptcha-checkbox:checked::after { content: ""; position: absolute; left: 50%; top: 45%; width: 0.95rem; height: 0.5rem; border-left: 2.5px solid #2e9e4f; border-bottom: 2.5px solid #2e9e4f; transform: translate(-50%, -60%) rotate(-45deg); border-radius: 1px; }
 .recaptcha-label { font-size: clamp(0.8rem, 2.8vw, 0.95rem); color: #000; font-weight: 400; }
 .recaptcha-logo { display: flex; flex-direction: column; align-items: center; font-size: 0.5rem; color: #555; line-height: 1.2; }
 .recaptcha-logo img { width: 2rem; height: 2rem; }
-
 .required-text { font-size: 0.75rem; color: #999; margin-bottom: 0.9rem; display: block; }
 .version-text { text-align: center; font-size: 0.7rem; color: #aaa; margin-bottom: 1.5rem; display: block; }
-
-.submit {
-  width: 100%;
-  min-height: 3rem;
-  border: 0;
-  border-radius: 0.6rem;
-  background: var(--orange);
-  color: white;
-  font-size: clamp(0.95rem, 3.2vw, 1.1rem);
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  box-shadow: 0 2px 4px rgba(244,119,0,0.3);
-  transition: background 0.2s, opacity 0.2s;
-}
-
+.submit { width: 100%; min-height: 3rem; border: 0; border-radius: 0.6rem; background: var(--orange); color: white; font-size: clamp(0.95rem, 3.2vw, 1.1rem); font-weight: 600; cursor: pointer; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 2px 4px rgba(244,119,0,0.3); transition: background 0.2s, opacity 0.2s; }
 .submit:disabled { background: #f7b27a; cursor: not-allowed; opacity: 0.7; box-shadow: none; }
 .submit:not(:disabled):hover { background: #e96e00; }
 .submit svg { width: 1.2rem; height: 1.2rem; }
 
-/* --- ESTILOS DE LA VISTA 2 (FACTURA) --- */
+/* --- VISTA 2: FACTURA --- */
 #invoiceView { display: none; }
-
-.invoice-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1.2rem;
-}
-
-.invoice-number {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1;
-  letter-spacing: -0.5px;
-}
-
-.invoice-label {
-  font-size: 0.85rem;
-  color: var(--orange);
-  font-weight: 700;
-  margin-top: 0.4rem;
-}
-
-.badge-active {
-  background: #e8f5e9;
-  color: #2e7d32;
-  border: 1px solid #c8e6c9;
-  padding: 0.3rem 0.7rem;
-  border-radius: 1rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
+.invoice-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.2rem; }
+.invoice-number { font-size: 2.2rem; font-weight: 800; color: var(--text); line-height: 1; letter-spacing: -0.5px; }
+.invoice-label { font-size: 0.85rem; color: var(--orange); font-weight: 700; margin-top: 0.4rem; }
+.badge-active { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; padding: 0.3rem 0.7rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 0.35rem; }
 .badge-dot { width: 6px; height: 6px; background: #2e7d32; border-radius: 50%; }
-
-.balance-card {
-  background: var(--orange);
-  border-radius: 1rem;
-  padding: 1.4rem 1.2rem;
-  color: white;
-  margin-bottom: 1.5rem;
-}
-
+.balance-card { background: var(--orange); border-radius: 1rem; padding: 1.4rem 1.2rem; color: white; margin-bottom: 1.5rem; }
 .balance-title { font-size: 0.95rem; opacity: 0.95; margin-bottom: 0.2rem; }
 .balance-amount { font-size: 2.8rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1; }
 .balance-details { display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.9); }
 .balance-details strong { color: white; font-weight: 700; }
-
-.client-info {
-  margin-bottom: 1.5rem;
-  border-bottom: 1px dashed #e0e0e0;
-  padding-bottom: 1.5rem;
-}
-
-.client-name {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  font-weight: 700;
-  font-size: 0.95rem;
-  margin-bottom: 0.6rem;
-  line-height: 1.3;
-  color: #222;
-}
-
+.client-info { margin-bottom: 1.5rem; border-bottom: 1px dashed #e0e0e0; padding-bottom: 1.5rem; }
+.client-name { display: flex; align-items: flex-start; gap: 0.6rem; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.6rem; line-height: 1.3; color: #222; }
 .client-name svg { width: 1.1rem; height: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; stroke-width: 1.5; }
 .client-address { font-size: 0.85rem; color: #777; padding-left: 1.7rem; line-height: 1.4; }
-
-.alert-info {
-  background: #fafafa;
-  border: 1px solid #e0e0e0;
-  border-radius: 0.8rem;
-  padding: 1rem;
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  color: #555;
-  font-size: 0.85rem;
-  margin-bottom: 1.5rem;
-  line-height: 1.4;
-}
-
+.alert-info { background: #fafafa; border: 1px solid #e0e0e0; border-radius: 0.8rem; padding: 1rem; display: flex; gap: 0.75rem; align-items: center; color: #555; font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4; }
 .alert-info svg { width: 1.2rem; height: 1.2rem; flex-shrink: 0; color: #777; }
-
-.action-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.8rem;
-  margin-bottom: 1rem;
-}
-
-.btn-pay {
-  min-height: 3.2rem;
-  border-radius: 0.6rem;
-  font-weight: 600;
-  font-size: 1.05rem;
-  cursor: pointer;
-}
-
+.action-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem; }
+.btn-pay { min-height: 3.2rem; border-radius: 0.6rem; font-weight: 600; font-size: 1.05rem; cursor: pointer; }
 .btn-pay.total { background: var(--btn-light-orange); color: white; border: none; }
 .btn-pay.partial { background: white; border: 2px solid var(--btn-light-orange); color: var(--btn-light-orange); }
-
-.btn-download {
-  width: 100%;
-  min-height: 3.2rem;
-  border-radius: 0.6rem;
-  background: var(--navy);
-  color: white;
-  border: none;
-  font-weight: 600;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  cursor: pointer;
-}
-
+.btn-download { width: 100%; min-height: 3.2rem; border-radius: 0.6rem; background: var(--navy); color: white; border: none; font-weight: 600; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer; }
 .btn-download svg { width: 1.2rem; height: 1.2rem; }
 
-footer {
-  text-align: center;
-  padding: 0 1rem 1.5rem;
-  color: #888;
-  font-size: 0.75rem;
-}
+/* --- VISTA 3A: PAGO PARCIAL --- */
+#partialView { display: none; }
+.partial-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+.partial-icon { width: 3rem; height: 3rem; background: #fff0e3; border-radius: 0.8rem; display: grid; place-items: center; flex-shrink: 0; }
+.partial-icon svg { width: 1.5rem; height: 1.5rem; color: var(--orange); }
+.partial-title { font-size: 1.4rem; font-weight: 700; margin: 0 0 0.2rem; line-height: 1.2; }
+.partial-subtitle { font-size: 0.95rem; color: #555; margin: 0; }
+.partial-subtitle strong { color: var(--orange); }
+.warning-box { background: #fffcf0; border: 1px solid #fbe8a6; border-radius: 0.8rem; padding: 1.2rem; margin-bottom: 1.8rem; }
+.warning-box h4 { margin: 0 0 0.5rem; color: #b47c1c; font-size: 1rem; }
+.warning-box p { margin: 0; color: #b47c1c; font-size: 0.95rem; line-height: 1.5; }
+.input-amount-label { font-size: 0.95rem; color: #555; font-weight: 600; margin-bottom: 0.5rem; }
+.input-amount { width: 100%; height: 3.5rem; border: 1px solid #e2e2e2; border-radius: 0.6rem; padding: 0 1rem; font-size: 1.2rem; font-weight: 700; color: #555; outline: none; margin-bottom: 1.5rem; }
+.input-amount:focus { border-color: var(--orange); }
+.btn-continue-partial { width: 100%; min-height: 3.2rem; border-radius: 0.6rem; background: var(--btn-light-orange); color: white; border: none; font-weight: 600; font-size: 1.1rem; cursor: pointer; margin-bottom: 1.2rem; }
+.btn-back { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: transparent; border: none; color: #777; font-size: 1rem; cursor: pointer; width: 100%; padding: 0.5rem; font-weight: 500; }
+.btn-back svg { width: 1.1rem; height: 1.1rem; }
+
+/* --- VISTA 3B: PAGO TOTAL (MÉTODOS) --- */
+#paymentView { display: none; }
+.payment-summary { background: var(--orange); border-radius: 1rem; padding: 1.4rem 1.2rem; color: white; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+.payment-summary::after { content: ''; position: absolute; right: -20px; top: -20px; width: 120px; height: 120px; border-radius: 50%; border: 15px solid rgba(255,255,255,0.1); }
+.payment-summary-label { font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.2rem; }
+.payment-summary-amount { font-size: 2.5rem; font-weight: 800; line-height: 1; margin-bottom: 0.8rem; }
+.payment-summary-details { display: flex; justify-content: space-between; font-size: 0.8rem; opacity: 0.95; }
+.secure-msg { background: #f0f9f8; border: 1px solid #d0ebe8; border-radius: 0.6rem; padding: 0.9rem 1rem; display: flex; gap: 0.75rem; align-items: flex-start; color: #337a76; font-size: 0.85rem; margin-bottom: 1.8rem; line-height: 1.4; }
+.secure-msg svg { width: 1.1rem; height: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+.payment-methods-title { font-size: 1rem; font-weight: 700; color: #555; margin-bottom: 1rem; }
+.method-card { display: flex; align-items: center; gap: 1rem; border: 1px solid #e0e0e0; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem; cursor: pointer; transition: border-color 0.2s; }
+.method-card:hover { border-color: var(--orange); }
+.method-icon { width: 3rem; height: 3rem; border-radius: 0.6rem; display: grid; place-items: center; flex-shrink: 0; overflow: hidden; }
+.method-icon img { width: 100%; height: 100%; object-fit: contain; }
+.method-info { flex-grow: 1; }
+.method-name { font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.2rem; }
+.method-desc { font-size: 0.85rem; color: #777; line-height: 1.3; }
+.method-radio { width: 1.4rem; height: 1.4rem; border: 2px solid #d3d3d3; border-radius: 50%; flex-shrink: 0; }
+
+footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.75rem; }
 
 /* ADAPTACIÓN A MÓVILES */
 @media (max-width: 480px) {
   html { font-size: 15px; }
   .steps { padding: 0.8rem 0.7rem 0.4rem; }
-  .card {
-    width: calc(100% - 1rem);
-    margin: 1.2rem auto 0.8rem;
-    padding: 2rem 1rem 1.5rem;
-    border-radius: 0.85rem;
-  }
+  .card { width: calc(100% - 1rem); margin: 1.2rem auto 0.8rem; padding: 2rem 1rem 1.5rem; border-radius: 0.85rem; }
   .hero-icon { margin-bottom: 1.5rem; }
   .card-title { font-size: 1.25rem; line-height: 1.35; margin-bottom: 0.9rem; max-width: 100%; }
   .intro { font-size: 0.85rem; margin-bottom: 1.8rem; }
@@ -561,13 +198,15 @@ footer {
   .choice { min-height: 2.6rem; font-size: 0.9rem; }
   .input-wrap input { height: 2.8rem; font-size: 0.95rem; }
   .submit { min-height: 2.8rem; font-size: 1rem; }
-
-  /* Ajustes móviles para la factura */
+  
   .invoice-number { font-size: 1.8rem; }
   .balance-amount { font-size: 2.4rem; }
   .action-buttons { gap: 0.6rem; }
   .btn-pay { font-size: 0.95rem; min-height: 2.8rem; }
   .btn-download { font-size: 0.9rem; min-height: 2.8rem; }
+
+  .payment-summary-amount { font-size: 2.2rem; }
+  .partial-title { font-size: 1.25rem; }
 }
 </style>
 </head>
@@ -585,7 +224,7 @@ footer {
   </div>
   <div class="step-line"></div>
   <div class="step" id="step2">
-    <div class="step-circle">2</div>
+    <div class="step-circle" id="step2Circle">2</div>
     <div>Revisa tu<br>factura</div>
   </div>
   <div class="step-line"></div>
@@ -605,7 +244,6 @@ footer {
     Consulta, paga o abona a tu 
     <span class="title-last">factura</span>
   </h2>
-
   <p class="intro">Sigue los pasos para consultar o realizar tus pagos</p>
   <hr class="rule">
 
@@ -620,13 +258,8 @@ footer {
     <div class="input-wrap">
       <input id="accountInput" type="password" inputmode="numeric" autocomplete="off" placeholder="Ingresa aqui tu documento" aria-label="Número de documento" required>
       <button type="button" class="eye" id="toggleVisibility" aria-label="Mostrar u ocultar dato">
-        <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12 s-3.6 6.5-10 6.5S2 12 2 12Z"/>
-          <circle cx="12" cy="12" r="3"/>
-        </svg>
-        <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20 c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94 M9.9 4.24A9.12 9.12 0 0 1 12 4 c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19 m-6.72-1.07a3 3 0 1 1-4.24-4.24 M1 1l22 22"/>
-        </svg>
+        <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12 s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20 c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94 M9.9 4.24A9.12 9.12 0 0 1 12 4 c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19 m-6.72-1.07a3 3 0 1 1-4.24-4.24 M1 1l22 22"/></svg>
       </button>
     </div>
 
@@ -634,7 +267,6 @@ footer {
       <input type="checkbox" required>
       <span>Acepto las <a href="#" class="policy-link">políticas de tratamiento de datos personales</a> <span class="required">*</span></span>
     </label>
-
     <label class="consent">
       <input type="checkbox" required>
       <span>Autorizo de manera libre, previa, expresa e informada a <b>Celsia Internet S.A.S.</b>, en su calidad de responsable del tratamiento de datos personales, conforme a su política de privacidad. <span class="required">*</span></span>
@@ -661,16 +293,14 @@ footer {
   </form>
 </main>
 
-<!-- VISTA 2: FACTURA (Oculta inicialmente) -->
+<!-- VISTA 2: FACTURA -->
 <main class="card" id="invoiceView">
   <div class="invoice-header">
     <div>
       <div class="invoice-number" id="accountNumberDisplay">2681656</div>
       <div class="invoice-label">ID de cuenta</div>
     </div>
-    <div class="badge-active">
-      <span class="badge-dot"></span> activo
-    </div>
+    <div class="badge-active"><span class="badge-dot"></span> activo</div>
   </div>
 
   <div class="balance-card">
@@ -685,14 +315,9 @@ footer {
   <div class="client-info">
     <div class="client-name">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-      <div>
-        BA********S AL****Z MA**A<br>
-        AL******A
-      </div>
+      <div>BA********S AL****Z MA**A<br>AL******A</div>
     </div>
-    <div class="client-address">
-      C*A 1*E CL 7-**1 TR 36 AP***3 - CI***D GU****
-    </div>
+    <div class="client-address">C*A 1*E CL 7-**1 TR 36 AP***3 - CI***D GU****</div>
   </div>
 
   <div class="alert-info">
@@ -701,8 +326,8 @@ footer {
   </div>
 
   <div class="action-buttons">
-    <button class="btn-pay total">Pago Total</button>
-    <button class="btn-pay partial">Pago Parcial</button>
+    <button class="btn-pay total" id="btnPayTotal">Pago Total</button>
+    <button class="btn-pay partial" id="btnPayPartial">Pago Parcial</button>
   </div>
   
   <button class="btn-download">
@@ -711,60 +336,141 @@ footer {
   </button>
 </main>
 
+<!-- VISTA 3A: PAGO PARCIAL -->
+<main class="card" id="partialView">
+  <div class="partial-header">
+    <div class="partial-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+    </div>
+    <div>
+      <h2 class="partial-title">Pago Parcial</h2>
+      <p class="partial-subtitle">Cuenta 2417693 · Saldo total: <strong>$ 55.900</strong></p>
+    </div>
+  </div>
+
+  <div class="warning-box">
+    <h4>Importante</h4>
+    <p>Un abono reduce tu saldo pendiente pero <strong>no evita la suspensión</strong> si no pagas el total antes del vencimiento. Si ya estás suspendido, debes realizar el pago total para reactivar el servicio.</p>
+  </div>
+
+  <div class="input-amount-label">¿Cuánto deseas abonar?</div>
+  <input type="text" class="input-amount" placeholder="Mínimo $ 30.000">
+
+  <button class="btn-continue-partial" id="btnContinuePartial">Continuar con el abono</button>
+  
+  <button class="btn-back" id="btnBackFromPartial">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    Volver a la factura
+  </button>
+</main>
+
+<!-- VISTA 3B: PAGO TOTAL (MÉTODOS) -->
+<main class="card" id="paymentView">
+  <div class="payment-summary">
+    <div class="payment-summary-label">Pago total</div>
+    <div class="payment-summary-amount" id="summaryAmount">$ 55.900</div>
+    <div class="payment-summary-details">
+      <span>Cuenta <span id="summaryAccount">2417693</span></span>
+      <span>241769303-55900-202610</span>
+    </div>
+  </div>
+
+  <div class="secure-msg">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+    <span>Tu pago se procesa cifrado y directo con cada entidad.</span>
+  </div>
+
+  <div class="payment-methods-title">Elige tu método de pago</div>
+
+  <!-- Nequi -->
+  <div class="method-card">
+    <div class="method-icon" style="background: white; border: 1px solid #eee;">
+      <span style="font-weight: 900; font-size: 1.5rem; color: #20003e;">N<span style="color: #e5007d;">.</span></span>
+    </div>
+    <div class="method-info">
+      <div class="method-name">Nequi</div>
+      <div class="method-desc">Notificación push a tu app Nequi</div>
+    </div>
+    <div class="method-radio"></div>
+  </div>
+
+  <!-- DaviPlata -->
+  <div class="method-card">
+    <div class="method-icon" style="background: #da291c;">
+      <span style="font-weight: 700; font-size: 0.7rem; color: white;">Daviplata</span>
+    </div>
+    <div class="method-info">
+      <div class="method-name">DaviPlata</div>
+      <div class="method-desc">Código OTP a tu app DaviPlata</div>
+    </div>
+    <div class="method-radio"></div>
+  </div>
+
+  <!-- Botón Bancolombia -->
+  <div class="method-card">
+    <div class="method-icon" style="background: #fcd116; border-radius: 50%;">
+      <div style="width: 1.8rem; height: 1.4rem; background: #333; border-radius: 0.2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px;">
+         <div style="width: 70%; height: 2px; background: white;"></div>
+         <div style="width: 70%; height: 2px; background: white;"></div>
+         <div style="width: 70%; height: 2px; background: white;"></div>
+      </div>
+    </div>
+    <div class="method-info">
+      <div class="method-name">Botón Bancolombia</div>
+      <div class="method-desc">Pago con tu cuenta Bancolombia</div>
+    </div>
+    <div class="method-radio"></div>
+  </div>
+</main>
+
 <footer>
   Maqueta demostrativa · No conectada al sistema real de pagos
 </footer>
 
 <script>
+// Variables
 const choices = document.querySelectorAll('.choice');
 const input = document.getElementById('accountInput');
 const toggle = document.getElementById('toggleVisibility');
 const recaptchaCheck = document.getElementById('recaptchaCheck');
 const submitBtn = document.getElementById('submitBtn');
 
+// Vistas
 const lookupView = document.getElementById('lookupView');
 const invoiceView = document.getElementById('invoiceView');
+const partialView = document.getElementById('partialView');
+const paymentView = document.getElementById('paymentView');
+
+// Pasos
 const step1 = document.getElementById('step1');
 const step1Circle = document.getElementById('step1Circle');
 const step2 = document.getElementById('step2');
+const step2Circle = document.getElementById('step2Circle');
+const step3 = document.getElementById('step3');
 
 let mode = 'documento';
 
+// Lógica de Búsqueda
 choices.forEach(button => {
   button.addEventListener('click', () => {
     mode = button.dataset.mode;
-
     choices.forEach(item => {
       const active = item === button;
       item.classList.toggle('active', active);
       item.setAttribute('aria-pressed', String(active));
     });
-
     input.value = '';
     input.type = 'password';
     toggle.classList.remove('is-visible');
-
-    if (mode === 'cuenta') {
-      input.placeholder = 'Ingresa aquí tu cuenta';
-      input.setAttribute('aria-label', 'Número de cuenta');
-    } else {
-      input.placeholder = 'Ingresa aqui tu documento';
-      input.setAttribute('aria-label', 'Número de documento');
-    }
+    input.placeholder = mode === 'cuenta' ? 'Ingresa aquí tu cuenta' : 'Ingresa aqui tu documento';
   });
 });
 
 toggle.addEventListener('click', (event) => {
   event.preventDefault();
   event.stopPropagation();
-
-  if (input.type === 'password') {
-    input.type = 'text';
-    toggle.classList.add('is-visible');
-  } else {
-    input.type = 'password';
-    toggle.classList.remove('is-visible');
-  }
+  input.type = input.type === 'password' ? 'text' : 'password';
+  toggle.classList.toggle('is-visible');
 });
 
 document.querySelector('.policy-link').addEventListener('click', event => {
@@ -776,27 +482,61 @@ recaptchaCheck.addEventListener('change', () => {
   submitBtn.disabled = !recaptchaCheck.checked;
 });
 
+// Ir a la Factura
 document.getElementById('lookupForm').addEventListener('submit', event => {
   event.preventDefault();
-  
   if (!input.value.trim()) {
     alert("Por favor, ingresa un número de documento o cuenta.");
     return;
   }
 
-  // Actualiza el número de cuenta en la vista de factura con lo que escribió el usuario
   document.getElementById('accountNumberDisplay').textContent = input.value;
+  document.getElementById('summaryAccount').textContent = input.value;
 
-  // Cambia de vista
   lookupView.style.display = 'none';
   invoiceView.style.display = 'block';
 
-  // Actualiza los pasos
+  // Actualizar Pasos
   step1.classList.remove('active');
   step1.classList.add('completed');
-  step1Circle.innerHTML = '✓'; // Cambia el 1 por el check
-  
+  step1Circle.innerHTML = '✓';
   step2.classList.add('active');
+});
+
+// Ir a Pago Parcial
+document.getElementById('btnPayPartial').addEventListener('click', () => {
+  invoiceView.style.display = 'none';
+  partialView.style.display = 'block';
+});
+
+// Volver a Factura desde Pago Parcial
+document.getElementById('btnBackFromPartial').addEventListener('click', () => {
+  partialView.style.display = 'none';
+  invoiceView.style.display = 'block';
+});
+
+// Ir a Pago Total (Métodos) desde Pago Parcial
+document.getElementById('btnContinuePartial').addEventListener('click', () => {
+  partialView.style.display = 'none';
+  paymentView.style.display = 'block';
+  
+  // Actualizar Pasos (Paso 3 activo)
+  step2.classList.remove('active');
+  step2.classList.add('completed');
+  step2Circle.innerHTML = '✓';
+  step3.classList.add('active');
+});
+
+// Ir a Pago Total (Métodos) desde Factura
+document.getElementById('btnPayTotal').addEventListener('click', () => {
+  invoiceView.style.display = 'none';
+  paymentView.style.display = 'block';
+  
+  // Actualizar Pasos (Paso 3 activo)
+  step2.classList.remove('active');
+  step2.classList.add('completed');
+  step2Circle.innerHTML = '✓';
+  step3.classList.add('active');
 });
 </script>
 
