@@ -156,11 +156,34 @@ body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text);
 
 /* --- VISTA 3B: PAGO TOTAL (MÉTODOS Y ACORDEÓN) --- */
 #paymentView { display: none; }
-.payment-summary { background: var(--orange); border-radius: 1rem; padding: 1.4rem 1.2rem; color: white; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
-.payment-summary::after { content: ''; position: absolute; right: -20px; top: -20px; width: 120px; height: 120px; border-radius: 50%; border: 15px solid rgba(255,255,255,0.1); }
-.payment-summary-label { font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.2rem; }
-.payment-summary-amount { font-size: 2.5rem; font-weight: 800; line-height: 1; margin-bottom: 0.8rem; }
-.payment-summary-details { display: flex; justify-content: space-between; font-size: 0.8rem; opacity: 0.95; }
+
+/* Tarjeta naranja con la señal de Wi-Fi */
+.payment-summary { 
+  background: var(--orange); 
+  border-radius: 1rem; 
+  padding: 1.4rem 1.2rem; 
+  color: white; 
+  margin-bottom: 1.2rem; 
+  position: relative; 
+  overflow: hidden; 
+}
+.payment-summary::after { 
+  content: ''; 
+  position: absolute; 
+  right: -10px; 
+  top: -15px; 
+  width: 150px; 
+  height: 150px; 
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.12)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.55a11 11 0 0 1 14.08 0'/%3E%3Cpath d='M1.42 9a16 16 0 0 1 21.16 0'/%3E%3Cpath d='M8.53 16.11a6 6 0 0 1 6.95 0'/%3E%3Cline x1='12' y1='20' x2='12.01' y2='20'/%3E%3C/svg%3E"); 
+  background-size: contain; 
+  background-repeat: no-repeat; 
+  pointer-events: none;
+}
+
+.payment-summary-label { font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.2rem; position: relative; z-index: 1; }
+.payment-summary-amount { font-size: 2.5rem; font-weight: 800; line-height: 1; margin-bottom: 0.8rem; position: relative; z-index: 1; }
+.payment-summary-details { display: flex; justify-content: space-between; font-size: 0.8rem; opacity: 0.95; position: relative; z-index: 1; }
+
 .secure-msg { background: #f0f9f8; border: 1px solid #d0ebe8; border-radius: 0.6rem; padding: 0.9rem 1rem; display: flex; gap: 0.75rem; align-items: flex-start; color: #337a76; font-size: 0.85rem; margin-bottom: 1.8rem; line-height: 1.4; }
 .secure-msg svg { width: 1.1rem; height: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
 .payment-methods-title { font-size: 1rem; font-weight: 700; color: #555; margin-bottom: 1rem; }
@@ -192,8 +215,12 @@ body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text);
 .input-prefix { padding: 0 0.8rem; border-right: 1px solid #e0e0e0; color: #555; font-size: 1rem; background: #fafafa; height: 100%; display: flex; align-items: center; }
 .input-small { border: none; outline: none; padding: 0 0.8rem; font-size: 1rem; width: 100%; height: 100%; color: #333; }
 .help-text { font-size: 0.8rem; color: #777; text-align: center; margin-bottom: 1rem; line-height: 1.4; }
-.btn-action { width: 100%; min-height: 3rem; border-radius: 0.6rem; background: #fcb98a; color: white; border: none; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+
+/* Botones de acción en métodos de pago */
+.btn-action { width: 100%; min-height: 3rem; border-radius: 0.6rem; background: #fcb98a; color: white; border: none; font-weight: 600; font-size: 1rem; cursor: not-allowed; margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: background 0.2s; }
+.btn-action.ready { background: var(--orange); cursor: pointer; }
 .btn-action svg { width: 1.2rem; height: 1.2rem; }
+
 .btn-choose-other { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: transparent; border: none; color: #777; font-size: 0.95rem; cursor: pointer; width: 100%; font-weight: 500; }
 .btn-choose-other svg { width: 1rem; height: 1rem; }
 
@@ -453,10 +480,10 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
       <div class="label-small">Número de celular registrado en Nequi</div>
       <div class="input-wrap-small">
         <div class="input-prefix">+57</div>
-        <input type="tel" class="input-small" placeholder="Ej: 3001234567">
+        <input type="tel" class="input-small" id="nequiPhone" placeholder="Ej: 3001234567" oninput="checkForm('nequi')">
       </div>
       <div class="help-text">Recibirás una notificación en tu app Nequi para confirmar el pago.</div>
-      <button class="btn-action">Enviar solicitud de pago</button>
+      <button class="btn-action" id="btn-nequi">Enviar solicitud de pago</button>
       <button class="btn-choose-other" onclick="closeAllMethods(event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         Elegir otro método
@@ -481,19 +508,19 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
       <div class="davi-grid">
         <div>
           <div class="label-small">Tipo de documento</div>
-          <select class="select-doc" onclick="openModal('docModal', 'daviDocText')" readonly>
-            <option value="" id="daviDocText">Selecciona</option>
-            <option value="CC" style="display:none;">Cédula de ciudadanía</option>
-            <option value="CE" style="display:none;">Cédula de extranjería</option>
-            <option value="TI" style="display:none;">Tarjeta de identidad</option>
+          <select class="select-doc" id="daviDocType" onchange="checkForm('davi')">
+            <option value="">Selecciona</option>
+            <option value="CC">Cédula de ciudadanía</option>
+            <option value="CE">Cédula de extranjería</option>
+            <option value="TI">Tarjeta de identidad</option>
           </select>
         </div>
         <div>
           <div class="label-small">Número de documento</div>
-          <input type="tel" class="input-small" placeholder="Ej: 123456789" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem;">
+          <input type="tel" class="input-small" id="daviDocNum" placeholder="Ej: 123456789" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem;" oninput="checkForm('davi')">
         </div>
       </div>
-      <button class="btn-action" style="margin-top: 0.5rem;">Continuar</button>
+      <button class="btn-action" id="btn-davi" style="margin-top: 0.5rem;">Continuar</button>
       <button class="btn-choose-other" onclick="closeAllMethods(event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         Elegir otro método
@@ -520,25 +547,25 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
     
     <div class="method-body">
       <div class="label-small" style="margin-top: 1rem;">Nombre completo</div>
-      <input type="text" class="input-small" placeholder="Nombre y apellidos" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%; margin-bottom: 1rem;">
+      <input type="text" class="input-small" id="bancolName" placeholder="Nombre y apellidos" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%; margin-bottom: 1rem;" oninput="checkForm('bancol')">
 
       <div class="bancol-grid">
         <div>
           <div class="label-small">Correo electrónico</div>
-          <input type="email" class="input-small" placeholder="tucorreo@ejemplo.com" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;">
+          <input type="email" class="input-small" id="bancolEmail" placeholder="tucorreo@ejemplo.com" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;" oninput="checkForm('bancol')">
         </div>
         <div>
           <div class="label-small">Teléfono</div>
-          <input type="tel" class="input-small" placeholder="Ej: 3001234567" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;">
+          <input type="tel" class="input-small" id="bancolPhone" placeholder="Ej: 3001234567" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;" oninput="checkForm('bancol')">
         </div>
       </div>
 
       <label class="consent-small">
-        <input type="checkbox" required>
+        <input type="checkbox" id="bancolTerm1" onchange="checkForm('bancol')" required>
         <span>Acepto el <a href="#">tratamiento de datos y términos de Wompi</a></span>
       </label>
       <label class="consent-small" style="margin-bottom: 1rem;">
-        <input type="checkbox" required>
+        <input type="checkbox" id="bancolTerm2" onchange="checkForm('bancol')" required>
         <span>Autorizo el <a href="#">tratamiento de datos personales</a></span>
       </label>
 
@@ -546,7 +573,7 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
         Al continuar saldrás a Bancolombia para confirmar el pago desde tu cuenta. Cuando termines, volverás aquí automáticamente.
       </div>
 
-      <button class="btn-action">
+      <button class="btn-action" id="btn-bancol">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
         Continuar con Botón Bancolombia
       </button>
@@ -558,7 +585,7 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
     </div>
   </div>
 
-  <!-- 4. PSE (ACTUALIZADO) -->
+  <!-- 4. PSE -->
   <div class="method-wrapper" id="method-pse">
     <div class="method-header" onclick="toggleMethod('method-pse')">
       <div class="method-icon" style="background: #003b7a; border-radius: 0.6rem;">
@@ -572,55 +599,54 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
     </div>
     
     <div class="method-body">
-      <!-- Formulario PSE -->
       <div class="label-small" style="margin-top: 1rem;">Nombre completo</div>
-      <input type="text" class="input-small" placeholder="Nombre y apellidos" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%; margin-bottom: 1rem;">
+      <input type="text" class="input-small" id="pseName" placeholder="Nombre y apellidos" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%; margin-bottom: 1rem;" oninput="checkForm('pse')">
 
       <div class="pse-grid">
         <div>
           <div class="label-small">Correo electrónico</div>
-          <input type="email" class="input-small" placeholder="tucorreo@ejemplo.com" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;">
+          <input type="email" class="input-small" id="pseEmail" placeholder="tucorreo@ejemplo.com" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;" oninput="checkForm('pse')">
         </div>
         <div>
           <div class="label-small">Teléfono</div>
-          <input type="tel" class="input-small" placeholder="Ej: 3001234567" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;">
+          <input type="tel" class="input-small" id="psePhone" placeholder="Ej: 3001234567" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;" oninput="checkForm('pse')">
         </div>
       </div>
 
       <div class="pse-grid">
         <div>
           <div class="label-small">Tipo de documento</div>
-          <select class="select-doc" onclick="openModal('docModal', 'pseDocText')" readonly>
-            <option value="" id="pseDocText">Selecciona</option>
-            <option value="CC" style="display:none;">Cédula de ciudadanía</option>
-            <option value="CE" style="display:none;">Cédula de extranjería</option>
-            <option value="TI" style="display:none;">Tarjeta de identidad</option>
+          <select class="select-doc" id="pseDocType" onchange="checkForm('pse')">
+            <option value="">Selecciona</option>
+            <option value="CC">Cédula de ciudadanía</option>
+            <option value="CE">Cédula de extranjería</option>
+            <option value="TI">Tarjeta de identidad</option>
           </select>
         </div>
         <div>
           <div class="label-small">Número de documento</div>
-          <input type="tel" class="input-small" placeholder="Ej: 123456789" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;">
+          <input type="tel" class="input-small" id="pseDocNum" placeholder="Ej: 123456789" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem; width: 100%;" oninput="checkForm('pse')">
         </div>
       </div>
 
       <div class="label-small">Banco</div>
-      <select class="select-doc" onclick="openModal('bankModal', 'pseBankText')" readonly style="margin-bottom: 1rem;">
-        <option value="" id="pseBankText">Selecciona tu banco</option>
-        <option value="Bancolombia" style="display:none;">Bancolombia</option>
-        <option value="Davivienda" style="display:none;">Davivienda</option>
-        <option value="BBVA" style="display:none;">BBVA</option>
-        <option value="Banco de Bogotá" style="display:none;">Banco de Bogotá</option>
-        <option value="Banco Popular" style="display:none;">Banco Popular</option>
-        <option value="Nequi" style="display:none;">Nequi</option>
-        <option value="Daviplata" style="display:none;">Daviplata</option>
+      <select class="select-doc" id="pseBank" onchange="checkForm('pse')" style="margin-bottom: 1rem;">
+        <option value="">Selecciona tu banco</option>
+        <option value="Bancolombia">Bancolombia</option>
+        <option value="Davivienda">Davivienda</option>
+        <option value="BBVA">BBVA</option>
+        <option value="Banco de Bogotá">Banco de Bogotá</option>
+        <option value="Banco Popular">Banco Popular</option>
+        <option value="Nequi">Nequi</option>
+        <option value="Daviplata">Daviplata</option>
       </select>
 
       <label class="consent-small">
-        <input type="checkbox" required>
+        <input type="checkbox" id="pseTerm1" onchange="checkForm('pse')" required>
         <span>Acepto el <a href="#">tratamiento de datos y términos de Wompi</a></span>
       </label>
       <label class="consent-small" style="margin-bottom: 1rem;">
-        <input type="checkbox" required>
+        <input type="checkbox" id="pseTerm2" onchange="checkForm('pse')" required>
         <span>Autorizo el <a href="#">tratamiento de datos personales</a></span>
       </label>
 
@@ -628,7 +654,7 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
         Al continuar saldrás a la página de tu banco para completar el pago. Cuando termines, volverás aquí automáticamente.
       </div>
 
-      <button class="btn-action">
+      <button class="btn-action" id="btn-pse">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
         Continuar con PSE
       </button>
@@ -645,66 +671,6 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
 <footer>
   Maqueta demostrativa · No conectada al sistema real de pagos
 </footer>
-
-<!-- MODAL SELECTOR DE DOCUMENTO -->
-<div class="modal-overlay" id="docModal">
-  <div class="modal-content">
-    <div class="modal-option selected" data-val="Selecciona">
-      <span>Selecciona</span>
-      <div class="radio-circle"></div>
-    </div>
-    <div class="modal-option" data-val="Cédula de ciudadanía">
-      <span>Cédula de ciudadanía</span>
-      <div class="radio-circle"></div>
-    </div>
-    <div class="modal-option" data-val="Cédula de extranjería">
-      <span>Cédula de extranjería</span>
-      <div class="radio-circle"></div>
-    </div>
-    <div class="modal-option" data-val="Tarjeta de identidad">
-      <span>Tarjeta de identidad</span>
-      <div class="radio-circle"></div>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL SELECTOR DE BANCO -->
-<div class="modal-overlay" id="bankModal">
-  <div class="modal-content">
-    <div class="modal-option selected" data-val="Selecciona tu banco">
-      <span>Selecciona tu banco</span>
-      <div class="radio-circle"></div>
-    </div>
-    <div class="modal-option" data-val="Bancolombia">
-      <span>Bancolombia</span>
-      <div class="radio-circle"></div>
-    </div>
-    <div class="modal-option" data-val="Davivienda">
-      <span>Davivienda</span>
-      <div class="radio-circle"></div>
-    </div>
-    <div class="modal-option" data-val="BBVA">
-      <span>BBVA</span>
-      <div class="radio-circle"></div>
-    </div>
-    <div class="modal-option" data-val="Banco de Bogotá">
-      <span>Banco de Bogotá</span>
-      <div class="radio-circle"></div>
-    </div>
-    <div class="modal-option" data-val="Banco Popular">
-      <span>Banco Popular</span>
-      <div class="radio-circle"></div>
-    </div>
-    <div class="modal-option" data-val="Nequi">
-      <span>Nequi</span>
-      <div class="radio-circle"></div>
-    </div>
-    <div class="modal-option" data-val="Daviplata">
-      <span>Daviplata</span>
-      <div class="radio-circle"></div>
-    </div>
-  </div>
-</div>
 
 <script>
 // Variables
@@ -849,51 +815,57 @@ function closeAllMethods(event) {
   });
 }
 
-// --- LÓGICA DE LA VENTANA MODAL (GENÉRICA PARA DOCUMENTO Y BANCO) ---
-function openModal(modalId, textElementId) {
-  const modal = document.getElementById(modalId);
-  const textElement = document.getElementById(textElementId);
-  
-  // Limpiar selecciones previas
-  modal.querySelectorAll('.modal-option').forEach(opt => opt.classList.remove('selected'));
-  
-  // Marcar la opción actual
-  const currentVal = textElement.textContent.trim();
-  let found = false;
-  modal.querySelectorAll('.modal-option').forEach(opt => {
-    if (opt.getAttribute('data-val') === currentVal) {
-      opt.classList.add('selected');
-      found = true;
-    }
-  });
-  // Si no se encontró, marcar la primera
-  if (!found) modal.querySelector('.modal-option').classList.add('selected');
+// --- LÓGICA PARA ACTIVAR BOTONES CUANDO SE LLENAN LOS CAMPOS ---
+function checkForm(method) {
+  let isReady = false;
 
-  modal.classList.add('active');
-
-  // Asignar el evento click a las opciones de ESTE modal
-  modal.querySelectorAll('.modal-option').forEach(option => {
-    option.onclick = function() {
-      modal.querySelectorAll('.modal-option').forEach(opt => opt.classList.remove('selected'));
-      this.classList.add('selected');
-      
-      const valor = this.getAttribute('data-val');
-      textElement.textContent = valor;
-      textElement.value = valor;
-      
-      modal.classList.remove('active');
-    };
-  });
+  if (method === 'nequi') {
+    const phone = document.getElementById('nequiPhone').value.trim();
+    isReady = phone.length > 5; // Validación simple
+    toggleBtn('btn-nequi', isReady);
+  } 
+  
+  else if (method === 'davi') {
+    const docType = document.getElementById('daviDocType').value;
+    const docNum = document.getElementById('daviDocNum').value.trim();
+    isReady = docType !== '' && docNum.length > 5;
+    toggleBtn('btn-davi', isReady);
+  } 
+  
+  else if (method === 'bancol') {
+    const name = document.getElementById('bancolName').value.trim();
+    const email = document.getElementById('bancolEmail').value.trim();
+    const phone = document.getElementById('bancolPhone').value.trim();
+    const term1 = document.getElementById('bancolTerm1').checked;
+    const term2 = document.getElementById('bancolTerm2').checked;
+    isReady = name.length > 3 && email.includes('@') && phone.length > 5 && term1 && term2;
+    toggleBtn('btn-bancol', isReady);
+  } 
+  
+  else if (method === 'pse') {
+    const name = document.getElementById('pseName').value.trim();
+    const email = document.getElementById('pseEmail').value.trim();
+    const phone = document.getElementById('psePhone').value.trim();
+    const docType = document.getElementById('pseDocType').value;
+    const docNum = document.getElementById('pseDocNum').value.trim();
+    const bank = document.getElementById('pseBank').value;
+    const term1 = document.getElementById('pseTerm1').checked;
+    const term2 = document.getElementById('pseTerm2').checked;
+    isReady = name.length > 3 && email.includes('@') && phone.length > 5 && docType !== '' && docNum.length > 5 && bank !== '' && term1 && term2;
+    toggleBtn('btn-pse', isReady);
+  }
 }
 
-// Cerrar modales al hacer clic fuera de la caja
-document.querySelectorAll('.modal-overlay').forEach(modal => {
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.remove('active');
-    }
-  });
-});
+function toggleBtn(btnId, isReady) {
+  const btn = document.getElementById(btnId);
+  if (isReady) {
+    btn.classList.add('ready');
+    btn.removeAttribute('disabled');
+  } else {
+    btn.classList.remove('ready');
+    btn.setAttribute('disabled', 'true');
+  }
+}
 </script>
 
 </body>
