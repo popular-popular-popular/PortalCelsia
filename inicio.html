@@ -37,8 +37,8 @@ body {
 
 /* ENCABEZADO */
 .topbar {
-  min-height: 3.2rem;
-  padding: 0.5rem 4%;
+  min-height: 3.6rem;
+  padding: 0.6rem 4%;
   display: flex;
   align-items: center;
   color: white;
@@ -65,7 +65,7 @@ body {
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.8rem;
   white-space: nowrap;
   width: 100%;
   justify-content: space-between;
@@ -73,19 +73,19 @@ body {
 }
 
 .brand-name {
-  font-size: clamp(0.95rem, 4vw, 1.3rem);
+  font-size: clamp(1rem, 4vw, 1.4rem);
   font-weight: 700;
   letter-spacing: -0.5px;
 }
 
-/* "internet" en negro */
+/* AQUÍ ESTÁ EL PUNTO BLANCO */
 .brand-name span {
   font-weight: 400;
-  color: #000; 
+  color: #ffffff; 
 }
 
 .portal-title {
-  font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
   font-weight: 400;
   opacity: 0.95;
 }
@@ -94,7 +94,7 @@ body {
 .steps {
   max-width: 32rem;
   margin: 0 auto;
-  padding: 0.6rem 0.8rem 0.4rem;
+  padding: 1.2rem 0.8rem 0.6rem;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -102,24 +102,24 @@ body {
 }
 
 .step {
-  width: 5.5rem;
-  flex: 0 1 5.5rem;
+  width: 5.8rem;
+  flex: 0 1 5.8rem;
   text-align: center;
   color: #b8b8b8;
-  font-size: 0.75rem;
-  line-height: 1.2;
+  font-size: 0.8rem;
+  line-height: 1.25;
 }
 
 .step-circle {
-  width: 2.4rem;
-  height: 2.4rem;
-  margin: 0 auto 0.4rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin: 0 auto 0.5rem;
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: #e4e4e4;
   color: #777;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 700;
 }
 
@@ -131,33 +131,33 @@ body {
 .step.active .step-circle {
   background: var(--orange);
   color: white;
-  border: 0.22rem solid #ffead7;
+  border: 0.25rem solid #ffead7;
   box-shadow: 0 0 0 1px #f8d5b5;
 }
 
 .step-line {
   height: 2px;
-  flex: 0 1 2.5rem;
+  flex: 0 1 2.8rem;
   background: #e5e5e5;
-  margin-top: 1.2rem;
+  margin-top: 1.3rem;
 }
 
 /* TARJETA PRINCIPAL */
 .card {
-  width: min(36rem, calc(100% - 0.8rem));
-  margin: 1.2rem auto 1rem;
+  width: min(32rem, calc(100% - 1rem));
+  margin: 1.5rem auto 1rem;
   border: 1px solid #e3e3e3;
-  border-radius: 0.85rem;
-  padding: 2rem 1.2rem 1.6rem;
-  box-shadow: 0 0 2px rgba(0,0,0,.02);
+  border-radius: 1rem;
+  padding: 2.8rem 1.5rem 2rem;
+  box-shadow: 0 0 4px rgba(0,0,0,.03);
 }
 
 /* ICONO HERO */
 .hero-icon {
-  width: 4.5rem;
-  height: 4.5rem;
-  border-radius: 1.4rem;
-  margin: 0 auto 1.6rem;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 1.6rem;
+  margin: 0 auto 1.8rem;
   display: grid;
   place-items: center;
   background: var(--orange);
@@ -165,19 +165,19 @@ body {
 }
 
 .hero-icon img {
-  width: 2.7rem;
-  height: 2.7rem;
+  width: 3.2rem;
+  height: 3.2rem;
   object-fit: contain;
   display: block;
 }
 
 /* TÍTULO */
 .card-title {
-  font-size: 1.35rem;
-  line-height: 1.4;
+  font-size: 1.45rem;
+  line-height: 1.35;
   font-weight: 700;
   color: var(--foreground);
-  margin: 0 auto 0.9rem;
+  margin: 0 auto 1rem;
   max-width: 100%;
   text-align: center;
   letter-spacing: -0.5px;
@@ -194,9 +194,9 @@ body {
 .intro {
   text-align: center;
   color: #777;
-  font-size: clamp(0.85rem, 3.2vw, 1rem);
+  font-size: clamp(0.9rem, 3.2vw, 1.05rem);
   line-height: 1.5;
-  margin: 0 auto 2rem;
+  margin: 0 auto 2.2rem;
   max-width: 100%;
   text-wrap: balance;
 }
@@ -204,15 +204,15 @@ body {
 .rule {
   border: 0;
   border-top: 1px solid #ddd;
-  margin: 0 0 2rem;
+  margin: 0 0 2.2rem;
 }
 
 .field-label {
-  font-size: clamp(0.75rem, 2.9vw, 0.85rem);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
   color: #555;
   font-weight: 400;
   line-height: 1.5;
-  margin-bottom: 0.9rem;
+  margin-bottom: 1rem;
 }
 
 .field-label strong {
@@ -224,23 +224,23 @@ body {
 .choice-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.6rem;
-  margin-bottom: 2rem;
+  gap: 0.7rem;
+  margin-bottom: 2.2rem;
 }
 
 .choice {
-  min-height: 2.4rem;
+  min-height: 2.8rem;
   width: 100%;
   border: 2px solid #e3e3e3;
-  border-radius: 0.55rem;
+  border-radius: 0.6rem;
   background: white;
   font: inherit;
-  font-size: clamp(0.8rem, 3.2vw, 0.95rem);
+  font-size: clamp(0.85rem, 3.2vw, 1.05rem);
   color: #555;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0,0,0,.06);
   transition: .15s ease;
-  padding: 0.3rem 0.5rem;
+  padding: 0.4rem 0.5rem;
 }
 
 .choice.active {
@@ -254,18 +254,18 @@ body {
 /* CAMPO DE ENTRADA */
 .input-wrap {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 2.2rem;
   width: 100%;
 }
 
 .input-wrap input {
   width: 100%;
-  height: 2.4rem;
+  height: 3rem;
   border: 1px solid #e2e2e2;
-  border-radius: 0.6rem;
-  padding: 0 2.4rem 0 0.9rem;
+  border-radius: 0.65rem;
+  padding: 0 3rem 0 1rem;
   font: inherit;
-  font-size: clamp(0.8rem, 3.2vw, 0.95rem);
+  font-size: clamp(0.9rem, 3.2vw, 1.05rem);
   color: #333;
   outline: none;
   box-shadow: 0 2px 4px rgba(0,0,0,.04);
@@ -280,17 +280,17 @@ body {
   color: #888;
 }
 
-/* BOTÓN DEL OJITO */
+/* BOTÓN DEL OJITO (MÁS GRANDE COMO EN LA FOTO) */
 .eye {
   position: absolute;
-  right: 0.75rem;
+  right: 0.85rem;
   top: 50%;
   transform: translateY(-50%);
   border: 0;
   background: transparent;
   color: #777;
   cursor: pointer;
-  padding: 0.15rem;
+  padding: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -299,8 +299,8 @@ body {
 }
 
 .eye svg {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1.4rem;
+  height: 1.4rem;
   display: block;
   pointer-events: none;
 }
@@ -320,33 +320,33 @@ body {
 /* AUTORIZACIONES */
 .consent {
   display: flex;
-  gap: 0.65rem;
+  gap: 0.75rem;
   align-items: flex-start;
   border: 1px solid #e2e2e2;
-  border-radius: 0.9rem;
+  border-radius: 1rem;
   background: #fafafa;
-  padding: 0.85rem 0.9rem;
-  margin-bottom: 1rem;
+  padding: 1rem 1rem;
+  margin-bottom: 1.2rem;
   color: #555;
-  font-size: clamp(0.75rem, 2.8vw, 0.85rem);
-  line-height: 1.5;
+  font-size: clamp(0.8rem, 2.8vw, 0.95rem);
+  line-height: 1.55;
   box-shadow: 0 1px 3px rgba(0,0,0,0.03);
   width: 100%;
 }
 
 .consent:last-of-type {
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.8rem;
 }
 
 .consent input {
   appearance: none;
   -webkit-appearance: none;
-  flex: 0 0 1rem;
-  width: 1rem;
-  height: 1rem;
+  flex: 0 0 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
   margin: 0.15rem 0 0;
   border: 1px solid #ccc;
-  border-radius: 0.2rem;
+  border-radius: 0.25rem;
   background: white;
   cursor: pointer;
   position: relative;
@@ -361,9 +361,9 @@ body {
   content: "✓";
   color: white;
   position: absolute;
-  left: 0.15rem;
+  left: 0.2rem;
   top: -0.15rem;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 700;
 }
 
@@ -386,11 +386,11 @@ body {
   border: 1px solid #d3d3d3;
   border-radius: 0.25rem;
   background: #f9f9f9;
-  padding: 0.65rem 0.75rem;
+  padding: 0.75rem 0.85rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.5rem;
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   width: 100%;
 }
@@ -398,12 +398,12 @@ body {
 .recaptcha-left {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.7rem;
 }
 
 .recaptcha-checkbox {
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1.4rem;
+  height: 1.4rem;
   border: 2px solid #c1c1c1;
   border-radius: 0.2rem;
   background: white;
@@ -424,8 +424,8 @@ body {
   position: absolute;
   left: 50%;
   top: 45%;
-  width: 0.85rem;
-  height: 0.45rem;
+  width: 0.95rem;
+  height: 0.5rem;
   border-left: 2.5px solid #2e9e4f;
   border-bottom: 2.5px solid #2e9e4f;
   transform: translate(-50%, -60%) rotate(-45deg);
@@ -433,7 +433,7 @@ body {
 }
 
 .recaptcha-label {
-  font-size: clamp(0.75rem, 2.8vw, 0.85rem);
+  font-size: clamp(0.8rem, 2.8vw, 0.95rem);
   color: #000;
   font-weight: 400;
 }
@@ -442,48 +442,48 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 0.45rem;
+  font-size: 0.5rem;
   color: #555;
   line-height: 1.2;
 }
 
 .recaptcha-logo img {
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 /* CAMPO OBLIGATORIO Y VERSIÓN */
 .required-text {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: #999;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.9rem;
   display: block;
 }
 
 .version-text {
   text-align: center;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: #aaa;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.5rem;
   display: block;
 }
 
 /* BOTÓN BUSCAR */
 .submit {
   width: 100%;
-  min-height: 2.6rem;
+  min-height: 3rem;
   border: 0;
-  border-radius: 0.55rem;
+  border-radius: 0.6rem;
   background: var(--orange);
   color: white;
-  font-size: clamp(0.85rem, 3.2vw, 1rem);
+  font-size: clamp(0.95rem, 3.2vw, 1.1rem);
   font-weight: 600;
   cursor: pointer;
-  margin-top: 0.4rem;
+  margin-top: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
   box-shadow: 0 2px 4px rgba(244,119,0,0.3);
   transition: background 0.2s, opacity 0.2s;
 }
@@ -500,19 +500,19 @@ body {
 }
 
 .submit svg {
-  width: 1.05rem;
-  height: 1.05rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .notice {
   display: none;
-  margin: 1rem 0 0;
-  padding: 0.8rem;
-  border-radius: 0.55rem;
+  margin: 1.2rem 0 0;
+  padding: 0.9rem;
+  border-radius: 0.6rem;
   background: #fff4e9;
   color: #8a4c13;
-  line-height: 1.4;
-  font-size: 0.75rem;
+  line-height: 1.5;
+  font-size: 0.85rem;
 }
 
 .notice.show {
@@ -523,7 +523,7 @@ footer {
   text-align: center;
   padding: 0 1rem 1.5rem;
   color: #888;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
 }
 
 /* ADAPTACIÓN A MÓVILES */
@@ -533,170 +533,108 @@ footer {
   }
 
   .topbar {
-    min-height: 3rem;
-    padding: 0.45rem 3%;
+    min-height: 3.2rem;
+    padding: 0.5rem 3%;
   }
 
   .brand {
-    gap: 0.45rem;
+    gap: 0.5rem;
   }
 
   .steps {
-    padding: 0.5rem 0.7rem 0.3rem;
+    padding: 0.8rem 0.7rem 0.4rem;
   }
 
   .card {
-    width: calc(83% - 0.4rem);
-    margin: 2rem auto 0.8rem;
-    padding: 1.6rem 0.9rem 1.2rem;
-    border-radius: 0.75rem;
+    width: calc(100% - 1rem);
+    margin: 1.2rem auto 0.8rem;
+    padding: 2rem 1rem 1.5rem;
+    border-radius: 0.85rem;
   }
 
   .hero-icon {
-    margin-bottom: 1.3rem;
+    margin-bottom: 1.5rem;
   }
 
   .card-title {
-    font-size: 1.15rem;
-    line-height: 1.4;
-    margin-bottom: 0.8rem;
+    font-size: 1.25rem;
+    line-height: 1.35;
+    margin-bottom: 0.9rem;
     max-width: 100%;
   }
 
   .intro {
-    font-size: 0.8rem;
-    margin-bottom: 1.6rem;
+    font-size: 0.85rem;
+    margin-bottom: 1.8rem;
   }
 
   .rule {
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.8rem;
   }
 
   .field-label {
-    margin-bottom: 0.8rem;
-  }
-
-  .choice-row {
-    margin-bottom: 1.7rem;
-  }
-
-  .input-wrap {
-    margin-bottom: 1.7rem;
-  }
-
-  .consent {
-    padding: 0.75rem 0.85rem;
     margin-bottom: 0.9rem;
   }
 
-  .consent:last-of-type {
-    margin-bottom: 1.4rem;
+  .choice-row {
+    margin-bottom: 1.8rem;
   }
 
-  .recaptcha-box {
-    margin-bottom: 1.2rem;
-  }
-
-  .required-text {
-    margin-bottom: 0.7rem;
-  }
-
-  .version-text {
-    margin-bottom: 1.2rem;
-  }
-
-  .step {
-    width: 4.7rem;
-    flex: 0 1 4.7rem;
-    font-size: 0.68rem;
-  }
-
-  .step-circle {
-    width: 2.15rem;
-    height: 2.15rem;
-    font-size: 0.85rem;
-  }
-
-  .step-line {
-    flex: 0 1 1.6rem;
-    margin-top: 1.05rem;
-  }
-
-  .choice {
-    min-height: 2.3rem;
-    font-size: 0.8rem;
-  }
-
-  .input-wrap input {
-    height: 2.3rem;
-    font-size: 0.8rem;
-  }
-
-  .submit {
-    min-height: 2.5rem;
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 360px) {
-  html {
-    font-size: 14px;
-  }
-
-  .brand-name {
-    font-size: 0.95rem;
-  }
-
-  .portal-title {
-    font-size: 0.75rem;
-  }
-
-  .step {
-    width: 4.2rem;
-    flex: 0 1 4.2rem;
-    font-size: 0.62rem;
-  }
-
-  .step-line {
-    flex: 0 1 1.1rem;
-  }
-
-  .card {
-    width: calc(83% - 0.4rem);
-    margin: 2rem auto 0.8rem;
-    padding: 1.4rem 0.7rem 1.1rem;
-    border-radius: 0.75rem;
-  }
-
-  .card-title {
-    font-size: 1.05rem;
-    line-height: 1.35;
-    max-width: 100%;
-  }
-
-  .intro {
-    font-size: 0.78rem;
-    line-height: 1.45;
-  }
-
-  .choice {
-    font-size: 0.75rem;
-    min-height: 2.2rem;
-  }
-
-  .input-wrap input {
-    height: 2.2rem;
-    font-size: 0.78rem;
+  .input-wrap {
+    margin-bottom: 1.8rem;
   }
 
   .consent {
-    padding: 0.65rem;
-    font-size: 0.7rem;
+    padding: 0.85rem 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .consent:last-of-type {
+    margin-bottom: 1.5rem;
+  }
+
+  .recaptcha-box {
+    margin-bottom: 1.3rem;
+  }
+
+  .required-text {
+    margin-bottom: 0.8rem;
+  }
+
+  .version-text {
+    margin-bottom: 1.3rem;
+  }
+
+  .step {
+    width: 4.8rem;
+    flex: 0 1 4.8rem;
+    font-size: 0.72rem;
+  }
+
+  .step-circle {
+    width: 2.3rem;
+    height: 2.3rem;
+    font-size: 0.9rem;
+  }
+
+  .step-line {
+    flex: 0 1 1.8rem;
+    margin-top: 1.15rem;
+  }
+
+  .choice {
+    min-height: 2.6rem;
+    font-size: 0.9rem;
+  }
+
+  .input-wrap input {
+    height: 2.8rem;
+    font-size: 0.95rem;
   }
 
   .submit {
-    font-size: 0.85rem;
-    min-height: 2.4rem;
+    min-height: 2.8rem;
+    font-size: 1rem;
   }
 }
 </style>
@@ -737,7 +675,6 @@ footer {
     <img src="https://img.icons8.com/fluency/96/hand-with-money.png" alt="">
   </div>
 
-  <!-- AQUÍ ESTÁ EL CAMBIO DE LA PALABRA FACTURA -->
   <h2 class="card-title">
     Consulta, paga o abona a tu 
     <span class="title-last">factura</span>
@@ -756,7 +693,6 @@ footer {
     </div>
 
     <div class="choice-row" role="group">
-      <!-- Por defecto se activa el documento como en tu foto -->
       <button type="button"
               class="choice active"
               data-mode="documento"
@@ -869,7 +805,6 @@ const toggle = document.getElementById('toggleVisibility');
 const recaptchaCheck = document.getElementById('recaptchaCheck');
 const submitBtn = document.getElementById('submitBtn');
 
-// INICIA EN MODO DOCUMENTO COMO EN LA FOTO
 let mode = 'documento';
 
 choices.forEach(button => {
