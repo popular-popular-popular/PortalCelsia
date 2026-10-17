@@ -130,16 +130,11 @@ body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text);
 .alert-info { background: #fafafa; border: 1px solid #e0e0e0; border-radius: 0.8rem; padding: 1rem; display: flex; gap: 0.75rem; align-items: center; color: #555; font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4; }
 .alert-info svg { width: 1.2rem; height: 1.2rem; flex-shrink: 0; color: #777; }
 .action-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem; }
-
-/* CORRECCIÓN DE BOTONES (Pago Total Naranja, Pago Parcial Borde) */
 .btn-pay { min-height: 3.2rem; border-radius: 0.6rem; font-weight: 600; font-size: 1.05rem; cursor: pointer; }
 .btn-pay.total { background: var(--orange); color: white; border: none; }
 .btn-pay.partial { background: white; border: 2px solid var(--orange); color: var(--orange); }
-
 .btn-download { width: 100%; min-height: 3.2rem; border-radius: 0.6rem; background: var(--navy); color: white; border: none; font-weight: 600; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer; margin-bottom: 1.2rem; }
 .btn-download svg { width: 1.2rem; height: 1.2rem; }
-
-/* Botón Volver */
 .btn-back { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: transparent; border: none; color: #777; font-size: 1rem; cursor: pointer; width: 100%; padding: 0.5rem; font-weight: 500; }
 .btn-back svg { width: 1.1rem; height: 1.1rem; }
 
@@ -157,9 +152,9 @@ body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text);
 .input-amount-label { font-size: 0.95rem; color: #555; font-weight: 600; margin-bottom: 0.5rem; }
 .input-amount { width: 100%; height: 3.5rem; border: 1px solid #e2e2e2; border-radius: 0.6rem; padding: 0 1rem; font-size: 1.2rem; font-weight: 700; color: #555; outline: none; margin-bottom: 1.5rem; }
 .input-amount:focus { border-color: var(--orange); }
-.btn-continue-partial { width: 100%; min-height: 3.2rem; border-radius: 0.6rem; background: var(--btn-light-orange, #fcb98a); color: white; border: none; font-weight: 600; font-size: 1.1rem; cursor: pointer; margin-bottom: 1.2rem; }
+.btn-continue-partial { width: 100%; min-height: 3.2rem; border-radius: 0.6rem; background: #fcb98a; color: white; border: none; font-weight: 600; font-size: 1.1rem; cursor: pointer; margin-bottom: 1.2rem; }
 
-/* --- VISTA 3B: PAGO TOTAL (MÉTODOS) --- */
+/* --- VISTA 3B: PAGO TOTAL (MÉTODOS Y ACORDEÓN) --- */
 #paymentView { display: none; }
 .payment-summary { background: var(--orange); border-radius: 1rem; padding: 1.4rem 1.2rem; color: white; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
 .payment-summary::after { content: ''; position: absolute; right: -20px; top: -20px; width: 120px; height: 120px; border-radius: 50%; border: 15px solid rgba(255,255,255,0.1); }
@@ -169,14 +164,36 @@ body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text);
 .secure-msg { background: #f0f9f8; border: 1px solid #d0ebe8; border-radius: 0.6rem; padding: 0.9rem 1rem; display: flex; gap: 0.75rem; align-items: flex-start; color: #337a76; font-size: 0.85rem; margin-bottom: 1.8rem; line-height: 1.4; }
 .secure-msg svg { width: 1.1rem; height: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
 .payment-methods-title { font-size: 1rem; font-weight: 700; color: #555; margin-bottom: 1rem; }
-.method-card { display: flex; align-items: center; gap: 1rem; border: 1px solid #e0e0e0; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem; cursor: pointer; transition: border-color 0.2s; }
-.method-card:hover { border-color: var(--orange); }
+
+/* Acordeón Métodos de Pago */
+.method-wrapper { border: 1px solid #e0e0e0; border-radius: 1rem; margin-bottom: 1rem; transition: border-color 0.2s; overflow: hidden; background: white; }
+.method-wrapper.active { border-color: var(--orange); }
+
+.method-header { display: flex; align-items: center; gap: 1rem; padding: 1rem; cursor: pointer; }
 .method-icon { width: 3rem; height: 3rem; border-radius: 0.6rem; display: grid; place-items: center; flex-shrink: 0; overflow: hidden; }
-.method-icon img { width: 100%; height: 100%; object-fit: contain; }
 .method-info { flex-grow: 1; }
 .method-name { font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.2rem; }
 .method-desc { font-size: 0.85rem; color: #777; line-height: 1.3; }
-.method-radio { width: 1.4rem; height: 1.4rem; border: 2px solid #d3d3d3; border-radius: 50%; flex-shrink: 0; }
+
+/* Radios personalizados */
+.method-radio { width: 1.4rem; height: 1.4rem; border: 2px solid #d3d3d3; border-radius: 50%; flex-shrink: 0; position: relative; }
+.method-wrapper.active .method-radio { background: var(--orange); border-color: var(--orange); }
+.method-wrapper.active .method-radio::after {
+  content: '✓'; color: white; position: absolute; font-size: 0.8rem; font-weight: 700; top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+
+/* Contenido interno del acordeón */
+.method-body { display: none; padding: 0 1rem 1.2rem; border-top: 1px solid #eee; margin-top: 0.2rem; }
+.method-wrapper.active .method-body { display: block; }
+
+.nequi-label { font-size: 0.9rem; color: #555; font-weight: 600; margin: 1rem 0 0.5rem; }
+.phone-input-wrap { display: flex; align-items: center; border: 1px solid #e0e0e0; border-radius: 0.6rem; height: 3rem; overflow: hidden; margin-bottom: 0.8rem; }
+.phone-prefix { padding: 0 0.8rem; border-right: 1px solid #e0e0e0; color: #555; font-size: 1rem; background: #fafafa; height: 100%; display: flex; align-items: center; }
+.phone-input { border: none; outline: none; padding: 0 0.8rem; font-size: 1rem; width: 100%; height: 100%; color: #333; }
+.phone-help { font-size: 0.8rem; color: #777; text-align: center; margin-bottom: 1rem; line-height: 1.4; }
+.btn-send-push { width: 100%; min-height: 3rem; border-radius: 0.6rem; background: #fcb98a; color: white; border: none; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 0.8rem; }
+.btn-choose-other { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: transparent; border: none; color: #777; font-size: 0.95rem; cursor: pointer; width: 100%; font-weight: 500; }
+.btn-choose-other svg { width: 1rem; height: 1rem; }
 
 footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.75rem; }
 
@@ -329,7 +346,6 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
   </div>
 
   <div class="action-buttons">
-    <!-- Corregido: botón naranja sólido -->
     <button class="btn-pay total" id="btnPayTotal">Pago Total</button>
     <button class="btn-pay partial" id="btnPayPartial">Pago Parcial</button>
   </div>
@@ -339,7 +355,6 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
     Descargar mi factura
   </button>
 
-  <!-- Nuevo botón volver -->
   <button class="btn-back" id="btnBackFromInvoice">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
     Volver
@@ -392,45 +407,87 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
 
   <div class="payment-methods-title">Elige tu método de pago</div>
 
-  <!-- Nequi -->
-  <div class="method-card">
-    <div class="method-icon" style="background: white; border: 1px solid #eee;">
-      <span style="font-weight: 900; font-size: 1.5rem; color: #20003e;">N<span style="color: #e5007d;">.</span></span>
-    </div>
-    <div class="method-info">
-      <div class="method-name">Nequi</div>
-      <div class="method-desc">Notificación push a tu app Nequi</div>
-    </div>
-    <div class="method-radio"></div>
-  </div>
-
-  <!-- DaviPlata -->
-  <div class="method-card">
-    <div class="method-icon" style="background: #da291c;">
-      <span style="font-weight: 700; font-size: 0.7rem; color: white;">Daviplata</span>
-    </div>
-    <div class="method-info">
-      <div class="method-name">DaviPlata</div>
-      <div class="method-desc">Código OTP a tu app DaviPlata</div>
-    </div>
-    <div class="method-radio"></div>
-  </div>
-
-  <!-- Botón Bancolombia -->
-  <div class="method-card">
-    <div class="method-icon" style="background: #fcd116; border-radius: 50%;">
-      <div style="width: 1.8rem; height: 1.4rem; background: #333; border-radius: 0.2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px;">
-         <div style="width: 70%; height: 2px; background: white;"></div>
-         <div style="width: 70%; height: 2px; background: white;"></div>
-         <div style="width: 70%; height: 2px; background: white;"></div>
+  <!-- 1. Nequi (Acordeón) -->
+  <div class="method-wrapper" id="method-nequi">
+    <div class="method-header" onclick="toggleMethod('method-nequi')">
+      <div class="method-icon" style="background: white; border: 1px solid #eee;">
+        <span style="font-weight: 900; font-size: 1.5rem; color: #20003e;">N<span style="color: #e5007d;">.</span></span>
       </div>
+      <div class="method-info">
+        <div class="method-name">Nequi</div>
+        <div class="method-desc">Notificación push a tu app Nequi</div>
+      </div>
+      <div class="method-radio"></div>
     </div>
-    <div class="method-info">
-      <div class="method-name">Botón Bancolombia</div>
-      <div class="method-desc">Pago con tu cuenta Bancolombia</div>
+    
+    <div class="method-body">
+      <div class="nequi-label">Número de celular registrado en Nequi</div>
+      <div class="phone-input-wrap">
+        <div class="phone-prefix">+57</div>
+        <input type="tel" class="phone-input" placeholder="Ej: 3001234567">
+      </div>
+      <div class="phone-help">Recibirás una notificación en tu app Nequi para confirmar el pago.</div>
+      <button class="btn-send-push">Enviar solicitud de pago</button>
+      <button class="btn-choose-other" onclick="closeAllMethods(event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Elegir otro método
+      </button>
     </div>
-    <div class="method-radio"></div>
   </div>
+
+  <!-- 2. DaviPlata (Acordeón) -->
+  <div class="method-wrapper" id="method-daviplata">
+    <div class="method-header" onclick="toggleMethod('method-daviplata')">
+      <div class="method-icon" style="background: #da291c;">
+        <span style="font-weight: 700; font-size: 0.7rem; color: white;">Daviplata</span>
+      </div>
+      <div class="method-info">
+        <div class="method-name">DaviPlata</div>
+        <div class="method-desc">Código OTP a tu app DaviPlata</div>
+      </div>
+      <div class="method-radio"></div>
+    </div>
+    <div class="method-body">
+      <div class="nequi-label">Número de celular registrado en DaviPlata</div>
+      <div class="phone-input-wrap">
+        <div class="phone-prefix">+57</div>
+        <input type="tel" class="phone-input" placeholder="Ej: 3001234567">
+      </div>
+      <div class="phone-help">Recibirás un código OTP en tu app DaviPlata.</div>
+      <button class="btn-send-push">Enviar código</button>
+      <button class="btn-choose-other" onclick="closeAllMethods(event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Elegir otro método
+      </button>
+    </div>
+  </div>
+
+  <!-- 3. Botón Bancolombia (Acordeón) -->
+  <div class="method-wrapper" id="method-bancolombia">
+    <div class="method-header" onclick="toggleMethod('method-bancolombia')">
+      <div class="method-icon" style="background: #fcd116; border-radius: 50%;">
+        <div style="width: 1.8rem; height: 1.4rem; background: #333; border-radius: 0.2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px;">
+           <div style="width: 70%; height: 2px; background: white;"></div>
+           <div style="width: 70%; height: 2px; background: white;"></div>
+           <div style="width: 70%; height: 2px; background: white;"></div>
+        </div>
+      </div>
+      <div class="method-info">
+        <div class="method-name">Botón Bancolombia</div>
+        <div class="method-desc">Pago con tu cuenta Bancolombia</div>
+      </div>
+      <div class="method-radio"></div>
+    </div>
+    <div class="method-body">
+      <div class="phone-help" style="text-align: left; margin-top: 1rem;">Serás redirigido a la plataforma de Bancolombia para completar tu pago de forma segura.</div>
+      <button class="btn-send-push">Ir a Bancolombia</button>
+      <button class="btn-choose-other" onclick="closeAllMethods(event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Elegir otro método
+      </button>
+    </div>
+  </div>
+
 </main>
 
 <footer>
@@ -556,6 +613,29 @@ document.getElementById('btnPayTotal').addEventListener('click', () => {
   step2Circle.innerHTML = '✓';
   step3.classList.add('active');
 });
+
+// --- LÓGICA DE ACORDEÓN PARA MÉTODOS DE PAGO ---
+function toggleMethod(id) {
+  const method = document.getElementById(id);
+  const isActive = method.classList.contains('active');
+
+  // Cerrar todos
+  document.querySelectorAll('.method-wrapper').forEach(el => {
+    el.classList.remove('active');
+  });
+
+  // Si no estaba activo, lo abrimos
+  if (!isActive) {
+    method.classList.add('active');
+  }
+}
+
+function closeAllMethods(event) {
+  event.stopPropagation();
+  document.querySelectorAll('.method-wrapper').forEach(el => {
+    el.classList.remove('active');
+  });
+}
 </script>
 
 </body>
