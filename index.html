@@ -235,17 +235,6 @@ body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text);
 .consent-small a { color: #d98227; text-decoration: underline; }
 .info-text-small { font-size: 0.85rem; color: #777; line-height: 1.4; margin: 1rem 0; text-align: center; }
 
-/* --- MODAL SELECTOR (FONDO OSCURO Y TARJETA FLOTANTE) --- */
-.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 100; align-items: center; justify-content: center; padding: 1.5rem; }
-.modal-overlay.active { display: flex; }
-.modal-content { background: white; border-radius: 1rem; width: 100%; max-width: 24rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; }
-.modal-option { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.5rem; border-bottom: 1px solid #f0f0f0; font-size: 1.1rem; color: #222; cursor: pointer; }
-.modal-option:last-child { border-bottom: none; }
-.modal-option:hover { background: #fafafa; }
-.radio-circle { width: 1.4rem; height: 1.4rem; border: 2px solid #d3d3d3; border-radius: 50%; flex-shrink: 0; position: relative; }
-.modal-option.selected .radio-circle { border-color: #5a337a; border-width: 2px; }
-.modal-option.selected .radio-circle::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0.7rem; height: 0.7rem; background: #5a337a; border-radius: 50%; }
-
 footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.75rem; }
 
 /* ADAPTACIÓN A MÓVILES */
@@ -483,7 +472,7 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
         <input type="tel" class="input-small" id="nequiPhone" placeholder="Ej: 3001234567" oninput="checkForm('nequi')">
       </div>
       <div class="help-text">Recibirás una notificación en tu app Nequi para confirmar el pago.</div>
-      <button class="btn-action" id="btn-nequi">Enviar solicitud de pago</button>
+      <button class="btn-action" id="btn-nequi" onclick="redirectTo('https://nequi.com.co/')">Enviar solicitud de pago</button>
       <button class="btn-choose-other" onclick="closeAllMethods(event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         Elegir otro método
@@ -520,7 +509,7 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
           <input type="tel" class="input-small" id="daviDocNum" placeholder="Ej: 123456789" style="border: 1px solid #e0e0e0; border-radius: 0.6rem; padding: 0 0.8rem; height: 3rem;" oninput="checkForm('davi')">
         </div>
       </div>
-      <button class="btn-action" id="btn-davi" style="margin-top: 0.5rem;">Continuar</button>
+      <button class="btn-action" id="btn-davi" style="margin-top: 0.5rem;" onclick="redirectTo('https://www.daviplata.com/')">Continuar</button>
       <button class="btn-choose-other" onclick="closeAllMethods(event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         Elegir otro método
@@ -573,7 +562,7 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
         Al continuar saldrás a Bancolombia para confirmar el pago desde tu cuenta. Cuando termines, volverás aquí automáticamente.
       </div>
 
-      <button class="btn-action" id="btn-bancol">
+      <button class="btn-action" id="btn-bancol" onclick="redirectTo('https://sucursalpersonas.transaccionesbancolombia.com/')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
         Continuar con Botón Bancolombia
       </button>
@@ -632,7 +621,6 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
       <div class="label-small">Banco</div>
       <select class="select-doc" id="pseBank" onchange="checkForm('pse')" style="margin-bottom: 1rem;">
         <option value="">Selecciona tu banco</option>
-        <option value="0">A continuación seleccione su banco</option>
         <option value="1831">ACCION FIDUCIARIA</option>
         <option value="1815">ALIANZA FIDUCIARIA</option>
         <option value="1558">BAN100</option>
@@ -698,7 +686,7 @@ footer { text-align: center; padding: 0 1rem 1.5rem; color: #888; font-size: 0.7
         Al continuar saldrás a la página de tu banco para completar el pago. Cuando termines, volverás aquí automáticamente.
       </div>
 
-      <button class="btn-action" id="btn-pse">
+      <button class="btn-action" id="btn-pse" onclick="redirectTo('https://checkout.wompi.co/')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
         Continuar con PSE
       </button>
@@ -909,6 +897,11 @@ function toggleBtn(btnId, isReady) {
     btn.classList.remove('ready');
     btn.setAttribute('disabled', 'true');
   }
+}
+
+// --- FUNCIÓN PARA REDIRIGIR A LAS PASARELAS DE PAGO ---
+function redirectTo(url) {
+  window.open(url, '_blank');
 }
 </script>
 
