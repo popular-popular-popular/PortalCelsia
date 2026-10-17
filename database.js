@@ -7,7 +7,7 @@ const FACTURAS_DB = {
     // 🟢 CLIENTES ACTIVOS (10 ejemplos)
     // ============================================================
     '1001': {
-        identificacion: '1001',
+        identificacion: '241769303',
         nombre: 've***a vi***l al***o',
         direccion: 'c*l 12 -** ve***a vi***l al***o',
         saldo: 55900,
